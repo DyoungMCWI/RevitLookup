@@ -108,6 +108,7 @@ public sealed class SettingsService(
             Transition = Transition.None,
             IncludeStatic = true,
             IncludeEvents = true,
+            IncludeExtensions = true,
             UseHardwareRendering = true
         };
     }
