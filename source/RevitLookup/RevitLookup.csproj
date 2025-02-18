@@ -43,6 +43,9 @@
         <PackageReference Include="Serilog.Sinks.Console"/>
         <PackageReference Include="Serilog.Sinks.Autodesk.Revit"/>
         <PackageReference Include="Serilog.Extensions.Hosting"/>
+
+        <!-- Build -->
+        <PackageReference Include="ILRepack" Condition="'$(RevitVersion)' &lt; '2026'"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -90,8 +93,8 @@
             <ILRepackLib>@(ILRepackReference -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackLib>
         </PropertyGroup>
 
-        <Exec Command="$(ILRepackPath) /union /illink $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" Condition="$(Configuration.Contains('Debug'))"/>
-        <Exec Command="$(ILRepackPath) /union /illink /ndebug $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" Condition="$(Configuration.Contains('Release'))"/>
+        <Exec Command="$(ILRepackPath) /union /illink /parallel $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" Condition="$(Configuration.Contains('Debug'))"/>
+        <Exec Command="$(ILRepackPath) /union /illink /parallel /noRepackRes /ndebug $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" StandardOutputImportance="Low" Condition="$(Configuration.Contains('Release'))"/>
 
         <ItemGroup>
             <RepackedFiles Include="@(ILRepackInputAssemblies -> '%(RootDir)%(Directory)%(Filename).dll')" Condition="%(Filename) != $(AssemblyName)"/>
@@ -101,12 +104,12 @@
         <Delete Files="@(RepackedFiles)"/>
     </Target>
 
-    <Target Name="DeleteUnpublishedFiles" AfterTargets="PublishRevitAddinFiles" Condition="'$(Environment)' == 'Production'">
+    <Target Name="DeleteUnpublishableFiles" AfterTargets="PublishRevitAddinFiles" Condition="'$(Environment)' == 'Production'">
         <ItemGroup>
-            <UnpublishedFiles Include="$(OutputPath)publish/**/*.pdb;"/>
+            <UnpublishableFiles Include="$(OutputPath)publish/**/*.pdb;"/>
         </ItemGroup>
 
-        <Delete Files="@(UnpublishedFiles)"/>
+        <Delete Files="@(UnpublishableFiles)"/>
     </Target>
 
 </Project>

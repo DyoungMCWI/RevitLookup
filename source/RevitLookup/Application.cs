@@ -39,7 +39,8 @@ public class Application : ExternalApplication
         EnableThemes();
         EnableHardwareRendering();
 
-        Host.GetService<RevitRibbonService>().CreateRibbon();
+        var ribbonService = Host.GetService<RevitRibbonService>();
+        ribbonService.CreateRibbon();
     }
 
     public override void OnShutdown()

@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <!-- Revit References -->
-        <PackageVersion Include="Nice3point.Revit.Build.Tasks" Version="3.0.0-preview.2.0"/>
+        <PackageVersion Include="Nice3point.Revit.Build.Tasks" Version="3.0.0-preview.2.1"/>
         <PackageVersion Include="Nice3point.Revit.Toolkit" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
         <PackageVersion Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
         <PackageVersion Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
@@ -38,18 +38,18 @@
         <!-- Data Generation -->
         <PackageVersion Include="Bogus" Version="35.6.1"/>
 
+        <!-- Testing -->
+        <PackageVersion Include="BenchmarkDotNet" Version="0.14.0"/>
+        <PackageVersion Include="TUnit" Version="0.11.0"/>
+
         <!-- Automation Tools -->
         <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
         <PackageVersion Include="WixSharp.bin" Version="1.26.0"/>
         <PackageVersion Include="WixSharp.wix.bin" Version="3.14.1"/>
 
-        <!-- Testing -->
-        <PackageVersion Include="BenchmarkDotNet" Version="0.14.0"/>
-        <PackageVersion Include="TUnit" Version="0.11.0"/>
-
-        <!-- Compability -->
+        <!-- Build -->
         <PackageVersion Include="JetBrains.Annotations" Version="2024.3.0"/>
-        <PackageVersion Include="ILRepack" Version="2.0.37"/>
+        <PackageVersion Include="ILRepack" Version="2.0.38"/>
     </ItemGroup>
 
     <ItemGroup Condition="$(DefineConstants.Contains('NETFRAMEWORK'))">
