@@ -101,8 +101,10 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
     {
         if (args.ThemeChangedType != ThemeType.UITheme) return;
 
-        var activeComponent = _observedElements.FirstOrDefault();
-        activeComponent?.Dispatcher.Invoke(ApplyTheme);
+        if (_observedElements.Count > 0)
+        {
+            _observedElements[0].Dispatcher.Invoke(ApplyTheme);
+        }
     }
 #endif
 
@@ -122,6 +124,7 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
 
         if (element.Resources.MergedDictionaries[0].Source.OriginalString != UiApplication.Current.Resources.MergedDictionaries[0].Source.OriginalString)
         {
+            ApplicationThemeManager.Apply(element);
             UpdateDictionary(element);
         }
     }
