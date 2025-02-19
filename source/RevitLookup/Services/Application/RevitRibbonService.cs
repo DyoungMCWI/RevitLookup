@@ -19,30 +19,24 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 
 using Autodesk.Revit.UI;
+using Nice3point.Revit.Toolkit.External.Handlers;
 using RevitLookup.Abstractions.Services.Settings;
 using RevitLookup.Commands;
-using RevitLookup.Core;
-using UIFramework;
+using RevitLookup.Commands.Controllers;
 
 namespace RevitLookup.Services.Application;
 
 public sealed class RevitRibbonService(ISettingsService settingsService)
 {
+    private readonly ActionEventHandler _eventHandler = new();
     private readonly List<RibbonPanel> _createdPanels = new(2);
 
     public void CreateRibbon()
     {
-        RevitShell.ActionEventHandler.Raise(_ =>
+        _eventHandler.Raise(_ =>
         {
-            if (_createdPanels.Count == 0)
-            {
-                CreatePanels();
-                return;
-            }
-
             RemovePanels();
             CreatePanels();
-            ShortcutsHelper.LoadCommands();
         });
     }
 
@@ -54,10 +48,13 @@ public sealed class RevitRibbonService(ISettingsService settingsService)
         pullButton.SetImage("/RevitLookup;component/Resources/Images/RibbonIcon16.png");
         pullButton.SetLargeImage("/RevitLookup;component/Resources/Images/RibbonIcon32.png");
 
-        pullButton.AddPushButton<ShowDashboardCommand>("Dashboard");
+        pullButton.AddPushButton<ShowDashboardCommand>("Dashboard")
+            .SetAvailabilityController<CommandAlwaysAvailableController>();
+
         if (!settingsService.GeneralSettings.UseModifyTab)
         {
-            pullButton.AddPushButton<DecomposeSelectionCommand>("Snoop Selection");
+            pullButton.AddPushButton<DecomposeSelectionCommand>("Snoop Selection")
+                .AddShortcuts("SS");
         }
 
         pullButton.AddPushButton<DecomposeViewCommand>("Snoop Active view");
@@ -68,21 +65,27 @@ public sealed class RevitRibbonService(ISettingsService settingsService)
         pullButton.AddPushButton<DecomposePointCommand>("Snoop Point");
         pullButton.AddPushButton<DecomposeLinkedElementCommand>("Snoop Linked element");
         pullButton.AddPushButton<SearchElementsCommand>("Search Elements");
-        pullButton.AddPushButton<ShowEventMonitorCommand>("Event monitor");
+        pullButton.AddPushButton<ShowEventMonitorCommand>("Event monitor")
+            .SetAvailabilityController<CommandAlwaysAvailableController>();
+
+        if (settingsService.GeneralSettings.UseModifyTab)
+        {
+            var modifyPanel = application.CreatePanel("Revit Lookup", "Modify");
+            modifyPanel.AddPushButton<DecomposeSelectionCommand>("\u00a0Snoop\u00a0\nSelection")
+                .AddShortcuts("SS")
+                .SetImage("/RevitLookup;component/Resources/Images/RibbonIcon16.png")
+                .SetLargeImage("/RevitLookup;component/Resources/Images/RibbonIcon32.png");
+
+            _createdPanels.Add(modifyPanel);
+        }
 
         _createdPanels.Add(addinsPanel);
-        if (!settingsService.GeneralSettings.UseModifyTab) return;
-
-        var modifyPanel = application.CreatePanel("Revit Lookup", "Modify");
-        modifyPanel.AddPushButton<DecomposeSelectionCommand>("\u00a0Snoop\u00a0\nSelection")
-            .SetImage("/RevitLookup;component/Resources/Images/RibbonIcon16.png")
-            .SetLargeImage("/RevitLookup;component/Resources/Images/RibbonIcon32.png");
-
-        _createdPanels.Add(modifyPanel);
     }
 
     private void RemovePanels()
     {
+        if (_createdPanels.Count == 0) return;
+
         foreach (var ribbonPanel in _createdPanels)
         {
             ribbonPanel.RemovePanel();

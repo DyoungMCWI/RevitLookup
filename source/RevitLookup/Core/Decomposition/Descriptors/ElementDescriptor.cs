@@ -287,8 +287,8 @@ public class ElementDescriptor : Descriptor, IDescriptorResolver, IDescriptorExt
 
     public virtual void RegisterExtensions(IExtensionManager manager)
     {
-        manager.Register(nameof(ElementExtensions.CanBeMirrored), () => Variants.Value(_element.CanBeMirrored()));
-        manager.Register(nameof(JoinGeometryUtilsExtensions.GetJoinedElements), () => Variants.Value(_element.GetJoinedElements()));
+        manager.Register(nameof(ElementTransformUtilsExtensions.CanBeMirrored), () => Variants.Value(_element.CanBeMirrored()));
+        manager.Register(nameof(JoinGeometryUtils.GetJoinedElements), () => Variants.Value(_element.GetJoinedElements()));
         manager.Register(nameof(SolidSolidCutUtils.GetCuttingSolids), () => Variants.Value(SolidSolidCutUtils.GetCuttingSolids(_element)));
         manager.Register(nameof(SolidSolidCutUtils.GetSolidsBeingCut), () => Variants.Value(SolidSolidCutUtils.GetSolidsBeingCut(_element)));
         manager.Register(nameof(SolidSolidCutUtils.IsAllowedForSolidCut), () => Variants.Value(SolidSolidCutUtils.IsAllowedForSolidCut(_element)));

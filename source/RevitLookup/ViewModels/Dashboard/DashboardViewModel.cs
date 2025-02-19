@@ -283,17 +283,19 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
     [RelayCommand]
     private async Task NavigatePage(string? parameter)
     {
-        if (!ValidateContext()) return;
-
         try
         {
             switch (parameter)
             {
                 case "view":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.View);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "document":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Document);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
@@ -310,34 +312,50 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "database":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Database);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "dependents":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.DependentElements);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "selection":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Selection);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "linked":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.LinkedElement);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "face":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Face);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "edge":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Edge);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "point":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.Point);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "subElement":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.SubElement);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
@@ -346,6 +364,8 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
                 case "performance":
+                    if (!ValidateContext()) return;
+
                     await _visualDecompositionService.VisualizeDecompositionAsync(KnownDecompositionObject.PerformanceAdviser);
                     _navigationService.Navigate(typeof(DecompositionSummaryPage));
                     break;
@@ -382,8 +402,6 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
     {
         try
         {
-            if (!ValidateContext()) return;
-
             switch (parameter)
             {
                 case "parameters":
@@ -399,6 +417,8 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
                     await unitsDialog.ShowForgeSchemaDialogAsync();
                     return;
                 case "search":
+                    if (!ValidateContext()) return;
+
                     var searchDialog = _serviceProvider.GetRequiredService<SearchElementsDialog>();
                     await searchDialog.ShowAsync();
                     return;
@@ -414,7 +434,6 @@ public sealed partial class DashboardViewModel : IDashboardViewModel
         }
     }
 
-    //TODO: allow context independent commands
     private bool ValidateContext()
     {
         if (Context.ActiveUiDocument is not null) return true;

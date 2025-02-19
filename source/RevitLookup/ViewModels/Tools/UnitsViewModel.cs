@@ -21,6 +21,7 @@
 using System.Diagnostics.CodeAnalysis;
 using RevitLookup.Abstractions.Models.Tools;
 using RevitLookup.Abstractions.Services.Decomposition;
+using RevitLookup.Abstractions.Services.Presentation;
 using RevitLookup.Abstractions.ViewModels.Tools;
 using RevitLookup.Core;
 using RevitLookup.Core.Units;
@@ -28,7 +29,10 @@ using RevitLookup.Core.Units;
 namespace RevitLookup.ViewModels.Tools;
 
 [UsedImplicitly]
-public sealed partial class UnitsViewModel(IVisualDecompositionService decompositionService) : ObservableObject, IUnitsViewModel
+public sealed partial class UnitsViewModel(
+    IVisualDecompositionService decompositionService,
+    INotificationService notificationService)
+    : ObservableObject, IUnitsViewModel
 {
     [ObservableProperty] private List<UnitInfo> _units = [];
     [ObservableProperty] private List<UnitInfo> _filteredUnits = [];
@@ -51,14 +55,36 @@ public sealed partial class UnitsViewModel(IVisualDecompositionService decomposi
 
     public async Task DecomposeAsync(UnitInfo unitInfo)
     {
-        var obj = unitInfo.Value switch
+        object? obj;
+        switch (unitInfo.Value)
         {
-            BuiltInParameter parameter => RevitShell.GetBuiltinParameter(parameter),
-            BuiltInCategory category => RevitShell.GetBuiltinCategory(category),
-            _ => unitInfo.Value
-        };
+            case BuiltInParameter parameter:
+                if (!ValidateContext()) return;
+
+                obj = RevitShell.GetBuiltinParameter(parameter);
+                break;
+            case BuiltInCategory category:
+                if (!ValidateContext()) return;
+
+                obj = RevitShell.GetBuiltinCategory(category);
+                break;
+            default:
+                obj = unitInfo.Value;
+                break;
+        }
 
         await decompositionService.VisualizeDecompositionAsync(obj);
+    }
+
+    private bool ValidateContext()
+    {
+        if (Context.ActiveUiDocument is null)
+        {
+            notificationService.ShowWarning("Invalid context", "To analyse members, an open document is required");
+            return false;
+        }
+
+        return true;
     }
 
     [SuppressMessage("ReSharper", "ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator")]
