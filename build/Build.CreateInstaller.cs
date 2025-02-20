@@ -9,23 +9,25 @@ sealed partial class Build
         .DependsOn(Compile)
         .Executes(() =>
         {
-            foreach (var (installer, project) in InstallersMap)
+            const string configuration = "Release";
+
+            var target = Solution.Revit.RevitLookup;
+            var installer = Solution.Automation.Installer;
+
+            Log.Information("Project: {Name}", target.Name);
+
+            var builderFile = Directory
+                .EnumerateFiles(installer.Directory / "bin" / configuration, $"{installer.Name}.exe")
+                .FirstOrDefault()
+                .NotNull($"No installer builder was found for the project: {installer.Name}");
+
+            var contentDirectories = Directory.GetDirectories(target.Directory / "bin", $"* {configuration} *", SearchOption.AllDirectories);
+            Assert.NotEmpty(contentDirectories, "No content were found to create an installer");
+
+            foreach (var contentDirectory in contentDirectories)
             {
-                Log.Information("Project: {Name}", project.Name);
-
-                var exePattern = $"*{installer.Name}.exe";
-                var exeFile = Directory.EnumerateFiles(installer.Directory / "bin", exePattern, SearchOption.AllDirectories)
-                    .FirstOrDefault()
-                    .NotNull($"No installer file was found for the project: {installer.Name}");
-
-                var directories = Directory.GetDirectories(project.Directory / "bin", "* Release *", SearchOption.AllDirectories);
-                Assert.NotEmpty(directories, "No files were found to create an installer");
-
-                foreach (var directory in directories)
-                {
-                    var process = ProcessTasks.StartProcess(exeFile, directory.DoubleQuoteIfNeeded(), logInvocation: false, logger: InstallerLogger);
-                    process.AssertZeroExitCode();
-                }
+                var process = ProcessTasks.StartProcess(builderFile, contentDirectory.DoubleQuoteIfNeeded(), logInvocation: false, logger: InstallerLogger);
+                process.AssertZeroExitCode();
             }
         });
 

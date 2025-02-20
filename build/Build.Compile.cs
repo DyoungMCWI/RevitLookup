@@ -14,7 +14,7 @@ sealed partial class Build
                 DotNetBuild(settings => settings
                     .SetConfiguration(configuration)
                     .SetVersion(version)
-                    // .SetProperty("Environment", "Production")
+                    .SetProperty("IsRepackable", true)
                     .SetVerbosity(DotNetVerbosity.minimal));
             }
         });

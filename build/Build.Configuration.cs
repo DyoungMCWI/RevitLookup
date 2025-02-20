@@ -10,11 +10,6 @@ sealed partial class Build
     string[] Configurations;
 
     /// <summary>
-    ///    Mapping installers and their packaged projects
-    /// </summary>
-    Dictionary<Project, Project> InstallersMap;
-
-    /// <summary>
     ///     Mapping configurations and their assembly versions
     /// </summary>
     Dictionary<string, string> AssemblyVersionsMap;
@@ -92,11 +87,6 @@ sealed partial class Build
             "Release*",
             "Installer*"
         ];
-
-        InstallersMap = new()
-        {
-            { Solution.Automation.Installer, Solution.Revit.RevitLookup }
-        };
 
         AssemblyVersionsMap = new()
         {
