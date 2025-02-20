@@ -18,9 +18,6 @@
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using WixSharp;
 using WixSharp.CommonTasks;
 using File = WixSharp.File;
@@ -45,6 +42,8 @@ public static class Generator
     {
         foreach (var file in Directory.GetFiles(directory))
         {
+            if (!FilterEntities(file)) continue;
+
             Console.WriteLine($"'{file}'");
             entities.Add(new File(file));
         }
@@ -63,6 +62,8 @@ public static class Generator
     {
         foreach (var file in Directory.GetFiles(directory))
         {
+            if (!FilterEntities(file)) continue;
+
             Console.WriteLine($"'{file}'");
             parent.AddFile(new File(file));
         }
@@ -75,5 +76,10 @@ public static class Generator
 
             GenerateSubEntities(subfolder, entity);
         }
+    }
+
+    private static bool FilterEntities(string file)
+    {
+        return !file.EndsWith(".pdb");
     }
 }
