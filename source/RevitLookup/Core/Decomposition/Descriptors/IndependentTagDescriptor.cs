@@ -19,7 +19,6 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 
 using System.Reflection;
-using Autodesk.Revit.DB.Structure;
 using LookupEngine.Abstractions.Configuration;
 using LookupEngine.Abstractions.Decomposition;
 
@@ -31,9 +30,6 @@ public sealed class IndependentTagDescriptor(IndependentTag tag) : ElementDescri
     {
         return target switch
         {
-#if REVIT2025_OR_GREATER //TODO Fatal https://github.com/jeremytammik/RevitLookup/issues/225
-            nameof(IndependentTag.TagText) when RebarBendingDetail.IsBendingDetail(tag) => Variants.Disabled,
-#endif
             nameof(IndependentTag.CanLeaderEndConditionBeAssigned) => ResolveLeaderEndCondition,
 #if REVIT2022_OR_GREATER
             nameof(IndependentTag.GetLeaderElbow) => ResolveLeaderElbow,

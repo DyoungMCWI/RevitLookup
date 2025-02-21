@@ -30,13 +30,8 @@ public sealed class DatumPlaneDescriptor(DatumPlane datumPlane) : ElementDescrip
     {
         return target switch
         {
-#if REVIT2025_OR_GREATER //TODO Fatal https://github.com/jeremytammik/RevitLookup/issues/225
-            nameof(DatumPlane.CanBeVisibleInView) => Variants.Disabled,
-            nameof(DatumPlane.GetPropagationViews) => Variants.Disabled,
-#else
             nameof(DatumPlane.CanBeVisibleInView) => ResolveCanBeVisibleInView,
             nameof(DatumPlane.GetPropagationViews) => ResolvePropagationViews,
-#endif
             nameof(DatumPlane.GetDatumExtentTypeInView) => ResolveDatumExtentTypeInView,
             nameof(DatumPlane.HasBubbleInView) => ResolveHasBubbleInView,
             nameof(DatumPlane.IsBubbleVisibleInView) => ResolveBubbleVisibleInView,
@@ -44,7 +39,7 @@ public sealed class DatumPlaneDescriptor(DatumPlane datumPlane) : ElementDescrip
             nameof(DatumPlane.GetLeader) => ResolveGetLeader,
             _ => null
         };
-#if !REVIT2025_OR_GREATER
+
         IVariant ResolveCanBeVisibleInView()
         {
             var views = datumPlane.Document.EnumerateInstances<View>().ToArray();
@@ -74,7 +69,6 @@ public sealed class DatumPlaneDescriptor(DatumPlane datumPlane) : ElementDescrip
 
             return variants.Consume();
         }
-#endif
 
         IVariant ResolveDatumExtentTypeInView()
         {
