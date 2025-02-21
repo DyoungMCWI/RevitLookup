@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <UseWPF>true</UseWPF>
+        <DeployRevitAddin>true</DeployRevitAddin>
         <EnableDynamicLoading>true</EnableDynamicLoading>
-        <DeployRevitAddinLocally>true</DeployRevitAddinLocally>
         <Configurations>Debug R21;Debug R22;Debug R23;Debug R24;Debug R25;Debug R26</Configurations>
         <Configurations>$(Configurations);Release R21;Release R22;Release R23;Release R24;Release R25;Release R26</Configurations>
     </PropertyGroup>
@@ -12,6 +12,11 @@
         <StartAction>Program</StartAction>
         <StartProgram>C:\Program Files\Autodesk\Revit $(RevitVersion)\Revit.exe</StartProgram>
         <StartArguments>/language ENG</StartArguments>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <IsRepackable Condition="'$(RevitVersion)' &gt;= '2026'">false</IsRepackable>
+        <RepackBinariesExcludes>$(AssemblyName).UI.dll;$(AssemblyName).UI.Abstractions.dll;LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
 
     <ItemGroup Condition="!$(DefineConstants.Contains('NETCOREAPP'))">
@@ -45,7 +50,7 @@
         <PackageReference Include="Serilog.Extensions.Hosting"/>
 
         <!-- Build -->
-        <PackageReference Include="ILRepack" Condition="'$(RevitVersion)' &lt; '2026'"/>
+        <PackageReference Include="ILRepack" ExcludeAssets="Runtime"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -60,56 +65,5 @@
         <Resource Include="Resources\Images\RibbonIcon16.png"/>
         <Resource Include="Resources\Images\RibbonIcon32.png"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <ApplicationDefinition Remove="App.xaml"/>
-    </ItemGroup>
-
-    <Target Name="RevitLookupILRepack" AfterTargets="Build" BeforeTargets="PublishRevitAddinFiles" Condition="'$(Environment)' == 'Production' AND '$(RevitVersion)' &lt; '2026'">
-        <ItemGroup>
-            <ILRepackVersion Include="@(PackageVersion)" Condition="'%(PackageVersion.Identity)' == 'ILRepack'"/>
-        </ItemGroup>
-
-        <PropertyGroup>
-            <ILRepackExecutablePath>$(NuGetPackageRoot)\ilrepack\%(ILRepackVersion.Version)\tools\ILRepack.exe</ILRepackExecutablePath>
-            <ILRepackOutputAssembly>$(OutputPath)$(AssemblyName).dll</ILRepackOutputAssembly>
-        </PropertyGroup>
-
-        <ItemGroup>
-            <ILRepackInputAssemblies Include="$(OutputPath)$(AssemblyName).dll"/>
-            <ILRepackInputAssemblies Include="$(OutputPath)*.dll" Exclude="$(OutputPath)RevitLookup.UI.dll;$(OutputPath)RevitLookup.UI.Abstractions.dll;$(OutputPath)LookupEngine*"/>
-        </ItemGroup>
-
-        <ItemGroup>
-            <ILRepackReference Include="@(ReferencePath -> '%(RelativeDir)')"/>
-            <ILRepackReference Update="@(ILRepackReference -> Distinct())"/>
-            <ILRepackReference Update="@(ILRepackReference -> '%(identity)')"/>
-        </ItemGroup>
-
-        <PropertyGroup>
-            <ILRepackPath>&quot;$(ILRepackExecutablePath)&quot;</ILRepackPath>
-            <ILRepackOutput>/out:&quot;$(ILRepackOutputAssembly)&quot;</ILRepackOutput>
-            <ILRepackInput>@(ILRepackInputAssemblies -> '&quot;%(FullPath)&quot;', ' ')</ILRepackInput>
-            <ILRepackLib>@(ILRepackReference -> '/lib:&quot;%(identity) &quot;', ' ')</ILRepackLib>
-        </PropertyGroup>
-
-        <Exec Command="$(ILRepackPath) /union /illink /parallel $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" Condition="$(Configuration.Contains('Debug'))"/>
-        <Exec Command="$(ILRepackPath) /union /illink /parallel /noRepackRes /ndebug $(ILRepackOutput) $(ILRepackLib) $(ILRepackInput)" StandardOutputImportance="Low" Condition="$(Configuration.Contains('Release'))"/>
-
-        <ItemGroup>
-            <RepackedFiles Include="@(ILRepackInputAssemblies -> '%(RootDir)%(Directory)%(Filename).dll')" Condition="%(Filename) != $(AssemblyName)"/>
-            <RepackedFiles Include="@(ILRepackInputAssemblies -> '%(RootDir)%(Directory)%(Filename).pdb')" Condition="%(Filename) != $(AssemblyName)"/>
-        </ItemGroup>
-
-        <Delete Files="@(RepackedFiles)"/>
-    </Target>
-
-    <Target Name="DeleteUnpublishableFiles" AfterTargets="PublishRevitAddinFiles" Condition="'$(Environment)' == 'Production'">
-        <ItemGroup>
-            <UnpublishableFiles Include="$(OutputPath)publish/**/*.pdb;"/>
-        </ItemGroup>
-
-        <Delete Files="@(UnpublishableFiles)"/>
-    </Target>
 
 </Project>
