@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <!-- Revit References -->
-        <PackageVersion Include="Nice3point.Revit.Build.Tasks" Version="3.0.0-preview.3.0"/>
+        <PackageVersion Include="Nice3point.Revit.Build.Tasks" Version="3.0.0-preview.4.0"/>
         <PackageVersion Include="Nice3point.Revit.Toolkit" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
         <PackageVersion Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
         <PackageVersion Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" Condition="$(RevitVersion) != ''"/>
