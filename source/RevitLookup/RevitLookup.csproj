@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <IsRepackable Condition="'$(RevitVersion)' &gt;= '2026'">false</IsRepackable>
+        <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable>
         <RepackBinariesExcludes>$(AssemblyName).UI.dll;$(AssemblyName).UI.Abstractions.dll;LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
 
