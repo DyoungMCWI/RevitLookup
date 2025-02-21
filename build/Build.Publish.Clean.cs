@@ -3,6 +3,9 @@ using Nuke.Common.Utilities.Collections;
 
 sealed partial class Build
 {
+    /// <summary>
+    ///     Revert the repository to the previous state after failed release.
+    /// </summary>
     Target CleanFailedRelease => _ => _
         .Unlisted()
         .AssuredAfterFailure()

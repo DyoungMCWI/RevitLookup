@@ -5,7 +5,7 @@ using Nuke.Common.Tools.GitHub;
 sealed partial class Build
 {
     /// <summary>
-    ///     Creates a `Builder` for creating a changelog for the current release.
+    ///     Creates a Builder for creating a changelog for the current release.
     /// </summary>
     StringBuilder CreateChangelogBuilder()
     {

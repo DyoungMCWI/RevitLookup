@@ -3,10 +3,13 @@ using Octokit;
 
 sealed partial class Build
 {
+    /// <summary>
+    ///     Publish a new GitHub release.
+    /// </summary>
     Target PublishGitHub => _ => _
         .DependsOn(Test, CreateInstaller)
         .Requires(() => ReleaseVersion)
-        // .OnlyWhenStatic(() => IsServerBuild)
+        .OnlyWhenStatic(() => IsServerBuild)
         .Executes(async () =>
         {
             var gitHubName = GitRepository.GetGitHubName();

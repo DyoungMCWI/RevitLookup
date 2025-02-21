@@ -26,6 +26,9 @@ namespace Installer;
 
 public static class Generator
 {
+    /// <summary>
+    ///     Generates Wix entities for the installer.
+    /// </summary>
     public static WixEntity[] GenerateWixEntities(IEnumerable<string> args, Version version)
     {
         var entities = new List<WixEntity>();
@@ -38,6 +41,9 @@ public static class Generator
         return entities.ToArray();
     }
 
+    /// <summary>
+    ///     Generates root entities.
+    /// </summary>
     private static void GenerateRootEntities(string directory, ICollection<WixEntity> entities)
     {
         foreach (var file in Directory.GetFiles(directory))
@@ -58,6 +64,11 @@ public static class Generator
         }
     }
 
+    /// <summary>
+    ///     Generates nested entities recursively.
+    /// </summary>
+    /// <param name="directory"></param>
+    /// <param name="parent"></param>
     private static void GenerateSubEntities(string directory, Dir parent)
     {
         foreach (var file in Directory.GetFiles(directory))
@@ -78,6 +89,9 @@ public static class Generator
         }
     }
 
+    /// <summary>
+    ///     Filter installer files and exclude from output. 
+    /// </summary>
     private static bool FilterEntities(string file)
     {
         return !file.EndsWith(".pdb");

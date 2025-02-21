@@ -3,6 +3,9 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 sealed partial class Build
 {
+    /// <summary>
+    ///     Clean projects with dependencies.
+    /// </summary>
     Target Clean => _ => _
         .OnlyWhenStatic(() => IsLocalBuild)
         .Executes(() =>
@@ -24,7 +27,7 @@ sealed partial class Build
         });
 
     /// <summary>
-    ///     Cleans and logs the specified directory.
+    ///     Clean and log the specified directory.
     /// </summary>
     static void CleanDirectory(AbsolutePath path)
     {

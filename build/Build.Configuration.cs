@@ -7,22 +7,25 @@ sealed partial class Build
     /// <summary>
     ///     Patterns of solution configurations for compiling
     /// </summary>
-    string[] Configurations;
+    string[] Configurations =
+    [
+        "Release*",
+        "Installer*"
+    ];
 
     /// <summary>
     ///     Mapping configurations and their assembly versions
     /// </summary>
-    Dictionary<string, string> AssemblyVersionsMap;
-
-    /// <summary>
-    ///     Git repository metadata
-    /// </summary>
-    [GitRepository] readonly GitRepository GitRepository;
-
-    /// <summary>
-    ///     Solution structure metadata
-    /// </summary>
-    [Solution(GenerateProjects = true)] Solution Solution;
+    Dictionary<string, string> AssemblyVersionsMap = new()
+    {
+        { "Release Engine", "1.0.0" },
+        { "Release R21", "2021.4.0" },
+        { "Release R22", "2022.4.0" },
+        { "Release R23", "2023.4.0" },
+        { "Release R24", "2024.2.0" },
+        { "Release R25", "2025.1.0" },
+        { "Release R26", "2026.0.0" }
+    };
 
     /// <summary>
     ///     Path to build output
@@ -76,27 +79,20 @@ sealed partial class Build
     bool IsPrerelease => ReleaseVersion != ReleaseVersionNumber;
 
     /// <summary>
-    ///     Configuring maps used in the Pipeline.
+    ///     Git repository metadata
+    /// </summary>
+    [GitRepository] readonly GitRepository GitRepository;
+
+    /// <summary>
+    ///     Solution structure metadata
+    /// </summary>
+    [Solution(GenerateProjects = true)] Solution Solution;
+
+    /// <summary>
+    ///     Set non-initialized properties
     /// </summary>
     protected override void OnBuildInitialized()
     {
         ReleaseVersion ??= GitRepository.Tags.SingleOrDefault();
-
-        Configurations =
-        [
-            "Release*",
-            "Installer*"
-        ];
-
-        AssemblyVersionsMap = new()
-        {
-            { "Release Engine", "1.0.0" },
-            { "Release R21", "2021.4.0" },
-            { "Release R22", "2022.4.0" },
-            { "Release R23", "2023.4.0" },
-            { "Release R24", "2024.2.0" },
-            { "Release R25", "2025.1.0" },
-            { "Release R26", "2026.0.0" }
-        };
     }
 }

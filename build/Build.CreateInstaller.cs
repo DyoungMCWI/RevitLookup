@@ -5,6 +5,9 @@ using Serilog.Events;
 
 sealed partial class Build
 {
+    /// <summary>
+    ///     Create the .msi installers.
+    /// </summary>
     Target CreateInstaller => _ => _
         .DependsOn(Compile)
         .Executes(() =>

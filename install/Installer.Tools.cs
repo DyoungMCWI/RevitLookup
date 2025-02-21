@@ -18,14 +18,15 @@
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 
-using System;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
 using WixSharp.CommonTasks;
 
 namespace Installer;
 
+/// <summary>
+///     Installer versions metadata.
+/// </summary>
 [StructLayout(LayoutKind.Auto)]
 public struct Versions
 {
@@ -36,6 +37,9 @@ public struct Versions
 
 public static class Tools
 {
+    /// <summary>
+    ///     Compute installer versions based on the RevitLookup.dll file.
+    /// </summary>
     public static Versions ComputeVersions(string[] args)
     {
         foreach (var directory in args)
