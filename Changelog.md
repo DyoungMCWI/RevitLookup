@@ -1,5 +1,14 @@
 # Changelog
 
+# 2025-02-22 **2026.0.0-preview.2.250222**
+
+A new preview version of RevitLookup is available for public testing 🎉
+
+In this release, a resolved conflict issue with third-party plugins is available for testing.
+If you have a lot of plugins installed and are having trouble running RevitLookup, join the beta test.
+
+Feedback: https://github.com/jeremytammik/RevitLookup/issues/269
+
 # 2025-01-29 **2026.0.0-preview.1.250129**
 
 A preview version of RevitLookup is available for public testing 🎉
