@@ -103,6 +103,7 @@ public static class DescriptorsMap
             View value when type is null || type == typeof(View) => new ViewDescriptor(value),
             Wire value when type is null || type == typeof(Wire) => new WireDescriptor(value),
             Pipe value when type is null || type == typeof(Pipe) => new PipeDescriptor(value),
+            Wall value when type is null || type == typeof(Wall) => new WallDescriptor(value),
             HostObject value when type is null || type == typeof(HostObject) => new HostObjectDescriptor(value),
             ElevationMarker value when type is null || type == typeof(ElevationMarker) => new ElevationMarkerDescriptor(value),
             RevitLinkType value when type is null || type == typeof(RevitLinkType) => new RevitLinkTypeDescriptor(value),
