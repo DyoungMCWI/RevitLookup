@@ -74,7 +74,7 @@ public sealed partial class MockDashboardViewModel : IDashboardViewModel
                     new NavigationCardItem
                     {
                         Title = "UI Controlled Application",
-                        Description = "Explore the Revit UI customization methods and events",
+                        Description = "Explore Revit add-in startup methods and events",
                         Icon = SymbolRegular.SquareHintApps24,
                         Command = NavigatePageCommand,
                         CommandParameter = "uiControlledApplication"
