@@ -1,5 +1,139 @@
 # Changelog
 
+# Next **2026.0.0**
+
+A new major RevitLookup update, bringing official support for Revit 2026 and a host of significant enhancements 🎉
+
+This release focuses on performance, a revamped UI, expanded functionality, redesigned application architecture, and clearer separation of core components and user flow
+improvements. Let's move to the details.
+
+## General
+
+- **Revit 2026** support.
+- **Added shortcuts**. `SS` shortcut opens the Snoop Selection window.
+- **Unlocked Ribbon buttons** for document-independent actions. Some dialogs can be opened without opening a document.
+- **Improved context actions**. Now `Delete` command shows the number of deleted Elements from the document.
+- **Improved exception handling**. Now shows more informational messages, added more supported error types. Fixed some application crashes.
+- **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues. For the .NET Core version,
+  everything is unchanged, RevitLookup uses an isolated context.
+
+## User Interface
+
+### Dashboard page
+
+The Dashboard has been significantly redesigned to make it easier to understand for users unfamiliar with the Revit API.
+
+- **Added description** of all actions, navigation became more intuitive and clear.
+- **Added UiControlledApplication** action to analyze properties and methods available when running the add-in.
+- **Actions now grouped** according to the window size.
+
+![image](https://github.com/user-attachments/assets/141192fb-37e4-4278-8816-3db65377936b)
+
+### Summary page
+
+Updated and improved Summary page components.
+
+- **Improved responsiveness** of the whole page. RevitLookup now supports displaying large amounts of data, 100k rows will not cause freezes and glitches.
+- **Improved shortcuts**, now the **F5** key works in all cases, previously it was required to focus on an element.
+- **Improved filter menu**. Now applying **Show/hide** filters does not close the menu.
+- **Improved tooltips**. Tooltips now display more useful information, number of elements contained in the type, full type name.
+- **Improved search**. It is now more intuitive and faster. Priority is given to the members table, the table is filtered first, then if nothing is found, the list of items is
+  filtered. When searching the table of members, the elements with the same type will be filtered as well.
+- **Show Extension** filter is now enabled by default.
+- **Patched WPF** issues causing non-obvious member's table behavior.
+
+![image](https://github.com/user-attachments/assets/4bf71a83-3adb-4254-95b7-3d62b303d1bb)
+
+### Settings page
+
+- **Added description** of all settings, navigation became more intuitive and clear.
+
+![image](https://github.com/user-attachments/assets/95002ea8-6200-4706-933b-a4bef4ee4606)
+
+### Unit dialogs
+
+- **Improved context menu**, Copy commands are grouped into sub-menu.
+
+### Modules dialog
+
+- **Added new context menu** action. Added navigation to the module directory or directly to the module file.
+- **Added column sorting**. Click on the column header to sort.
+- **Improved context menu**, Copy commands are grouped into sub-menu.
+
+![image](https://github.com/user-attachments/assets/4b5d5db0-f9a3-4be1-83fe-9549cbe7337f)
+
+### Application
+
+- **Adjusted default window sizes** for better display due to changes in Win.UI components.
+- **Synchronised UI library** and styles with Wpf.UI.
+- **Improved theme synchronization** with Windows.
+
+## LookupEngine
+
+RevitLookup now runs on its own engine. The engine can run outside Revit, and can be reused across the entire Autodesk family of applications. This is a pledge for the future for
+products like AutocadLookup, InventorLookup and others. Isolating the engine also brings many new improvements:
+
+- **The engine is much faster** than the integrated version, it allocates less memory, and supports more features.
+- **Added context support**, now allows additional metadata to be used to resolve members.
+- **Fixed CLR exceptions** for critical .NET Core components when analyzing members.
+- **New Lookup Engine API**. Isolation encouraged independent use of the API in any application.
+- **Improved context detection**, objects now understand what context they are in and provide values specific to their context, not just the active context.
+- **Added navigation stack**, now it will be easier to add support for new unsupported parent-dependent methods.
+
+## Improvements
+
+- **Revit 2025.4 patch** brings some fixes to the API, now some methods and properties are available again for use in RevitLookup:
+    - `DatumPlane.CanBeVisibleInView`
+    - `DatumPlane.GetPropagationViews`
+    - `IndependentTag.TagText`
+- Added new **View extensions**:
+    - `GetAllPlacedInstances`
+- Added new **Wall extensions**:
+    - `IsWallCrossSectionValid`
+- Added new **CompoundStructure extensions**:
+    - `CanLayerBeStructuralMaterial`
+    - `CanLayerBeVariable`
+    - `CanLayerWidthBeNonZero`
+    - `GetAdjacentRegions`
+    - `GetCoreBoundaryLayerIndex`
+    - `GetDeckEmbeddingType`
+    - `GetDeckProfileId`
+    - `GetLayerAssociatedToRegion`
+    - `GetLayerFunction`
+    - `GetLayerWidth`
+    - `GetMaterialId`
+    - `GetNumberOfShellLayers`
+    - `GetOffsetForLocationLine`
+    - `GetPreviousNonZeroLayerIndex`
+    - `GetRegionEnvelope`
+    - `GetRegionsAssociatedToLayer`
+    - `GetSegmentCoordinate`
+    - `GetSegmentOrientation`
+    - `GetWallSweepsInfo`
+    - `GetWidth`
+    - `IsCoreLayer`
+    - `IsRectangularRegion`
+    - `IsSimpleRegion`
+    - `IsStructuralDeck`
+    - `ParticipatesInWrapping`
+
+## Development notes:
+
+- **Moving to Central Package Management**, all dependencies are now managed in a single file.
+- **Moving to Central Build Management**, common build configurations are now managed in a single file.
+- **Automatic registration of MVVM components** in the service provider, no longer need to register each component manually.
+- **Added unit tests** for Revit-independent components.
+- **.NET 9 SDK support** for development.
+- **Migrated to SLNX solution format**, to avoid Git merge conflicts.
+- **Changed API for ContextMenu**, simplified and integrated with the service provider.
+- **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
+- **Redesigned project structure**:
+    - UI design is now a separate project, independent of RevitLookup. All UI components are now developed and tested outside Revit, greatly speeding up the implementation of new
+      features.
+    - Standalone LookupEngine. The LookupEngine development is now a separate project, independent of RevitLookup.
+
+Made with love by @Nice3point 🕊️
+
 # 2025-02-22 **2026.0.0-preview.2.250222**
 
 A new preview version of RevitLookup is available for public testing 🎉
