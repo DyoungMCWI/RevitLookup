@@ -44,6 +44,13 @@ public sealed class OpenSourceViewModel : ObservableObject, IOpenSourceViewModel
         },
         new()
         {
+            SoftwareName = "Scrutor",
+            SoftwareUri = "https://github.com/khellang/Scrutor",
+            LicenseName = "MIT License",
+            LicenseUri = "https://github.com/khellang/Scrutor/blob/master/LICENSE"
+        },
+        new()
+        {
             SoftwareName = "Nice3point.Revit.Api",
             SoftwareUri = "https://github.com/Nice3point/RevitApi",
             LicenseName = "MIT License",
@@ -58,10 +65,10 @@ public sealed class OpenSourceViewModel : ObservableObject, IOpenSourceViewModel
         },
         new()
         {
-            SoftwareName = "Nice3point.Revit.Templates",
-            SoftwareUri = "https://github.com/Nice3point/RevitTemplates",
+            SoftwareName = "Nice3point.Revit.Build.Tasks",
+            SoftwareUri = "https://github.com/Nice3point/Revit.Build.Tasks",
             LicenseName = "MIT License",
-            LicenseUri = "https://github.com/Nice3point/RevitTemplates/blob/main/License.md"
+            LicenseUri = "https://github.com/Nice3point/Revit.Build.Tasks/blob/main/License.md"
         },
         new()
         {
@@ -83,6 +90,41 @@ public sealed class OpenSourceViewModel : ObservableObject, IOpenSourceViewModel
             SoftwareUri = "https://github.com/serilog/serilog",
             LicenseName = "Apache License 2.0",
             LicenseUri = "https://github.com/serilog/serilog/blob/dev/LICENSE"
+        },
+        new()
+        {
+            SoftwareName = "Serilog.Extensions.Hosting",
+            SoftwareUri = "https://github.com/serilog/serilog-extensions-hosting",
+            LicenseName = "Apache License 2.0",
+            LicenseUri = "https://github.com/serilog/serilog-extensions-hosting/blob/dev/LICENSE"
+        },
+        new()
+        {
+            SoftwareName = "Serilog.Sinks.Autodesk.Revit",
+            SoftwareUri = "https://github.com/dosymep/Serilog.Sinks.Autodesk.Revit",
+            LicenseName = "MIT License",
+            LicenseUri = "https://github.com/dosymep/Serilog.Sinks.Autodesk.Revit/blob/master/LICENSE.md"
+        },
+        new()
+        {
+            SoftwareName = "Serilog.Sinks.Console",
+            SoftwareUri = "https://github.com/serilog/serilog-sinks-console",
+            LicenseName = "Apache License 2.0",
+            LicenseUri = "https://github.com/serilog/serilog-sinks-console/blob/dev/LICENSE"
+        },
+        new()
+        {
+            SoftwareName = "Serilog.Sinks.Debug",
+            SoftwareUri = "https://github.com/serilog/serilog-sinks-debug",
+            LicenseName = "Apache License 2.0",
+            LicenseUri = "https://github.com/serilog/serilog-sinks-debug/blob/dev/LICENSE"
+        },
+        new()
+        {
+            SoftwareName = "Riok.Mapperly",
+            SoftwareUri = "https://github.com/riok/mapperly",
+            LicenseName = "Apache License 2.0",
+            LicenseUri = "https://github.com/riok/mapperly/blob/main/LICENSE"
         },
         new()
         {
