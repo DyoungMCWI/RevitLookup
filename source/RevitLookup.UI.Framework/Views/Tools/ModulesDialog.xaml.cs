@@ -82,7 +82,7 @@ public sealed partial class ModulesDialog
 
 #if NETCOREAPP
         copyMenu.AddMenuItem()
-            .SetHeader("Assembly сontext")
+            .SetHeader("Assembly load сontext")
             .SetCommand(module, moduleInfo => Clipboard.SetDataObject(moduleInfo.Container));
 #endif
 
