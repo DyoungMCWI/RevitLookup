@@ -2,9 +2,9 @@
 
 # Next **2026.0.0**
 
-A new major RevitLookup update, bringing official support for Revit 2026 and a host of significant enhancements 🎉
+A new major RevitLookup update with official Revit 2026 support and a lot of enhancements 🎉
 
-This release focuses on performance, a revamped UI, expanded functionality, redesigned application architecture, and clearer separation of core components and user flow
+This release focuses on performance, a renewed UI, expanded functionality, redesigned application architecture, and clearer separation of core components and user flow
 improvements. Let's move to the details.
 
 ## General
