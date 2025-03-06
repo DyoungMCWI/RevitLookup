@@ -24,9 +24,16 @@ using LookupEngine.Abstractions.Decomposition;
 namespace LookupEngine.Abstractions.Configuration;
 
 /// <summary>
-///     Indicates that the descriptor can decide to call methods/properties with parameters or override their values
+///     Indicates that the descriptor can resolve not-evaluated members
 /// </summary>
+/// <typeparam name="TContext">The type of execution context</typeparam>
 public interface IDescriptorResolver<in TContext> : IDescriptorCollector
 {
+    /// <summary>
+    ///     Resolves the target member if the member requires parameters
+    /// </summary>
+    /// <param name="target">The target object member name</param>
+    /// <param name="parameters">The member runtime parameters</param>
+    /// <returns>The lazy function to resolve the target member value</returns>
     Func<TContext, IVariant>? Resolve(string target, ParameterInfo[] parameters);
 }

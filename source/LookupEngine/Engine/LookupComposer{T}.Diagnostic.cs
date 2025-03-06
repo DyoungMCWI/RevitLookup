@@ -25,6 +25,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer<TContext>
 {
+    /// <summary>
+    ///     Evaluate value with diagnostics
+    /// </summary>
     private IVariant EvaluateValue(Func<TContext, IVariant> handler)
     {
         try

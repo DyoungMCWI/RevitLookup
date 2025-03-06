@@ -23,6 +23,9 @@ using JetBrains.Annotations;
 
 namespace LookupEngine.Abstractions.Decomposition;
 
+/// <summary>
+///     The base descriptor to describe the evaluated object
+/// </summary>
 [PublicAPI]
 [DebuggerDisplay("Name = {Name}")]
 public abstract class Descriptor

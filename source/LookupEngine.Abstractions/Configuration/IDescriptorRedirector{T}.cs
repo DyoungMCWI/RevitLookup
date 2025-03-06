@@ -23,7 +23,15 @@ namespace LookupEngine.Abstractions.Configuration;
 /// <summary>
 ///     Indicates that the object can be redirected to another
 /// </summary>
+/// <typeparam name="TContext">The type of execution context</typeparam>
 public interface IDescriptorRedirector<in TContext>
 {
+    /// <summary>
+    ///     Tries to redirect the object to another
+    /// </summary>
+    /// <param name="target">The target object member name</param>
+    /// <param name="context">The type of execution context</param>
+    /// <param name="result">The result of redirection</param>
+    /// <returns>True if the redirection was successful, otherwise false</returns>
     bool TryRedirect(string target, TContext context, out object result);
 }

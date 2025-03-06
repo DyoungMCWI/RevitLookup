@@ -26,6 +26,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer<TContext>
 {
+    /// <summary>
+    ///     Try to resolve parametric in-context methods
+    /// </summary>
     private protected override bool TryResolve(MethodInfo member, ParameterInfo[] parameters, out object? value)
     {
         value = null;

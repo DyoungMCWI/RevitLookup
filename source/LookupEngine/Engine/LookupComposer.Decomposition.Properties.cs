@@ -28,6 +28,9 @@ namespace LookupEngine;
 [UsedImplicitly]
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Add properties to the decomposition
+    /// </summary>
     private void DecomposeProperties(BindingFlags bindingFlags)
     {
         var members = MemberDeclaringType.GetProperties(bindingFlags);
@@ -60,6 +63,9 @@ public partial class LookupComposer
         }
     }
 
+    /// <summary>
+    ///     Try to resolve parametric properties
+    /// </summary>
     private protected virtual bool TryResolve(PropertyInfo member, ParameterInfo[] parameters, out object? value)
     {
         value = null;
@@ -73,6 +79,9 @@ public partial class LookupComposer
         return true;
     }
 
+    /// <summary>
+    ///     Try to suppress unsupported properties
+    /// </summary>
     private bool TrySuppress(PropertyInfo member, ParameterInfo[] parameters, out object? value)
     {
         value = null;

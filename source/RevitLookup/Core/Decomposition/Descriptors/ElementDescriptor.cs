@@ -297,6 +297,7 @@ public class ElementDescriptor : Descriptor, IDescriptorResolver, IDescriptorExt
         manager.Register(nameof(WorksharingUtils.GetWorksharingTooltipInfo), () => Variants.Value(WorksharingUtils.GetWorksharingTooltipInfo(_element.Document, _element.Id)));
         manager.Register(nameof(WorksharingUtils.GetModelUpdatesStatus), () => Variants.Value(WorksharingUtils.GetModelUpdatesStatus(_element.Document, _element.Id)));
         manager.Register(nameof(PartUtils.AreElementsValidForCreateParts), () => Variants.Value(PartUtils.AreElementsValidForCreateParts(_element.Document, [_element.Id])));
+        manager.Register(nameof(DocumentValidation.CanDeleteElement), () => Variants.Value(DocumentValidation.CanDeleteElement(_element.Document, _element.Id)));
     }
 
     public virtual void RegisterMenu(ContextMenu contextMenu, IServiceProvider serviceProvider)

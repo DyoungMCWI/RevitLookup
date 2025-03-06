@@ -22,7 +22,10 @@ using System.Diagnostics;
 
 namespace LookupEngine.Diagnostic;
 
-public sealed class TimeDiagnoser : IEngineDiagnoser
+/// <summary>
+///     The engine diagnoser to measure the evaluation member time
+/// </summary>
+internal sealed class TimeDiagnoser : IEngineDiagnoser
 {
     private long _startTimeStamp;
     private long _endTimeStamp;

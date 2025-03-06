@@ -2,6 +2,9 @@
 
 namespace LookupEngine.Exceptions;
 
+/// <summary>
+///     The exception that is thrown when engine fails with an unexpected error
+/// </summary>
 public sealed class EngineException(string message) : Exception(message)
 {
     [DoesNotReturn]

@@ -26,6 +26,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer<TContext> : IExtensionManager<TContext>
 {
+    /// <summary>
+    ///     Add in-context extension members to the decomposition
+    /// </summary>
     private protected override void ExecuteExtensions()
     {
         if (!_options.EnableExtensions) return;
@@ -41,6 +44,9 @@ public partial class LookupComposer<TContext> : IExtensionManager<TContext>
         }
     }
 
+    /// <summary>
+    ///     Callback of the extension registration
+    /// </summary>
     public void Register(string name, Func<TContext, IVariant> extension)
     {
         try

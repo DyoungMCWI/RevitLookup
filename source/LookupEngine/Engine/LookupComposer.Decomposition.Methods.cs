@@ -26,6 +26,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Add methods to the decomposition
+    /// </summary>
     private void DecomposeMethods(BindingFlags bindingFlags)
     {
         var members = MemberDeclaringType.GetMethods(bindingFlags);
@@ -59,6 +62,9 @@ public partial class LookupComposer
         }
     }
 
+    /// <summary>
+    ///     Try to resolve parametric methods
+    /// </summary>
     private protected virtual bool TryResolve(MethodInfo member, ParameterInfo[] parameters, out object? value)
     {
         value = null;
@@ -72,6 +78,9 @@ public partial class LookupComposer
         return true;
     }
 
+    /// <summary>
+    ///     Try to suppress unsupported methods
+    /// </summary>
     private bool TrySuppress(MethodInfo member, ParameterInfo[] parameters, out object? value)
     {
         value = null;

@@ -21,9 +21,14 @@
 namespace LookupEngine.Abstractions.Configuration;
 
 /// <summary>
-///     Indicates that the descriptor can interact with the UI and execute commands
+///     Indicates that the descriptor can add a new methods to the object
 /// </summary>
+/// <typeparam name="TContext">The type of execution context</typeparam>
 public interface IDescriptorExtension<in TContext> : IDescriptorCollector
 {
+    /// <summary>
+    ///     Registers the extensions for the object
+    /// </summary>
+    /// <param name="manager">The extension manager, that provides shell for extension registration</param>
     void RegisterExtensions(IExtensionManager<TContext> manager);
 }

@@ -22,7 +22,16 @@ using LookupEngine.Abstractions.Decomposition;
 
 namespace LookupEngine.Abstractions.Configuration;
 
+/// <summary>
+///     The manager to register extensions for object descriptors
+/// </summary>
+/// <typeparam name="TContext">The type of execution context</typeparam>
 public interface IExtensionManager<out TContext>
 {
+    /// <summary>
+    ///     Registers the extension for the object
+    /// </summary>
+    /// <param name="name">The extension name</param>
+    /// <param name="extension">The function for lazy extension creation</param>
     void Register(string name, Func<TContext, IVariant> extension);
 }

@@ -30,6 +30,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Write a nullable object to the decomposition result
+    /// </summary>
     private protected static DecomposedObject CreateNullableDecomposition()
     {
         return new DecomposedObject
@@ -41,6 +44,9 @@ public partial class LookupComposer
         };
     }
 
+    /// <summary>
+    ///     Write an object metadata to the decomposition result
+    /// </summary>
     private static DecomposedObject CreateInstanceDecomposition(object instance, Type type, Descriptor descriptor)
     {
         var formatTypeName = ReflexionFormater.FormatTypeName(type);

@@ -27,6 +27,13 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Decompose an in-context object into its internal components and evaluate their values
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <typeparam name="TContext">The type of execution context to resolve context-dependent members</typeparam>
+    /// <returns>Decomposed object and its structure</returns>
     [Pure]
     public static DecomposedObject Decompose<TContext>(object? value, DecomposeOptions<TContext> options)
     {
@@ -39,6 +46,13 @@ public partial class LookupComposer
         };
     }
 
+    /// <summary>
+    ///     Decompose an in-context object without internal components
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <typeparam name="TContext">The type of execution context to resolve context-dependent members</typeparam>
+    /// <returns>The decomposed object</returns>
     [Pure]
     public static DecomposedObject DecomposeObject<TContext>(object? value, DecomposeOptions<TContext> options)
     {
@@ -51,6 +65,13 @@ public partial class LookupComposer
         };
     }
 
+    /// <summary>
+    ///     Decompose the in-context object's internal components and evaluate their values
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <typeparam name="TContext">The type of execution context to resolve context-dependent members</typeparam>
+    /// <returns>The decomposed object structure</returns>
     [Pure]
     public static List<DecomposedMember> DecomposeMembers<TContext>(object? value, DecomposeOptions<TContext> options)
     {

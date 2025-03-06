@@ -20,6 +20,9 @@
 
 namespace LookupEngine.Abstractions.Enums;
 
+/// <summary>
+///     The member attributes
+/// </summary>
 [Flags]
 public enum MemberAttributes
 {

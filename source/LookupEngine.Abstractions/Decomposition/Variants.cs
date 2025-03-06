@@ -8,19 +8,27 @@ namespace LookupEngine.Abstractions.Decomposition;
 public static class Variants
 {
     /// <summary>
-    ///     Creates a variant collection with a single value
+    ///     Create a single evaluated member value variant
     /// </summary>
-    /// <returns>A variant collection containing the specified value</returns>
     public static IVariant Value(object? value)
     {
         return new Variant(value);
     }
 
+    /// <summary>
+    ///     Create a single evaluated member value variant
+    /// </summary>
+    /// <param name="value">The evaluated value</param>
+    /// <param name="description">The description of the evaluation context</param>
     public static IVariant Value(object? value, string description)
     {
         return new Variant(value, description);
     }
 
+    /// <summary>
+    ///     Create an evaluated member value variants collection
+    /// </summary>
+    /// <param name="capacity">The initial variants capacity. Required for atomic performance optimizations</param>
     public static IVariantsCollection<T> Values<T>(int capacity)
     {
         return new Variants<T>(capacity);
@@ -37,7 +45,7 @@ public static class Variants
     }
 
     /// <summary>
-    ///     A variant that disables the member calculation
+    ///     A variant that disables the member evaluation
     /// </summary>
     public static IVariant Disabled()
     {

@@ -26,6 +26,12 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Decompose an object into its internal components and evaluate their values
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <returns>Decomposed object and its structure</returns>
     [Pure]
     public static DecomposedObject Decompose(object? value, DecomposeOptions? options = null)
     {
@@ -39,6 +45,12 @@ public partial class LookupComposer
         };
     }
 
+    /// <summary>
+    ///     Decompose an object without internal components
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <returns>The decomposed object</returns>
     [Pure]
     public static DecomposedObject DecomposeObject(object? value, DecomposeOptions? options = null)
     {
@@ -52,6 +64,12 @@ public partial class LookupComposer
         };
     }
 
+    /// <summary>
+    ///     Decompose the object's internal components and evaluate their values
+    /// </summary>
+    /// <param name="value">The object to decompose</param>
+    /// <param name="options">The decomposition options</param>
+    /// <returns>The decomposed object structure</returns>
     [Pure]
     public static List<DecomposedMember> DecomposeMembers(object? value, DecomposeOptions? options = null)
     {

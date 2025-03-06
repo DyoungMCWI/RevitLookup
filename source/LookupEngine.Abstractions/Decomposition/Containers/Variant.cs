@@ -18,21 +18,43 @@
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 
+using JetBrains.Annotations;
+
 namespace LookupEngine.Abstractions.Decomposition.Containers;
 
+/// <summary>
+///     Variant of the evaluated member value
+/// </summary>
+[PublicAPI]
 internal sealed class Variant : IVariant
 {
+    /// <summary>
+    ///     Create a new evaluated member variant
+    /// </summary>
+    /// <param name="value">The evaluated value</param>
     public Variant(object? value)
     {
         Value = value;
     }
 
+    /// <summary>
+    ///    Create a new evaluated member variant
+    /// </summary>
+    /// <param name="value">The evaluated value</param>
+    /// <param name="description">The description of the evaluation context</param>
     public Variant(object? value, string description)
     {
         Value = value;
         Description = description;
     }
 
+    /// <summary>
+    ///     The evaluated value
+    /// </summary>
     public object? Value { get; }
+
+    /// <summary>
+    ///     The description of the evaluation context
+    /// </summary>
     public string? Description { get; }
 }

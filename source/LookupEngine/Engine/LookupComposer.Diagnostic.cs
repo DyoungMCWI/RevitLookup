@@ -30,6 +30,9 @@ public partial class LookupComposer
     private protected readonly TimeDiagnoser TimeDiagnoser = new();
     private protected readonly MemoryDiagnoser MemoryDiagnoser = new();
 
+    /// <summary>
+    ///     Evaluate value with diagnostics
+    /// </summary>
     private object? EvaluateValue(FieldInfo member)
     {
         TimeDiagnoser.StartMonitoring();
@@ -43,6 +46,9 @@ public partial class LookupComposer
         return value;
     }
 
+    /// <summary>
+    ///     Evaluate value with diagnostics
+    /// </summary>
     private object? EvaluateValue(PropertyInfo member)
     {
         try
@@ -59,6 +65,9 @@ public partial class LookupComposer
         }
     }
 
+    /// <summary>
+    ///     Evaluate value with diagnostics
+    /// </summary>
     private object? EvaluateValue(MethodInfo member)
     {
         try
@@ -75,6 +84,9 @@ public partial class LookupComposer
         }
     }
 
+    /// <summary>
+    ///     Evaluate value with diagnostics
+    /// </summary>
     private protected IVariant EvaluateValue(Func<IVariant> handler)
     {
         try

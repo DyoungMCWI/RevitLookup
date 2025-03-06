@@ -18,6 +18,7 @@
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 
+using System.Diagnostics.CodeAnalysis;
 using LookupEngine.Abstractions.Configuration;
 using LookupEngine.Abstractions.Decomposition;
 using LookupEngine.Exceptions;
@@ -25,8 +26,12 @@ using LookupEngine.Exceptions;
 // ReSharper disable once CheckNamespace
 namespace LookupEngine;
 
+[SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Redirect the member value to another object
+    /// </summary>
     private protected virtual object RedirectValue(object value)
     {
         if (!_options.EnableRedirection) return value;
@@ -41,11 +46,17 @@ public partial class LookupComposer
         return value;
     }
 
+    /// <summary>
+    ///     Redirect the input value to another object
+    /// </summary>
     private object RedirectValue(object value, out Descriptor valueDescriptor)
     {
         return RedirectValue(value, string.Empty, out valueDescriptor);
     }
 
+    /// <summary>
+    ///     Redirect the decomposed value to another object
+    /// </summary>
     private protected virtual object RedirectValue(object value, string target, out Descriptor valueDescriptor)
     {
         var variant = value as IVariant;

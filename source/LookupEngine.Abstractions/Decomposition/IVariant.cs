@@ -20,8 +20,18 @@
 
 namespace LookupEngine.Abstractions.Decomposition;
 
+/// <summary>
+///     Variant of the evaluated member value
+/// </summary>
 public interface IVariant
 {
+    /// <summary>
+    ///     The evaluated value
+    /// </summary>
     object? Value { get; }
+
+    /// <summary>
+    ///     The description of the evaluation context
+    /// </summary>
     string? Description { get; }
 }

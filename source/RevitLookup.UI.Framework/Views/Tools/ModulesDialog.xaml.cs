@@ -44,7 +44,8 @@ public sealed partial class ModulesDialog
         themeWatcherService.Watch(this);
 
 #if NETFRAMEWORK
-        ContainerColumn.Header = "Domain";
+        var header = (TextBlock) ContainerColumn.Header;
+        header.Text = "Domain";
 #endif
     }
 

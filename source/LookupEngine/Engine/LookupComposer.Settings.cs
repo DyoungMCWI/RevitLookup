@@ -26,6 +26,9 @@ using LookupEngine.Exceptions;
 // ReSharper disable once CheckNamespace
 namespace LookupEngine;
 
+/// <summary>
+///     Provides functionality to work with the internal structure of an object
+/// </summary>
 [PublicAPI]
 public partial class LookupComposer
 {
@@ -38,12 +41,18 @@ public partial class LookupComposer
     private DecomposedObject? _decomposedObject;
     private List<DecomposedMember>? _decomposedMembers;
 
+    /// <summary>
+    ///     Initialize a new composer instance
+    /// </summary>
     private protected LookupComposer(object value, DecomposeOptions options)
     {
         _input = value;
         _options = options;
     }
 
+    /// <summary>
+    ///     Decomposed members of the input object
+    /// </summary>
     internal List<DecomposedMember> DecomposedMembers
     {
         get
@@ -58,6 +67,9 @@ public partial class LookupComposer
         set => _decomposedMembers = value;
     }
 
+    /// <summary>
+    ///     The object type for the current hierarchy depth
+    /// </summary>
     internal Type MemberDeclaringType
     {
         get
@@ -72,6 +84,9 @@ public partial class LookupComposer
         set => _memberDeclaringType = value;
     }
 
+    /// <summary>
+    ///     The object descriptor for the current hierarchy depth
+    /// </summary>
     internal Descriptor MemberDeclaringDescriptor
     {
         get

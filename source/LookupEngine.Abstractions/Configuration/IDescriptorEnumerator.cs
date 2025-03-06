@@ -27,6 +27,13 @@ namespace LookupEngine.Abstractions.Configuration;
 /// </summary>
 public interface IDescriptorEnumerator : IDescriptorCollector
 {
+    /// <summary>
+    ///     Indicates that the current described collection is empty
+    /// </summary>
     bool IsEmpty { get; }
+
+    /// <summary>
+    ///     The enumerator of the current described collection
+    /// </summary>
     public IEnumerator Enumerator { get; }
 }

@@ -25,5 +25,11 @@ namespace LookupEngine.Abstractions.Configuration;
 /// </summary>
 public interface IDescriptorRedirector
 {
+    /// <summary>
+    ///     Tries to redirect the object to another
+    /// </summary>
+    /// <param name="target">The target object member name</param>
+    /// <param name="result">The result of redirection</param>
+    /// <returns>True if the redirection was successful, otherwise false</returns>
     bool TryRedirect(string target, out object result);
 }

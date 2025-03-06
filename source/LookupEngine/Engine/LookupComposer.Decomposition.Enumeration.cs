@@ -25,6 +25,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Add enumerable items to the decomposition
+    /// </summary>
     private void AddEnumerableItems()
     {
         if (_input is not IEnumerable enumerable) return;

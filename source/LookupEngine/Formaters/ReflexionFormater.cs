@@ -2,9 +2,15 @@
 
 namespace LookupEngine.Formaters;
 
+/// <summary>
+///     Reflexion data formater
+/// </summary>
 internal static class ReflexionFormater
 {
-    public static string FormatTypeName(Type type)
+    /// <summary>
+    ///     Format the type name for a generic object
+    /// </summary>
+    internal static string FormatTypeName(Type type)
     {
         if (!type.IsGenericType) return type.Name;
 
@@ -23,7 +29,10 @@ internal static class ReflexionFormater
         return typeName;
     }
 
-    public static string FormatMemberName(MemberInfo member, ParameterInfo[] parameters)
+    /// <summary>
+    ///     Format the name of a parametric member
+    /// </summary>
+    internal static string FormatMemberName(MemberInfo member, ParameterInfo[] parameters)
     {
         if (parameters.Length == 0) return member.Name;
 

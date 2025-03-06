@@ -27,6 +27,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer<TContext>
 {
+    /// <summary>
+    ///     Redirect the in-context member value to another object
+    /// </summary>
     private protected override object RedirectValue(object value)
     {
         if (!_options.EnableRedirection) return value;
@@ -60,6 +63,9 @@ public partial class LookupComposer<TContext>
         return value;
     }
 
+    /// <summary>
+    ///     Redirect the decomposed in-context value to another object
+    /// </summary>
     private protected override object RedirectValue(object value, string target, out Descriptor valueDescriptor)
     {
         var variant = value as IVariant;

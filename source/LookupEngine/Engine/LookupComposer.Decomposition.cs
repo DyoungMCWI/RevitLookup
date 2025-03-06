@@ -27,6 +27,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Decompose the object instance and its structure
+    /// </summary>
     [Pure]
     private DecomposedObject DecomposeInstance()
     {
@@ -38,6 +41,9 @@ public partial class LookupComposer
         return _decomposedObject;
     }
 
+    /// <summary>
+    ///     Decompose the object instance without a structure
+    /// </summary>
     [Pure]
     private DecomposedObject DecomposeInstanceObject()
     {
@@ -47,6 +53,9 @@ public partial class LookupComposer
         return CreateInstanceDecomposition(_input, objectType, instanceDescriptor);
     }
 
+    /// <summary>
+    ///     Decompose the static object and its structure
+    /// </summary>
     [Pure]
     private DecomposedObject DecomposeStatic(Type type)
     {
@@ -57,6 +66,9 @@ public partial class LookupComposer
         return _decomposedObject;
     }
 
+    /// <summary>
+    ///     Decompose the static object without a structure
+    /// </summary>
     [Pure]
     private DecomposedObject DecomposeStaticObject(Type type)
     {
@@ -64,12 +76,18 @@ public partial class LookupComposer
         return CreateStaticDecomposition(type, staticDescriptor);
     }
 
+    /// <summary>
+    ///     Decompose the object instance structure
+    /// </summary>
     [Pure]
     private List<DecomposedMember> DecomposeInstanceMembers()
     {
         return DecomposeInstanceMembers(_input.GetType());
     }
 
+    /// <summary>
+    ///     Decompose the object instance structure
+    /// </summary>
     [Pure]
     private List<DecomposedMember> DecomposeInstanceMembers(Type objectType)
     {
@@ -100,6 +118,9 @@ public partial class LookupComposer
         return _decomposedMembers;
     }
 
+    /// <summary>
+    ///     Decompose the static object structure
+    /// </summary>
     [Pure]
     private List<DecomposedMember> DecomposeStaticMembers(Type objectType)
     {
@@ -124,6 +145,9 @@ public partial class LookupComposer
         return _decomposedMembers;
     }
 
+    /// <summary>
+    ///     Get the type hierarchy of the input type
+    /// </summary>
     [Pure]
     private List<Type> GetTypeHierarchy(Type inputType)
     {

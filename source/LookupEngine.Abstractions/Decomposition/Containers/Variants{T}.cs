@@ -19,14 +19,16 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 
 using System.Collections;
+using JetBrains.Annotations;
 
 namespace LookupEngine.Abstractions.Decomposition.Containers;
 
 /// <summary>
 ///     Represents a collection of variants
 /// </summary>
-/// <typeparam name="T">The type of the variants</typeparam>
+/// <typeparam name="T">The variant type</typeparam>
 /// <param name="capacity">The initial variants capacity. Required for atomic performance optimizations</param>
+[PublicAPI]
 internal sealed class Variants<T>(int capacity) : IVariant, IVariantsCollection<T>, IReadOnlyCollection<Variant>
 {
     private readonly List<Variant> _items = new(capacity);
@@ -36,12 +38,20 @@ internal sealed class Variants<T>(int capacity) : IVariant, IVariantsCollection<
     /// </summary>
     public int Count => _items.Count;
 
+    /// <summary>
+    ///     The value of the stored variants
+    /// </summary>
     public object Value => _items.Count == 1 ? _items[0].Value! : this;
+
+    /// <summary>
+    ///     The description of the evaluation context
+    /// </summary>
     public string? Description => _items.Count == 1 ? _items[0].Description : null;
 
     /// <summary>
     ///     Adds a new variant
     /// </summary>
+    /// <param name="result">The evaluated value</param>
     /// <returns>The variant collection with a new value</returns>
     public IVariantsCollection<T> Add(T? result)
     {
@@ -56,6 +66,8 @@ internal sealed class Variants<T>(int capacity) : IVariant, IVariantsCollection<
     /// <summary>
     ///     Adds a new variant with description
     /// </summary>
+    /// <param name="result">The evaluated value</param>
+    /// <param name="description">The description of the evaluation context</param>
     /// <returns>The variant collection with a new value</returns>
     public IVariantsCollection<T> Add(T? result, string description)
     {
@@ -67,6 +79,10 @@ internal sealed class Variants<T>(int capacity) : IVariant, IVariantsCollection<
         return this;
     }
 
+    /// <summary>
+    ///     Consume variants and evaluate values
+    /// </summary>
+    /// <returns>The evaluated variant</returns>
     public IVariant Consume()
     {
         return this;

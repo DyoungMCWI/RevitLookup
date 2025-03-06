@@ -3,8 +3,14 @@ using LookupEngine.Abstractions.Enums;
 
 namespace LookupEngine.Formaters;
 
+/// <summary>
+///     Member modifiers formater
+/// </summary>
 internal static class ModifiersFormater
 {
+    /// <summary>
+    ///     Formats the member modifiers
+    /// </summary>
     internal static MemberAttributes FormatAttributes(MemberInfo member)
     {
         return member switch

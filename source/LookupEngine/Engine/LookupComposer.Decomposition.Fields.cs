@@ -25,6 +25,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Add fields to the decomposition
+    /// </summary>
     private void DecomposeFields(BindingFlags bindingFlags)
     {
         if (!_options.IncludeFields) return;

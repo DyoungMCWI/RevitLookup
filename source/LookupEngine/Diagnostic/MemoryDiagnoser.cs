@@ -20,7 +20,10 @@
 
 namespace LookupEngine.Diagnostic;
 
-public sealed class MemoryDiagnoser : IEngineDiagnoser
+/// <summary>
+///     The engine diagnoser to measure memory allocation
+/// </summary>
+internal sealed class MemoryDiagnoser : IEngineDiagnoser
 {
     private long _initialAllocatedBytes;
     private long _finalAllocatedBytes;

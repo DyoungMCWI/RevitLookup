@@ -6,6 +6,9 @@ namespace LookupEngine;
 
 public partial class LookupComposer
 {
+    /// <summary>
+    ///     Add events to the decomposition
+    /// </summary>
     private void DecomposeEvents(BindingFlags bindingFlags)
     {
         if (!_options.IncludeEvents) return;
