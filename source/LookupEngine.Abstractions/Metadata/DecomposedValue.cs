@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using JetBrains.Annotations;
 using LookupEngine.Abstractions.Decomposition;
+#if NETCOREAPP
+using System.Text.Json.Serialization;
+#endif
 
 // ReSharper disable once CheckNamespace
 namespace LookupEngine.Abstractions;
@@ -15,6 +18,9 @@ public sealed class DecomposedValue
     /// <summary>
     ///     The raw, non-evaluated value
     /// </summary>
+#if NETCOREAPP
+    [JsonIgnore]
+#endif
     public required object? RawValue { get; init; }
 
     /// <summary>
@@ -40,5 +46,8 @@ public sealed class DecomposedValue
     /// <summary>
     ///     Descriptor for value description
     /// </summary>
+#if NETCOREAPP
+    [JsonIgnore]
+#endif
     public Descriptor? Descriptor { get; init; }
 }

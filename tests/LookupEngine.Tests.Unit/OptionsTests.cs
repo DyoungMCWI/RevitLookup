@@ -25,7 +25,7 @@ public sealed class OptionsTests
         var data = new PublicFieldsObject();
         var options = new DecomposeOptions
         {
-            IncludeFields = true,
+            IncludeFields = true
         };
 
         //Act
