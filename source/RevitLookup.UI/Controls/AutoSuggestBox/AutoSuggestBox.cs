@@ -30,7 +30,7 @@ namespace Wpf.Ui.Controls;
 [TemplatePart(Name = ElementTextBox, Type = typeof(TextBox))]
 [TemplatePart(Name = ElementSuggestionsPopup, Type = typeof(Popup))]
 [TemplatePart(Name = ElementSuggestionsList, Type = typeof(ListView))]
-public class AutoSuggestBox : ItemsControl, IIconControl
+public class AutoSuggestBox : System.Windows.Controls.ItemsControl, IIconControl
 {
     protected const string ElementTextBox = "PART_TextBox";
     protected const string ElementSuggestionsPopup = "PART_SuggestionsPopup";
@@ -358,7 +358,7 @@ public class AutoSuggestBox : ItemsControl, IIconControl
     {
         var args = new AutoSuggestBoxQuerySubmittedEventArgs(QuerySubmittedEvent, this)
         {
-            QueryText = queryText
+            QueryText = queryText,
         };
 
         RaiseEvent(args);
@@ -372,7 +372,7 @@ public class AutoSuggestBox : ItemsControl, IIconControl
     {
         var args = new AutoSuggestBoxSuggestionChosenEventArgs(SuggestionChosenEvent, this)
         {
-            SelectedItem = selectedItem
+            SelectedItem = selectedItem,
         };
 
         RaiseEvent(args);
@@ -393,7 +393,7 @@ public class AutoSuggestBox : ItemsControl, IIconControl
         var args = new AutoSuggestBoxTextChangedEventArgs(TextChangedEvent, this)
         {
             Reason = reason,
-            Text = text
+            Text = text,
         };
 
         RaiseEvent(args);
@@ -557,7 +557,9 @@ public class AutoSuggestBox : ItemsControl, IIconControl
             .Where(item =>
             {
                 var itemText = GetStringFromObj(item);
-                return splitText.All(key => itemText?.Contains(key, StringComparison.OrdinalIgnoreCase) ?? false);
+                return splitText.All(key =>
+                    itemText?.Contains(key, StringComparison.OrdinalIgnoreCase) ?? false
+                );
             })
             .ToList();
 

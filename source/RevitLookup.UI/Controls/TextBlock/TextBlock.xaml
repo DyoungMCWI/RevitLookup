@@ -9,7 +9,7 @@
 
     <Style TargetType="{x:Type TextBlock}">
 
-        <!-- <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/> -->
+        <!--<Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>-->
 
         <!--  The Display option causes a large aliasing effect  -->
         <!--<Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />-->

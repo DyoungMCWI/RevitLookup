@@ -54,7 +54,7 @@
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                            <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>

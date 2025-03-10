@@ -61,8 +61,9 @@
                 <rl:TextBox
                     x:Name="SummarySearchBox"
                     DockPanel.Dock="Top"
-                    PlaceholderText="Search..."
+                    BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}"
                     Icon="{rl:SymbolIcon Search24}"
+                    PlaceholderText="Search..."
                     IconPlacement="Right"
                     Text="{Binding ViewModel.SearchText,
                         Mode=TwoWay,
@@ -76,6 +77,7 @@
                     VirtualizingPanel.IsVirtualizing="True">
                 </rl:TreeView>
             </DockPanel>
+            <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
             <rl:DataGrid
                 x:Name="SummaryDataGrid"
                 Grid.Column="2"
@@ -92,12 +94,14 @@
                 AutoGenerateColumns="False"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Visible"
+                GridLinesVisibility="All"
                 ItemsSource="{Binding ViewModel.SelectedDecomposedObject.FilteredMembers, FallbackValue={x:Null}}"
                 RowStyle="{x:Null}"
                 RowStyleSelector="{StaticResource DataGridRowStyleSelector}"
                 ScrollViewer.CanContentScroll="True"
                 VirtualizingPanel.IsVirtualizingWhenGrouping="True">
                 <DataGrid.GroupStyle>
+                    <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
                     <StaticResource
                         ResourceKey="DefaultSummaryGridGroupStyle" />
                 </DataGrid.GroupStyle>
@@ -129,11 +133,14 @@
                                         Margin="4 0 0 0"
                                         VerticalAlignment="Center"
                                         FontTypography="Caption"
+                                        FontWeight="{Binding FontWeight, 
+                                            RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
                                         Text="{Binding Name, Mode=OneTime}" />
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
                     <DataGridTemplateColumn
                         Width="2*"
                         CellTemplateSelector="{StaticResource DataGridCellTemplateSelector}">

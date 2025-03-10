@@ -3,8 +3,6 @@
 // Copyright (C) Leszek Pomianowski and WPF UI Contributors.
 // All Rights Reserved.
 
-using System.Collections;
-using System.Diagnostics;
 using Wpf.Ui.Controls;
 
 namespace Wpf.Ui.Appearance;
@@ -110,7 +108,7 @@ public static class ApplicationThemeManager
             new Uri(ThemesDictionaryPath + themeDictionaryName + ".xaml", UriKind.Absolute)
         );
 
-        Debug.WriteLine(
+        System.Diagnostics.Debug.WriteLine(
             $"INFO | {typeof(ApplicationThemeManager)} tries to update theme to {themeDictionaryName} ({applicationTheme}): {isUpdated}",
             nameof(ApplicationThemeManager)
         );
@@ -126,7 +124,7 @@ public static class ApplicationThemeManager
 
         Changed?.Invoke(applicationTheme, ApplicationAccentColorManager.SystemAccent);
 
-        if (UiApplication.Current.MainWindow is { } mainWindow)
+        if (UiApplication.Current.MainWindow is Window mainWindow)
         {
             WindowBackgroundManager.UpdateBackground(mainWindow, applicationTheme, backgroundEffect);
         }
@@ -145,8 +143,12 @@ public static class ApplicationThemeManager
             }
         }
 
-        foreach (DictionaryEntry resource in UiApplication.Current.Resources)
+        foreach (System.Collections.DictionaryEntry resource in UiApplication.Current.Resources)
         {
+            System.Diagnostics.Debug.WriteLine(
+                $"INFO | {typeof(ApplicationThemeManager)} Copy Resource {resource.Key} - {resource.Value}",
+                "Wpf.Ui.Appearance"
+            );
             frameworkElement.Resources[resource.Key] = resource.Value;
         }
     }

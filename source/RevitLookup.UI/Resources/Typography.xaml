@@ -3,6 +3,7 @@
     <Style TargetType="TextBlock">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="20" />
+        <Setter Property="FontWeight" Value="Regular" />
     </Style>
 
     <Style
@@ -11,6 +12,7 @@
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="LineHeight" Value="16" />
+        <Setter Property="FontWeight" Value="Regular" />
     </Style>
 
     <Style
@@ -19,6 +21,7 @@
         TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="20" />
+        <Setter Property="FontWeight" Value="Regular" />
     </Style>
 
     <Style

@@ -305,7 +305,7 @@
                             <controls:Button
                                 x:Name="PART_BackButton"
                                 Grid.Row="0"
-                                Margin="0,3,0,5"
+                                Margin="0,3,0,8"
                                 HorizontalAlignment="Left"
                                 IsEnabled="{TemplateBinding IsBackEnabled}"
                                 Style="{StaticResource BasePaneButtonStyle}"
@@ -319,7 +319,7 @@
                             <controls:Button
                                 x:Name="PART_ToggleButton"
                                 Grid.Row="1"
-                                Margin="0,5,0,5"
+                                Margin="0,3,0,8"
                                 Style="{StaticResource BasePaneButtonStyle}"
                                 Visibility="{TemplateBinding IsPaneToggleVisible,
                                                              Converter={StaticResource BoolToVisibilityConverter}}">

@@ -45,8 +45,9 @@
                 <rl:TextBox
                     x:Name="SummarySearchBox"
                     DockPanel.Dock="Top"
-                    PlaceholderText="Search..."
+                    BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}"
                     Icon="{rl:SymbolIcon Search24}"
+                    PlaceholderText="Search..."
                     IconPlacement="Right"
                     Text="{Binding ViewModel.SearchText,
                         Mode=TwoWay,
@@ -78,6 +79,7 @@
                 AutoGenerateColumns="False"
                 HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Visible"
+                GridLinesVisibility="All"
                 ItemsSource="{Binding ViewModel.SelectedDecomposedObject.FilteredMembers, FallbackValue={x:Null}}"
                 RowStyle="{x:Null}"
                 RowStyleSelector="{StaticResource DataGridRowStyleSelector}"
@@ -112,6 +114,8 @@
                                         Margin="4 0 0 0"
                                         VerticalAlignment="Center"
                                         FontTypography="Caption"
+                                        FontWeight="{Binding FontWeight, 
+                                            RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
                                         Text="{Binding Name, Mode=OneTime}" />
                                 </StackPanel>
                             </DataTemplate>

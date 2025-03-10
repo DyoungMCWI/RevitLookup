@@ -180,7 +180,7 @@
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                            <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>
@@ -335,7 +335,7 @@
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <VirtualizingStackPanel VirtualizationMode="Recycling"/>
+                            <VirtualizingStackPanel />
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>

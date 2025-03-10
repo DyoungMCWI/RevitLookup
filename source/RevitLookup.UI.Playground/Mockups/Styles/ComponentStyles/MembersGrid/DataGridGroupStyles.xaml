@@ -27,7 +27,7 @@
                                     Height="26"
                                     BorderThickness="0 0 1 1"
                                     Background="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}"
-                                    BorderBrush="{DynamicResource ControlElevationBorderBrush}">
+                                    BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}">
                                     <rl:TextBlock
                                         VerticalAlignment="Center"
                                         Margin="6 0"

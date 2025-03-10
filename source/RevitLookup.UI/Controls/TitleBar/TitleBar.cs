@@ -4,6 +4,7 @@
 // All Rights Reserved.
 
 using System.Diagnostics;
+using System.Windows.Data;
 using System.Windows.Input;
 using Wpf.Ui.Designer;
 using Wpf.Ui.Input;
@@ -52,9 +53,21 @@ public class TitleBar : System.Windows.Controls.Control, IThemeControl
         new PropertyMetadata(null)
     );
 
-    /// <summary>Identifies the <see cref="Header"/> dependency property.</summary>
+    /// <summary>
+    /// Property for <see cref="Header"/>.
+    /// </summary>
     public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
         nameof(Header),
+        typeof(object),
+        typeof(TitleBar),
+        new PropertyMetadata(null)
+    );
+
+    /// <summary>
+    /// Property for <see cref="TrailingContent"/>.
+    /// </summary>
+    public static readonly DependencyProperty TrailingContentProperty = DependencyProperty.Register(
+        nameof(TrailingContent),
         typeof(object),
         typeof(TitleBar),
         new PropertyMetadata(null)
@@ -209,12 +222,21 @@ public class TitleBar : System.Windows.Controls.Control, IThemeControl
     }
 
     /// <summary>
-    /// Gets or sets the content displayed in the <see cref="TitleBar"/>.
+    /// Gets or sets the content displayed in the left side of the <see cref="TitleBar"/>.
     /// </summary>
     public object? Header
     {
         get => GetValue(HeaderProperty);
         set => SetValue(HeaderProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the content displayed in right side of the <see cref="TitleBar"/>.
+    /// </summary>
+    public object? TrailingContent
+    {
+        get => GetValue(TrailingContentProperty);
+        set => SetValue(TrailingContentProperty, value);
     }
 
     /// <summary>
@@ -372,6 +394,7 @@ public class TitleBar : System.Windows.Controls.Control, IThemeControl
     public Action<TitleBar, System.Windows.Window>? MinimizeActionOverride { get; set; }
 
     private readonly TitleBarButton[] _buttons = new TitleBarButton[4];
+    private readonly TextBlock _titleBlock;
     private System.Windows.Window _currentWindow = null!;
 
     /*private System.Windows.Controls.Grid _mainGrid = null!;*/
@@ -385,6 +408,18 @@ public class TitleBar : System.Windows.Controls.Control, IThemeControl
         SetValue(TemplateButtonCommandProperty, new RelayCommand<TitleBarButtonType>(OnTemplateButtonClick));
 
         dpiScale ??= VisualTreeHelper.GetDpi(this);
+
+        _titleBlock = new TextBlock();
+        _titleBlock.VerticalAlignment = VerticalAlignment.Center;
+        _ = _titleBlock.SetBinding(
+            System.Windows.Controls.TextBlock.TextProperty,
+            new Binding(nameof(Title)) { Source = this }
+        );
+        _ = _titleBlock.SetBinding(
+            System.Windows.Controls.TextBlock.FontSizeProperty,
+            new Binding(nameof(FontSize)) { Source = this }
+        );
+        Header = _titleBlock;
 
         Loaded += OnLoaded;
         Unloaded += OnUnloaded;
@@ -617,9 +652,21 @@ public class TitleBar : System.Windows.Controls.Control, IThemeControl
 
         bool isMouseOverHeaderContent = false;
 
-        if (message == User32.WM.NCHITTEST && Header is UIElement headerUiElement)
+        if (message == User32.WM.NCHITTEST && (TrailingContent is UIElement || Header is UIElement))
         {
-            isMouseOverHeaderContent = headerUiElement.IsMouseOverElement(lParam);
+            UIElement? headerLeftUIElement = Header as UIElement;
+            UIElement? headerRightUiElement = TrailingContent as UIElement;
+
+            if (headerLeftUIElement is not null && headerLeftUIElement != _titleBlock)
+            {
+                isMouseOverHeaderContent =
+                    headerLeftUIElement.IsMouseOverElement(lParam)
+                    || (headerRightUiElement?.IsMouseOverElement(lParam) ?? false);
+            }
+            else
+            {
+                isMouseOverHeaderContent = headerRightUiElement?.IsMouseOverElement(lParam) ?? false;
+            }
         }
 
         switch (message)

@@ -10,7 +10,6 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using Wpf.Ui.Abstractions.Controls;
 using Wpf.Ui.Animations;
-using Wpf.Ui.Appearance;
 
 // ReSharper disable once CheckNamespace
 namespace Wpf.Ui.Controls;
@@ -154,7 +153,7 @@ public class NavigationViewContentPresenter : Frame
             e.Handled = true;
             return;
         }
-        
+
         base.OnPreviewKeyDown(e);
     }
 

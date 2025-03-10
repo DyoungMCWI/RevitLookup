@@ -131,14 +131,14 @@
                                 Content="{TemplateBinding Icon}"
                                 Focusable="False"
                                 RenderOptions.BitmapScalingMode="HighQuality" />
-
-                            <!--  Main application title  -->
-                            <TextBlock
+                            
+                            <!--  Title text or other header content  -->
+                            <ContentPresenter
                                 Grid.Column="1"
-                                VerticalAlignment="Center"
-                                FontSize="{TemplateBinding FontSize}"
-                                Text="{TemplateBinding Title}" />
+                                HorizontalAlignment="Left"
+                                Content="{TemplateBinding Header}" />
                         </Grid>
+                        
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -149,7 +149,7 @@
                             <ContentPresenter
                                 Grid.Column="0"
                                 HorizontalAlignment="Right"
-                                Content="{TemplateBinding Header}" />
+                                Content="{TemplateBinding TrailingContent}" />
 
                             <!--  Navigation buttons - Close, Restore, Maximize, Minimize  -->
                             <Grid

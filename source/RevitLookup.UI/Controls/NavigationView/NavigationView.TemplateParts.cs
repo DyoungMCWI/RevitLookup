@@ -7,9 +7,6 @@
 // Copyright(c) Microsoft Corporation.All rights reserved.
 
 // ReSharper disable once CheckNamespace
-
-using Wpf.Ui.Appearance;
-
 namespace Wpf.Ui.Controls;
 
 /// <content>
