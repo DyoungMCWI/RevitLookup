@@ -196,6 +196,7 @@
                                     VerticalAlignment="Center"
                                     Appearance="Transparent"
                                     FontSize="18"
+                                    Margin="0 0 8 0"
                                     Icon="{rl:SymbolIcon Delete20}"
                                     Command="{Binding DataContext.ViewModel.DeleteEntryCommand, ElementName=EntriesList}"
                                     CommandParameter="{Binding}" />
@@ -211,6 +212,7 @@
                                     VerticalAlignment="Center"
                                     Appearance="Transparent"
                                     FontSize="18"
+                                    Margin="0 0 8 0"
                                     Visibility="{Binding IsModified,
                                         Mode=OneWay,
                                         Converter={converters:BooleanHiddenVisibilityConverter}}"
