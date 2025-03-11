@@ -89,7 +89,7 @@ sealed partial class Build
     [Solution(GenerateProjects = true)] Solution Solution;
 
     /// <summary>
-    ///     Set non-initialized properties
+    ///     Set not-defined properties
     /// </summary>
     protected override void OnBuildInitialized()
     {

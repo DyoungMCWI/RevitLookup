@@ -34,20 +34,17 @@ public sealed class MemberAttributeIconConverter : MarkupExtension, IValueConver
     {
         var attributes = (MemberAttributes) value!;
 
-        if ((attributes & MemberAttributes.Property) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0)
-            return SymbolRegular.CalendarLock16;
+        if ((attributes & MemberAttributes.Property) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.CalendarLock16;
         if ((attributes & MemberAttributes.Property) != 0 && (attributes & MemberAttributes.Private) != 0) return SymbolRegular.DocumentLock16;
         if ((attributes & MemberAttributes.Property) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.ClipboardNote16;
         if ((attributes & MemberAttributes.Property) != 0) return SymbolRegular.ClipboardBulletListLtr16;
-
-        if ((attributes & MemberAttributes.Method) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0)
-            return SymbolRegular.ShieldLock16;
+        
+        if ((attributes & MemberAttributes.Method) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.ShieldLock16;
         if ((attributes & MemberAttributes.Method) != 0 && (attributes & MemberAttributes.Private) != 0) return SymbolRegular.TableLock16;
         if ((attributes & MemberAttributes.Method) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.Box16;
         if ((attributes & MemberAttributes.Method) != 0) return SymbolRegular.Cube16;
-
-        if ((attributes & MemberAttributes.Field) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0)
-            return SymbolRegular.TrophyLock16;
+        
+        if ((attributes & MemberAttributes.Field) != 0 && (attributes & MemberAttributes.Private) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.TrophyLock16;
         if ((attributes & MemberAttributes.Field) != 0 && (attributes & MemberAttributes.Private) != 0) return SymbolRegular.TagLock16;
         if ((attributes & MemberAttributes.Field) != 0 && (attributes & MemberAttributes.Static) != 0) return SymbolRegular.TagMultiple16;
         if ((attributes & MemberAttributes.Field) != 0) return SymbolRegular.Tag16;
