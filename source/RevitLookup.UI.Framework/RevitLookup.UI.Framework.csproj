@@ -22,7 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\Images\ProductLogo200.png"/>
+        <Resource Include="Resources\Images\ProductIcon.png" />
+        <Resource Include="Resources\Images\ProductLogo.png" />
         <Resource Include="Resources\Images\ShellIcon.ico"/>
     </ItemGroup>
 

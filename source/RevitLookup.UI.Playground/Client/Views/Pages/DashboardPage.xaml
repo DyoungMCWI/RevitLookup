@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ui="http://revitlookup.com/xaml"
     xmlns:pages="clr-namespace:RevitLookup.UI.Playground.Client.ViewModels.Pages"
+    xmlns:controls="clr-namespace:RevitLookup.UI.Playground.Client.Controls"
     mc:Ignorable="d"
     d:DesignHeight="800"
     d:DesignWidth="800"
@@ -14,14 +15,14 @@
 
     <StackPanel
         Margin="0 24">
-        <Grid
+        <StackPanel
             HorizontalAlignment="Center">
             <StackPanel
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">
                 <Image
-                    MaxHeight="150"
-                    Source="/Client/Resources/Images/ProductLogo.png" />
+                    MaxHeight="100"
+                    Source="pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductLogo.png" />
                 <ui:TextBlock
                     Text="RevitLookup"
                     Margin="20 0 0 0"
@@ -29,8 +30,8 @@
                     FontTypography="Display" />
             </StackPanel>
             <StackPanel
+                Margin="0 -15 0 0"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
                 Orientation="Horizontal">
                 <ui:SymbolIcon
                     FontSize="32"
@@ -41,7 +42,10 @@
                     VerticalAlignment="Center"
                     FontTypography="Subtitle" />
             </StackPanel>
-        </Grid>
+        </StackPanel>
+        
+        <controls:TileGallery
+            Margin="0 24 0 0"/>
 
         <ui:CardAction
             Margin="0 24 0 0"

@@ -22,7 +22,7 @@
             Width="200"
             Stretch="Uniform"
             VerticalAlignment="Top"
-            Source="pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductLogo200.png" />
+            Source="pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductLogo.png" />
         <StackPanel
             Margin="30,0,0,0">
             <rl:TextBlock

@@ -30,8 +30,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Client\Resources\Images\ProductIcon.png"/>
-        <Resource Include="Client\Resources\Images\ProductLogo.png"/>
         <EmbeddedResource Include="Client\Models\FontIcons.json"/>
     </ItemGroup>
 

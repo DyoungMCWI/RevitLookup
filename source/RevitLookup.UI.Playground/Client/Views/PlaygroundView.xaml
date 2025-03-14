@@ -14,7 +14,7 @@
     WindowBackdropType="Mica"
     WindowStartupLocation="CenterScreen"
     ExtendsContentIntoTitleBar="True"
-    Icon="/Client/Resources/Images/ProductIcon.png"
+    Icon="pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductIcon.png"
     d:DataContext="{d:DesignInstance viewModels:PlaygroundViewModel}">
 
     <ui:FluentWindow.InputBindings>
@@ -57,7 +57,7 @@
             x:Name="TitleBar"
             Background="Transparent"
             Title="Playground"
-            Icon="{ui:ImageIcon '/Client/Resources/Images/ProductIcon.png'}" />
+            Icon="{ui:ImageIcon 'pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductIcon.png'}" />
         <ContentPresenter
             x:Name="RootContentDialog" />
     </Grid>

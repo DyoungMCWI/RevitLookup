@@ -18,18 +18,14 @@
                 <ui:ControlsDictionary />
                 <menu:MenusDictionary />
 
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Framework;component/Controls/ContentPlaceholder/ContentPlaceholder.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Playground;component/Client/Controls/ControlExample.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Playground;component/Mockups/Styles/ComponentStyles/ObjectsTree/TreeGroupTemplates.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Playground;component/Mockups/Styles/ComponentStyles/MembersGrid/DataGridGroupStyles.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Playground;component/Mockups/Styles/ComponentStyles/MembersGrid/DataGridRowStyle.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/RevitLookup.UI.Playground;component/Mockups/Styles/ComponentStyles/MembersGrid/DataGridCellTemplate.xaml" />
+                <ResourceDictionary Source="Client/Controls/ControlExample.xaml" />
+                <ResourceDictionary Source="Client/Controls/ColorPageExample.xaml" />
+                <ResourceDictionary Source="Client/Controls/ColorTile.xaml" />
+                <ResourceDictionary Source="Mockups/Styles/ComponentStyles/ObjectsTree/TreeGroupTemplates.xaml" />
+                <ResourceDictionary Source="Mockups/Styles/ComponentStyles/MembersGrid/DataGridGroupStyles.xaml" />
+                <ResourceDictionary Source="Mockups/Styles/ComponentStyles/MembersGrid/DataGridRowStyle.xaml" />
+                <ResourceDictionary Source="Mockups/Styles/ComponentStyles/MembersGrid/DataGridCellTemplate.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/RevitLookup.UI.Framework;component/Controls/ContentPlaceholder/ContentPlaceholder.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

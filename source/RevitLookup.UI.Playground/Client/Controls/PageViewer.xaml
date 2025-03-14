@@ -17,7 +17,7 @@
             <rl:TitleBar
                 DockPanel.Dock="Top"
                 Title="Page preview"
-                Icon="{rl:ImageIcon '/Client/Resources/Images/ProductIcon.png'}" />
+                Icon="{rl:ImageIcon 'pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductIcon.png'}" />
             <Frame
                 x:Name="Viewer">
             </Frame>
