@@ -15,6 +15,8 @@
         <ui:TextBlock
             VerticalAlignment="Center"
             FontTypography="Caption"
+            FontWeight="{Binding FontWeight, 
+                    RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
             Text="{Binding .,
                 Converter={valueConverters:CombinedDescriptorLabelConverter},
                 Mode=OneTime}" />
@@ -28,6 +30,8 @@
             <ui:TextBlock
                 VerticalAlignment="Center"
                 FontTypography="Caption"
+                FontWeight="{Binding FontWeight, 
+                    RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
                 Text="{Binding .,
                     Converter={valueConverters:CombinedDescriptorLabelConverter},
                     Mode=OneTime}" />

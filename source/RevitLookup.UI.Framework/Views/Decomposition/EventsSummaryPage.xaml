@@ -127,8 +127,8 @@
                                     <rl:SymbolIcon
                                         FontSize="16"
                                         Symbol="{Binding MemberAttributes,
-                                        Converter={valueConverters:MemberAttributeIconConverter},
-                                        Mode=OneTime}" />
+                                            Converter={valueConverters:MemberAttributeIconConverter},
+                                            Mode=OneTime}" />
                                     <rl:TextBlock
                                         Margin="4 0 0 0"
                                         VerticalAlignment="Center"
@@ -166,6 +166,8 @@
                                 <rl:TextBlock
                                     VerticalAlignment="Center"
                                     FontTypography="Caption"
+                                    FontWeight="{Binding FontWeight, 
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
                                     Text="{Binding ComputationTime,
                                         Converter={valueConverters:TimeToStringConverter},
                                         Mode=OneTime}" />
@@ -187,6 +189,8 @@
                                 <rl:TextBlock
                                     VerticalAlignment="Center"
                                     FontTypography="Caption"
+                                    FontWeight="{Binding FontWeight, 
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}}"
                                     Text="{Binding AllocatedBytes,
                                         Converter={valueConverters:BytesToStringConverter},
                                         Mode=OneTime}" />
