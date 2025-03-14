@@ -67,6 +67,7 @@ Updated and improved Summary page components.
 - **Adjusted default window sizes** for better display due to changes in Win.UI components.
 - **Synchronised UI library** and styles with Wpf.UI.
 - **Improved theme synchronization** with Windows.
+- **Added high contrast** theme.
 
 ## LookupEngine
 

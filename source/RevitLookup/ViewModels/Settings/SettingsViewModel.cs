@@ -81,8 +81,8 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
         ApplicationTheme.Auto,
 #endif
         ApplicationTheme.Light,
-        ApplicationTheme.Dark
-        // ApplicationTheme.HighContrast
+        ApplicationTheme.Dark,
+        ApplicationTheme.HighContrast
     ];
 
     public List<WindowBackdropType> BackgroundEffects { get; } =

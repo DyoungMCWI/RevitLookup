@@ -31,12 +31,8 @@
             Property="FontWeight"
             Value="DemiBold" />
         <Setter
-            Property="Foreground">
-            <Setter.Value>
-                <SolidColorBrush
-                    Color="{DynamicResource SystemAccentColorPrimary}" />
-            </Setter.Value>
-        </Setter>
+            Property="Foreground"
+            Value="{DynamicResource ListViewItemPillFillBrush}"/>
         <Setter
             Property="Cursor"
             Value="Hand" />
