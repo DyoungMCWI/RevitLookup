@@ -9,8 +9,7 @@ sealed partial class Build
     /// </summary>
     string[] Configurations =
     [
-        "Release*",
-        "Installer*"
+        "Release*"
     ];
 
     /// <summary>
@@ -25,6 +24,14 @@ sealed partial class Build
         { "Release R24", "2024.2.0" },
         { "Release R25", "2025.1.0" },
         { "Release R26", "2026.0.0" }
+    };
+    
+    /// <summary>
+    ///     Mapping between used installer project and the project containing the installation files.
+    /// </summary>
+    Dictionary<Project, Project> InstallersMap => new()
+    {
+        { Solution.Automation.Installer, Solution.Revit.RevitLookup }
     };
 
     /// <summary>

@@ -27,12 +27,11 @@ namespace Installer;
 /// <summary>
 ///     Installer versions metadata.
 /// </summary>
-[StructLayout(LayoutKind.Auto)]
-public struct Versions
+public sealed class Versions
 {
-    public Version InstallerVersion { get; set; }
-    public Version AssemblyVersion { get; set; }
-    public int RevitVersion { get; set; }
+    public required Version InstallerVersion { get; init; }
+    public required Version AssemblyVersion { get; init; }
+    public int RevitVersion { get; init; }
 }
 
 public static class Tools

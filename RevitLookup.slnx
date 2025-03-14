@@ -8,7 +8,6 @@
         <BuildType Name="Debug R24"/>
         <BuildType Name="Debug R25"/>
         <BuildType Name="Debug R26"/>
-        <BuildType Name="Release Automation"/>
         <BuildType Name="Release Engine"/>
         <BuildType Name="Release Frontend"/>
         <BuildType Name="Release R21"/>
@@ -28,7 +27,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
@@ -47,7 +45,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
@@ -68,7 +65,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -87,7 +83,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -108,7 +103,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -127,7 +121,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -146,7 +139,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
@@ -165,7 +157,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -180,7 +171,6 @@
         <Project Path="source\RevitLookup\RevitLookup.csproj" Type="Classic C#">
             <Configuration Solution="Debug Engine|Any CPU" Project="Debug R25|Any CPU|NoBuild"/>
             <Configuration Solution="Debug Frontend|Any CPU" Project="Debug R25|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release R25|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release R25|Any CPU|NoBuild"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release R25|Any CPU|NoBuild"/>
         </Project>
@@ -203,7 +193,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
@@ -222,7 +211,6 @@
             <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
@@ -242,7 +230,6 @@
         <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
         <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
         <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-        <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
         <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
         <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
         <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
@@ -261,7 +248,6 @@
         <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU"/>
         <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU"/>
         <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU"/>
-        <Configuration Solution="Release Automation|Any CPU" Project="Release|Any CPU|NoBuild"/>
         <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU|NoBuild"/>
         <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU"/>
         <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU"/>
