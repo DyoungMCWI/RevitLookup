@@ -25,7 +25,7 @@
 
         <!-- IOC -->
         <PackageVersion Include="Scrutor" Version="6.0.1"/>
-        <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.1"/>
+        <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.3"/>
 
         <!-- Logging -->
         <PackageVersion Include="Serilog" Version="4.2.0"/>
@@ -33,15 +33,15 @@
         <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0"/>
         <PackageVersion Include="Serilog.Extensions.Hosting" Version="9.0.0"/>
         <PackageVersion Include="Serilog.Sinks.Autodesk.Revit" Version="2.0.1"/>
-        <PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.1"/>
+        <PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.3"/>
 
         <!-- Data Generation -->
-        <PackageVersion Include="Bogus" Version="35.6.1"/>
-        <PackageVersion Include="System.Text.Json" Version="9.0.2"/>
+        <PackageVersion Include="Bogus" Version="35.6.2"/>
+        <PackageVersion Include="System.Text.Json" Version="9.0.3"/>
 
         <!-- Testing -->
         <PackageVersion Include="BenchmarkDotNet" Version="0.14.0"/>
-        <PackageVersion Include="TUnit" Version="0.11.0"/>
+        <PackageVersion Include="TUnit" Version="0.18.33"/>
 
         <!-- Automation Tools -->
         <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
