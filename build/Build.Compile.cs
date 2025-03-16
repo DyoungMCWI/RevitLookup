@@ -15,6 +15,7 @@ sealed partial class Build
                 AssemblyVersionsMap.TryGetValue(configuration, out var version);
 
                 DotNetBuild(settings => settings
+                    .SetProjectFile(Solution)
                     .SetConfiguration(configuration)
                     .SetVersion(version)
                     .SetVerbosity(DotNetVerbosity.minimal));

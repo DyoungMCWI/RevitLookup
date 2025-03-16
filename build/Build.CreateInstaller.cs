@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities;
 using Serilog.Events;
+using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 sealed partial class Build
 {
@@ -14,22 +16,28 @@ sealed partial class Build
         {
             const string configuration = "Release";
 
-            var target = Solution.Revit.RevitLookup;
-            var installer = Solution.Automation.Installer;
+            var wixTarget = Solution.Revit.RevitLookup;
+            var wixInstaller = Solution.Automation.Installer;
 
-            Log.Information("Project: {Name}", target.Name);
+            Log.Information("Project: {Name}", wixTarget.Name);
+
+            DotNetBuild(settings => settings
+                .SetProjectFile(wixInstaller)
+                .SetConfiguration(configuration)
+                .SetVersion(ReleaseVersionNumber)
+                .SetVerbosity(DotNetVerbosity.minimal));
 
             var builderFile = Directory
-                .EnumerateFiles(installer.Directory / "bin" / configuration, $"{installer.Name}.exe")
+                .EnumerateFiles(wixInstaller.Directory / "bin" / configuration,  $"{wixInstaller.Name}.exe")
                 .FirstOrDefault()
-                .NotNull($"No installer builder was found for the project: {installer.Name}");
+                .NotNull($"No installer builder was found for the project: {wixInstaller.Name}");
 
-            var contentDirectories = Directory.GetDirectories(target.Directory / "bin", $"* {configuration} *", SearchOption.AllDirectories);
-            Assert.NotEmpty(contentDirectories, "No content were found to create an installer");
+            var targetDirectories = Directory.GetDirectories(wixTarget.Directory, $"* {configuration} *", SearchOption.AllDirectories);
+            Assert.NotEmpty(targetDirectories, "No content were found to create an installer");
 
-            foreach (var contentDirectory in contentDirectories)
+            foreach (var targetDirectory in targetDirectories)
             {
-                var process = ProcessTasks.StartProcess(builderFile, contentDirectory.DoubleQuoteIfNeeded(), logInvocation: false, logger: InstallerLogger);
+                var process = ProcessTasks.StartProcess(builderFile, targetDirectory.DoubleQuoteIfNeeded(), logInvocation: false, logger: InstallerLogger);
                 process.AssertZeroExitCode();
             }
         });
