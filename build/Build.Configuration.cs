@@ -5,7 +5,7 @@ using Nuke.Common.Tools.Git;
 sealed partial class Build
 {
     /// <summary>
-    ///     Patterns of solution configurations for compiling
+    ///     Patterns of solution configurations for compiling.
     /// </summary>
     string[] Configurations =
     [
@@ -13,7 +13,7 @@ sealed partial class Build
     ];
 
     /// <summary>
-    ///     Mapping configurations and their assembly versions
+    ///     Mapping configurations and their assembly versions.
     /// </summary>
     Dictionary<string, string> AssemblyVersionsMap = new()
     {
@@ -35,17 +35,17 @@ sealed partial class Build
     };
 
     /// <summary>
-    ///     Path to build output
+    ///     Path to build output.
     /// </summary>
     readonly AbsolutePath ArtifactsDirectory = RootDirectory / "output";
 
     /// <summary>
-    ///     Releases changelog path
+    ///     Releases changelog path.
     /// </summary>
     readonly AbsolutePath ChangelogPath = RootDirectory / "Changelog.md";
 
     /// <summary>
-    ///     Add-in release version, includes version number and release stage
+    ///     Add-in release version, includes version number and release stage.
     /// </summary>
     /// <remarks>Supported version format: <c>version-environment.n.date</c>.</remarks>
     /// <example>
@@ -56,8 +56,11 @@ sealed partial class Build
     [Parameter] string ReleaseVersion;
 
     /// <summary>
-    ///     The previous release version
+    ///     The previous release version.
     /// </summary>
+    /// <remarks>
+    ///     Can be used to compare versions or analyze changes between versions.
+    /// </remarks>
     string PreviousReleaseVersion => GitTasks.Git("tag --list", logInvocation: false, logOutput: false).ToArray() switch
     {
         var tags when tags.Length >= 2 => tags[^2].Text,
@@ -66,12 +69,12 @@ sealed partial class Build
     };
 
     /// <summary>
-    ///     Numeric release version without a stage
+    ///     Numeric release version without a stage.
     /// </summary>
     string ReleaseVersionNumber => ReleaseVersion?.Split('-')[0];
 
     /// <summary>
-    ///     Release stage
+    ///     Release stage.
     /// </summary>
     /// <example>
     ///     alpha for 1.0.0-alpha.1.250101<br/>
@@ -81,22 +84,22 @@ sealed partial class Build
     string ReleaseStage => IsPrerelease ? ReleaseVersion.Split('-')[1].Split('.')[0] : "production";
 
     /// <summary>
-    ///     Determines whether the Revit add-ins release is preview
+    ///     Determines whether the Revit add-ins release is preview.
     /// </summary>
     bool IsPrerelease => ReleaseVersion != ReleaseVersionNumber;
 
     /// <summary>
-    ///     Git repository metadata
+    ///     Git repository metadata.
     /// </summary>
     [GitRepository] readonly GitRepository GitRepository;
 
     /// <summary>
-    ///     Solution structure metadata
+    ///     Solution structure metadata.
     /// </summary>
     [Solution(GenerateProjects = true)] Solution Solution;
 
     /// <summary>
-    ///     Set not-defined properties
+    ///     Set not-defined properties.
     /// </summary>
     protected override void OnBuildInitialized()
     {

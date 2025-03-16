@@ -1,4 +1,5 @@
-﻿using Nuke.Common.Tools.DotNet;
+﻿using Nuke.Common.ProjectModel;
+using Nuke.Common.Tools.DotNet;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 sealed partial class Build
@@ -10,9 +11,16 @@ sealed partial class Build
         .OnlyWhenStatic(() => IsLocalBuild)
         .Executes(() =>
         {
+            Project[] excludedProjects =
+            [
+                Solution.Automation.Build
+            ];
+            
             CleanDirectory(ArtifactsDirectory);
-            foreach (var project in Solution.AllProjects.Where(project => project != Solution.Automation.Build))
+            foreach (var project in Solution.AllProjects)
             {
+                if (excludedProjects.Contains(project)) continue;
+                
                 CleanDirectory(project.Directory / "bin");
                 CleanDirectory(project.Directory / "obj");
             }
@@ -20,6 +28,7 @@ sealed partial class Build
             foreach (var configuration in GlobBuildConfigurations())
             {
                 DotNetClean(settings => settings
+                    .SetProject(Solution)
                     .SetConfiguration(configuration)
                     .SetVerbosity(DotNetVerbosity.minimal)
                     .EnableNoLogo());
