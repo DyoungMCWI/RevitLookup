@@ -15,7 +15,7 @@
     Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <DockPanel
-        Margin="12">
+        Margin="12 0 12 12">
         <Image
             DockPanel.Dock="Left"
             Margin="0,16,0,0"
@@ -39,7 +39,7 @@
                 FontTypography="BodyStrong"
                 Text="Version" />
             <rl:CardControl
-                Margin="0,8,0,0"
+                Margin="0,4,0,0"
                 Icon="{rl:SymbolIcon ArrowSync24}">
                 <StackPanel
                     Orientation="Horizontal">
@@ -60,15 +60,21 @@
                     <StackPanel>
                         <TextBlock
                             Text="{Binding ViewModel.CurrentVersion, FallbackValue='1.0.0'}" />
-                        <TextBlock
+                        <rl:TextBlock
+                            FontTypography="Caption"
                             Visibility="{Binding ViewModel.LatestCheckDate, Converter={converters:StringVisibilityConverter}}"
-                            Text="{Binding ViewModel.LatestCheckDate, StringFormat='Latest check: {0}', FallbackValue='Latest check: 2030.01.01'}" />
+                            Text="{Binding ViewModel.LatestCheckDate, StringFormat='Last checked: {0}', FallbackValue='Latest check: 2030.01.01'}" />
                         <rl:HyperlinkButton
-                            Margin="0 3 0 0"
                             Padding="0"
-                            Content="Release Notes"
-                            TextElement.FontSize="12"
-                            NavigateUri="https://github.com/jeremytammik/RevitLookup/releases" />
+                            Margin="0 4 0 0"
+                            NavigateUri="https://github.com/jeremytammik/RevitLookup/releases">
+                            <rl:HyperlinkButton.Content>
+                                <rl:TextBlock
+                                    FontTypography="Caption"
+                                    FontWeight="Medium"
+                                    Text="Release Notes" />
+                            </rl:HyperlinkButton.Content>
+                        </rl:HyperlinkButton>
                     </StackPanel>
                 </rl:CardControl.Header>
             </rl:CardControl>
@@ -128,8 +134,14 @@
                             <rl:HyperlinkButton
                                 Margin="10,0,0,0"
                                 Padding="0"
-                                Content="See what's new in this version"
-                                NavigateUri="{Binding ViewModel.ReleaseNotesUrl}" />
+                                NavigateUri="{Binding ViewModel.ReleaseNotesUrl}">
+                                <rl:HyperlinkButton.Content>
+                                    <rl:TextBlock
+                                        FontTypography="Caption"
+                                        FontWeight="Medium"
+                                        Text="See what's new in this version" />
+                                </rl:HyperlinkButton.Content>
+                            </rl:HyperlinkButton>
                         </StackPanel>
                     </Grid>
                 </rl:CardControl.Header>
@@ -169,7 +181,7 @@
             <rl:TextBlock
                 Margin="0,6,0,0"
                 FontTypography="Caption"
-                Text="Copyright © 2013-2024 Autodesk Inc." />
+                Text="Copyright © 2013-2025 Autodesk Inc." />
             <rl:TextBlock
                 Margin="0,6,0,0"
                 FontTypography="Caption"
