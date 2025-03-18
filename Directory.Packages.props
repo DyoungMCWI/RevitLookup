@@ -26,6 +26,7 @@
         <!-- IOC -->
         <PackageVersion Include="Scrutor" Version="6.0.1"/>
         <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.3"/>
+        <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.3"/>
 
         <!-- Logging -->
         <PackageVersion Include="Serilog" Version="4.2.0"/>
@@ -41,7 +42,7 @@
 
         <!-- Testing -->
         <PackageVersion Include="BenchmarkDotNet" Version="0.14.0"/>
-        <PackageVersion Include="TUnit" Version="0.18.33"/>
+        <PackageVersion Include="TUnit" Version="0.18.45"/>
 
         <!-- Automation Tools -->
         <PackageVersion Include="Nuke.Common" Version="9.0.4"/>
