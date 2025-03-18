@@ -10,13 +10,14 @@ using RevitLookup.Abstractions.Services.Settings;
 namespace RevitLookup.Services.Settings;
 
 public sealed class SoftwareUpdateService(
+    IHttpClientFactory httpFactory,
     IOptions<AssemblyOptions> assemblyOptions,
-    IOptions<FoldersOptions> foldersOptions)
+    IOptions<ResourceLocationsOptions> foldersOptions)
     : ISoftwareUpdateService
 {
     private string? _downloadUrl;
     private readonly AssemblyOptions _assemblyOptions = assemblyOptions.Value;
-    private readonly FoldersOptions _folderOptions = foldersOptions.Value;
+    private readonly ResourceLocationsOptions _folderOptions = foldersOptions.Value;
     private readonly Regex _versionRegex = new(@"(\d+\.)+\d+", RegexOptions.Compiled);
 
     public string? NewVersion { get; private set; }
@@ -67,7 +68,7 @@ public sealed class SoftwareUpdateService(
         Directory.CreateDirectory(_folderOptions.DownloadsFolder);
         var fileName = Path.Combine(_folderOptions.DownloadsFolder, Path.GetFileName(_downloadUrl)!);
 
-        using var httpClient = new HttpClient();
+        var httpClient = httpFactory.CreateClient();
         var response = await httpClient.GetStreamAsync(_downloadUrl);
 
 #if NETCOREAPP
@@ -114,15 +115,12 @@ public sealed class SoftwareUpdateService(
         return true;
     }
 
-    private static async Task<List<GitHubResponse>> FetchGithubRepositoryAsync()
+    private async Task<List<GitHubResponse>> FetchGithubRepositoryAsync()
     {
-        string releasesJson;
-        using (var gitHubClient = new HttpClient())
-        {
-            gitHubClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", $"RevitLookup-{Guid.NewGuid().ToString()}");
-            releasesJson = await gitHubClient.GetStringAsync("https://api.github.com/repos/jeremytammik/RevitLookup/releases");
-        }
-
+        var httpClient = httpFactory.CreateClient("GitHubSource");
+        httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "RevitLookup");
+        
+        var releasesJson = await httpClient.GetStringAsync("releases");
         var responses = JsonSerializer.Deserialize<List<GitHubResponse>>(releasesJson);
         return responses ?? [];
     }
