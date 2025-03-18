@@ -58,7 +58,7 @@ public class Application : ExternalApplication
     public static void EnableHardwareRendering()
     {
         var settingsService = Host.GetService<ISettingsService>();
-        if (!settingsService.GeneralSettings.UseHardwareRendering) return;
+        if (!settingsService.ApplicationSettings.UseHardwareRendering) return;
 
         //Revit overrides render mode during initialization
         //EventHandler is called after initialization
@@ -68,7 +68,7 @@ public class Application : ExternalApplication
     public static void DisableHardwareRendering()
     {
         var settingsService = Host.GetService<ISettingsService>();
-        if (settingsService.GeneralSettings.UseHardwareRendering) return;
+        if (settingsService.ApplicationSettings.UseHardwareRendering) return;
 
         RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
     }

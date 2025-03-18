@@ -4,7 +4,7 @@ using System.Windows.Media;
 namespace RevitLookup.Abstractions.Models.Settings;
 
 [Serializable]
-public sealed class RenderSettings
+public sealed class VisualizationSettings
 {
     [JsonPropertyName("BoundingBoxSettings")] public required BoundingBoxVisualizationSettings BoundingBoxSettings { get; set; }
     [JsonPropertyName("FaceSettings")] public required FaceVisualizationSettings FaceSettings { get; set; }

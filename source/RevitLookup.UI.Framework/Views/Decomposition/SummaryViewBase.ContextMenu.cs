@@ -132,8 +132,8 @@ public partial class SummaryViewBase
             .SetChecked(dataGrid.Columns[2].Visibility == Visibility.Visible)
             .SetCommand(dataGrid.Columns[2], parameter =>
             {
-                _settingsService.GeneralSettings.ShowTimeColumn = parameter.Visibility != Visibility.Visible;
-                parameter.Visibility = _settingsService.GeneralSettings.ShowTimeColumn ? Visibility.Visible : Visibility.Collapsed;
+                _settingsService.DecompositionSettings.ShowTimeColumn = parameter.Visibility != Visibility.Visible;
+                parameter.Visibility = _settingsService.DecompositionSettings.ShowTimeColumn ? Visibility.Visible : Visibility.Collapsed;
             });
 
         contextMenu.AddMenuItem()
@@ -142,8 +142,8 @@ public partial class SummaryViewBase
             .SetChecked(dataGrid.Columns[3].Visibility == Visibility.Visible)
             .SetCommand(dataGrid.Columns[3], parameter =>
             {
-                _settingsService.GeneralSettings.ShowMemoryColumn = parameter.Visibility != Visibility.Visible;
-                parameter.Visibility = _settingsService.GeneralSettings.ShowMemoryColumn ? Visibility.Visible : Visibility.Collapsed;
+                _settingsService.DecompositionSettings.ShowMemoryColumn = parameter.Visibility != Visibility.Visible;
+                parameter.Visibility = _settingsService.DecompositionSettings.ShowMemoryColumn ? Visibility.Visible : Visibility.Collapsed;
             });
 
         contextMenu.AddSeparator();
@@ -152,8 +152,8 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Events")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeEvents)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeEvents)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludeEvents = !parameter.IncludeEvents;
                 await ViewModel.RefreshMembersAsync();
@@ -161,8 +161,8 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Extensions")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeExtensions)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeExtensions)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludeExtensions = !parameter.IncludeExtensions;
                 await ViewModel.RefreshMembersAsync();
@@ -170,8 +170,8 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Fields")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeFields)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeFields)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludeFields = !parameter.IncludeFields;
                 await ViewModel.RefreshMembersAsync();
@@ -179,8 +179,8 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Non-public")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludePrivate)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludePrivate)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludePrivate = !parameter.IncludePrivate;
                 await ViewModel.RefreshMembersAsync();
@@ -188,17 +188,17 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Root")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeRootHierarchy)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeRoot)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
-                parameter.IncludeRootHierarchy = !parameter.IncludeRootHierarchy;
+                parameter.IncludeRoot = !parameter.IncludeRoot;
                 await ViewModel.RefreshMembersAsync();
             });
         contextMenu.AddMenuItem()
             .SetHeader("Static")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeStatic)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeStatic)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludeStatic = !parameter.IncludeStatic;
                 await ViewModel.RefreshMembersAsync();
@@ -206,8 +206,8 @@ public partial class SummaryViewBase
         contextMenu.AddMenuItem()
             .SetHeader("Unsupported")
             .SetStaysOpenOnClick(true)
-            .SetChecked(_settingsService.GeneralSettings.IncludeUnsupported)
-            .SetCommand(_settingsService.GeneralSettings, async parameter =>
+            .SetChecked(_settingsService.DecompositionSettings.IncludeUnsupported)
+            .SetCommand(_settingsService.DecompositionSettings, async parameter =>
             {
                 parameter.IncludeUnsupported = !parameter.IncludeUnsupported;
                 await ViewModel.RefreshMembersAsync();

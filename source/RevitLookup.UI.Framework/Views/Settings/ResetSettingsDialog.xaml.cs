@@ -31,6 +31,7 @@ public sealed partial class ResetSettingsDialog
         themeWatcherService.Watch(this);
     }
 
-    public bool CanResetGeneralSettings => GeneralBox.IsChecked == true;
-    public bool CanResetRenderSettings => RenderBox.IsChecked == true;
+    public bool CanResetApplicationSettings => ApplicationBox.IsChecked == true;
+    public bool CanResetDecompositionSettings => DecompositionBox.IsChecked == true;
+    public bool CanResetVisualizationSettings => VisualizationBox.IsChecked == true;
 }

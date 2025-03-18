@@ -74,7 +74,8 @@
                     Margin="0 8 0 0"
                     ItemsSource="{Binding Path=ViewModel.(viewModelsSummary:IEventsSummaryViewModel.FilteredDecomposedObjects)}"
                     ItemTemplateSelector="{StaticResource TreeViewItemTemplateSelector}"
-                    VirtualizingPanel.IsVirtualizing="True">
+                    VirtualizingPanel.IsVirtualizing="True"
+                    VirtualizingPanel.VirtualizationMode="Standard">
                 </rl:TreeView>
             </DockPanel>
             <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
@@ -99,18 +100,14 @@
                 RowStyle="{x:Null}"
                 RowStyleSelector="{StaticResource DataGridRowStyleSelector}"
                 ScrollViewer.CanContentScroll="True"
+                VirtualizingPanel.IsVirtualizing="True"
+                VirtualizingPanel.VirtualizationMode="Recycling"
                 VirtualizingPanel.IsVirtualizingWhenGrouping="True">
                 <DataGrid.GroupStyle>
                     <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
                     <StaticResource
                         ResourceKey="DefaultSummaryGridGroupStyle" />
                 </DataGrid.GroupStyle>
-                <DataGrid.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <DataGridRowsPresenter
-                            VirtualizationMode="Recycling" />
-                    </ItemsPanelTemplate>
-                </DataGrid.ItemsPanel>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn
                         Width="*">

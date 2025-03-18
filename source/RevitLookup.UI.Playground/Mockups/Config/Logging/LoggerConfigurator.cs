@@ -3,7 +3,7 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace RevitLookup.UI.Playground.Mockups.Config;
+namespace RevitLookup.UI.Playground.Mockups.Config.Logging;
 
 public static class LoggerConfigurator
 {
@@ -14,7 +14,7 @@ public static class LoggerConfigurator
         var logger = CreateDefaultLogger();
         builder.AddSerilog(logger);
 
-        AppDomain.CurrentDomain.UnhandledException += OnOnUnhandledException;
+        AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
     }
 
     private static Logger CreateDefaultLogger()
@@ -26,7 +26,7 @@ public static class LoggerConfigurator
             .CreateLogger();
     }
 
-    private static void OnOnUnhandledException(object sender, UnhandledExceptionEventArgs args)
+    private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs args)
     {
         var exception = (Exception) args.ExceptionObject;
         var logger = Host.GetService<ILogger<AppDomain>>();

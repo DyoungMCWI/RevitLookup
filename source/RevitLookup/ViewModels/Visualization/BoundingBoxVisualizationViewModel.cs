@@ -17,15 +17,15 @@ public sealed partial class BoundingBoxVisualizationViewModel(
 {
     private readonly BoundingBoxVisualizationServer _server = new();
 
-    [ObservableProperty] private double _transparency = settingsService.RenderSettings.BoundingBoxSettings.Transparency;
+    [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.BoundingBoxSettings.Transparency;
 
-    [ObservableProperty] private Color _surfaceColor = settingsService.RenderSettings.BoundingBoxSettings.SurfaceColor;
-    [ObservableProperty] private Color _edgeColor = settingsService.RenderSettings.BoundingBoxSettings.EdgeColor;
-    [ObservableProperty] private Color _axisColor = settingsService.RenderSettings.BoundingBoxSettings.AxisColor;
+    [ObservableProperty] private Color _surfaceColor = settingsService.VisualizationSettings.BoundingBoxSettings.SurfaceColor;
+    [ObservableProperty] private Color _edgeColor = settingsService.VisualizationSettings.BoundingBoxSettings.EdgeColor;
+    [ObservableProperty] private Color _axisColor = settingsService.VisualizationSettings.BoundingBoxSettings.AxisColor;
 
-    [ObservableProperty] private bool _showSurface = settingsService.RenderSettings.BoundingBoxSettings.ShowSurface;
-    [ObservableProperty] private bool _showEdge = settingsService.RenderSettings.BoundingBoxSettings.ShowEdge;
-    [ObservableProperty] private bool _showAxis = settingsService.RenderSettings.BoundingBoxSettings.ShowAxis;
+    [ObservableProperty] private bool _showSurface = settingsService.VisualizationSettings.BoundingBoxSettings.ShowSurface;
+    [ObservableProperty] private bool _showEdge = settingsService.VisualizationSettings.BoundingBoxSettings.ShowEdge;
+    [ObservableProperty] private bool _showAxis = settingsService.VisualizationSettings.BoundingBoxSettings.ShowAxis;
 
     public void RegisterServer(object boxObject)
     {
@@ -62,43 +62,43 @@ public sealed partial class BoundingBoxVisualizationViewModel(
 
     partial void OnTransparencyChanged(double value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.Transparency = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.Transparency = value;
         UpdateTransparency(value);
     }
 
     partial void OnSurfaceColorChanged(Color value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.SurfaceColor = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.SurfaceColor = value;
         UpdateSurfaceColor(value);
     }
 
     partial void OnEdgeColorChanged(Color value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.EdgeColor = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.EdgeColor = value;
         UpdateEdgeColor(value);
     }
 
     partial void OnAxisColorChanged(Color value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.AxisColor = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.AxisColor = value;
         UpdateAxisColor(value);
     }
 
     partial void OnShowSurfaceChanged(bool value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.ShowSurface = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.ShowSurface = value;
         UpdateShowSurface(value);
     }
 
     partial void OnShowEdgeChanged(bool value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.ShowEdge = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.ShowEdge = value;
         UpdateShowEdge(value);
     }
 
     partial void OnShowAxisChanged(bool value)
     {
-        settingsService.RenderSettings.BoundingBoxSettings.ShowEdge = value;
+        settingsService.VisualizationSettings.BoundingBoxSettings.ShowEdge = value;
         UpdateShowAxis(value);
     }
 

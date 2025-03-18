@@ -102,14 +102,19 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
             var result = await dialog.ShowAsync();
             if (result != ContentDialogResult.Primary) return;
 
-            if (dialog.CanResetGeneralSettings)
+            if (dialog.CanResetApplicationSettings)
             {
-                _settingsService.ResetGeneralSettings();
+                _settingsService.ResetApplicationSettings();
             }
 
-            if (dialog.CanResetRenderSettings)
+            if (dialog.CanResetDecompositionSettings)
             {
-                _settingsService.ResetRenderSettings();
+                _settingsService.ResetDecompositionSettings();
+            }
+
+            if (dialog.CanResetVisualizationSettings)
+            {
+                _settingsService.ResetVisualizationSettings();
             }
 
             ApplySettings();
@@ -126,7 +131,7 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
     {
         if (!_initialized) return;
 
-        _settingsService.GeneralSettings.Theme = value;
+        _settingsService.ApplicationSettings.Theme = value;
         _themeWatcherService.ApplyTheme();
     }
 
@@ -144,7 +149,7 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
     {
         if (!_initialized) return;
 
-        _settingsService.GeneralSettings.Background = value;
+        _settingsService.ApplicationSettings.Background = value;
         _themeWatcherService.ApplyTheme();
     }
 
@@ -153,11 +158,11 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
         if (!_initialized) return;
 
         var navigationControl = _navigationService.GetNavigationControl();
-        var transition = _settingsService.GeneralSettings.Transition = value
+        var transition = _settingsService.ApplicationSettings.Transition = value
             ? (Transition) NavigationView.TransitionProperty.DefaultMetadata.DefaultValue
             : Transition.None;
 
-        _settingsService.GeneralSettings.Transition = transition;
+        _settingsService.ApplicationSettings.Transition = transition;
         navigationControl.Transition = transition;
     }
 
@@ -165,7 +170,7 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
     {
         if (!_initialized) return;
 
-        _settingsService.GeneralSettings.UseHardwareRendering = value;
+        _settingsService.ApplicationSettings.UseHardwareRendering = value;
         if (value) Application.EnableHardwareRendering();
         else Application.DisableHardwareRendering();
     }
@@ -174,7 +179,7 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
     {
         if (!_initialized) return;
 
-        _settingsService.GeneralSettings.UseSizeRestoring = value;
+        _settingsService.ApplicationSettings.UseSizeRestoring = value;
         if (_intercomService.GetHost() is not RevitLookupView lookupView)
         {
             Debug.Fail("Settings page running inside invalid host");
@@ -195,17 +200,17 @@ public sealed partial class SettingsViewModel : ObservableObject, ISettingsViewM
     {
         if (!_initialized) return;
 
-        _settingsService.GeneralSettings.UseModifyTab = value;
+        _settingsService.ApplicationSettings.UseModifyTab = value;
         _ribbonService.CreateRibbon();
     }
 
     private void ApplySettings()
     {
-        Theme = _settingsService.GeneralSettings.Theme;
-        Background = _settingsService.GeneralSettings.Background;
-        UseTransition = _settingsService.GeneralSettings.Transition != Transition.None;
-        UseHardwareRendering = _settingsService.GeneralSettings.UseHardwareRendering;
-        UseSizeRestoring = _settingsService.GeneralSettings.UseSizeRestoring;
-        UseModifyTab = _settingsService.GeneralSettings.UseModifyTab;
+        Theme = _settingsService.ApplicationSettings.Theme;
+        Background = _settingsService.ApplicationSettings.Background;
+        UseTransition = _settingsService.ApplicationSettings.Transition != Transition.None;
+        UseHardwareRendering = _settingsService.ApplicationSettings.UseHardwareRendering;
+        UseSizeRestoring = _settingsService.ApplicationSettings.UseSizeRestoring;
+        UseModifyTab = _settingsService.ApplicationSettings.UseModifyTab;
     }
 }

@@ -4,7 +4,7 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace RevitLookup.Config;
+namespace RevitLookup.Config.Logging;
 
 /// <summary>
 ///     Application logging configuration
@@ -20,7 +20,7 @@ namespace RevitLookup.Config;
 /// }
 /// </code>
 /// </example>
-public static class LoggerConfigurator
+public static class LoggerConfiguration
 {
     private const string LogTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext}: {Message:lj}{NewLine}{Exception}";
 
@@ -35,7 +35,7 @@ public static class LoggerConfigurator
 
     private static Logger CreateDefaultLogger()
     {
-        return new LoggerConfiguration()
+        return new Serilog.LoggerConfiguration()
             .WriteTo.Console(LogEventLevel.Information, LogTemplate)
             .WriteTo.Debug(LogEventLevel.Debug, LogTemplate)
             .WriteTo.RevitJournal(Context.UiApplication, restrictedToMinimumLevel: LogEventLevel.Error, outputTemplate: LogTemplate)

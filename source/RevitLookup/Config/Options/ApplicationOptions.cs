@@ -1,5 +1,4 @@
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Versioning;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,29 +6,22 @@ using Microsoft.Extensions.Hosting;
 using RevitLookup.Abstractions.Options;
 using RevitLookup.Common.Utils;
 
-namespace RevitLookup.UI.Playground.Mockups.Config;
+namespace RevitLookup.Config.Options;
 
 public static class ApplicationOptions
 {
     public static void AddApplicationOptions(this IServiceCollection services)
     {
+        ConfigureConsoleOptions(services);
+        ConfigureAssemblyOptions(services);
+    }
+
+    private static void ConfigureConsoleOptions(IServiceCollection services)
+    {
         services.Configure<ConsoleLifetimeOptions>(options => options.SuppressStatusMessages = true);
     }
 
-    public static void AddFolderOptions(this IServiceCollection services)
-    {
-        var rootPath = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory!.FullName;
-        services.Configure<FoldersOptions>(options =>
-        {
-            options.RootFolder = rootPath;
-            options.ConfigFolder = Path.Combine(rootPath, "Config");
-            options.DownloadsFolder = Path.Combine(rootPath, "Downloads");
-            options.GeneralSettingsPath = Path.Combine(rootPath, "Config", "Settings.cfg");
-            options.RenderSettingsPath = Path.Combine(rootPath, "Config", "RenderSettings.cfg");
-        });
-    }
-
-    public static void AddAssemblyOptions(this IServiceCollection services)
+    private static void ConfigureAssemblyOptions(IServiceCollection services)
     {
         var assembly = Assembly.GetExecutingAssembly();
         var assemblyLocation = assembly.Location;

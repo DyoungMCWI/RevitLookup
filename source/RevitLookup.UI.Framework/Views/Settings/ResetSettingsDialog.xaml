@@ -29,10 +29,13 @@
 
     <StackPanel>
         <CheckBox
-            x:Name="GeneralBox"
-            Content="General settings" />
+            x:Name="ApplicationBox"
+            Content="Application settings" />
         <CheckBox
-            x:Name="RenderBox"
+            x:Name="DecompositionBox"
+            Content="Lookup engine settings" />
+        <CheckBox
+            x:Name="VisualizationBox"
             Content="Visualisation settings" />
     </StackPanel>
 

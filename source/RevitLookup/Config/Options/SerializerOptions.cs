@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace RevitLookup.Config;
+namespace RevitLookup.Config.Options;
 
 public static class SerializerOptions
 {

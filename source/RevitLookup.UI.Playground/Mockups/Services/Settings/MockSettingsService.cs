@@ -13,103 +13,144 @@ using Wpf.Ui.Controls;
 namespace RevitLookup.UI.Playground.Mockups.Services.Settings;
 
 public sealed class MockSettingsService(
-    IOptions<FoldersOptions> foldersOptions,
+    IOptions<ResourceLocationsOptions> foldersOptions,
     IOptions<JsonSerializerOptions> jsonOptions,
     ILogger<MockSettingsService> logger)
     : ISettingsService
 {
-    private GeneralSettings? _generalSettings;
-    private RenderSettings? _renderSettings;
+    private ApplicationSettings? _applicationSettings;
+    private DecompositionSettings? _decompositionSettings;
+    private VisualizationSettings? _visualizationSettings;
 
-    public GeneralSettings GeneralSettings => _generalSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public RenderSettings RenderSettings => _renderSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
 
     public void SaveSettings()
     {
-        SaveGeneralSettings();
-        SaveRenderSettings();
+        SaveApplicationSettings();
+        SaveDecompositionSettings();
+        SaveVisualizationSettings();
     }
 
     public void LoadSettings()
     {
-        LoadGeneralSettings();
-        LoadRenderSettings();
+        LoadApplicationSettings();
+        LoadDecompositionSettings();
+        LoadVisualizationSettings();
     }
 
-    private void SaveGeneralSettings()
+    private void SaveApplicationSettings()
     {
-        var path = foldersOptions.Value.GeneralSettingsPath;
-        if (!File.Exists(path)) Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        var path = foldersOptions.Value.ApplicationSettingsPath;
+        if (!File.Exists(path)) Directory.CreateDirectory(foldersOptions.Value.SettingsDirectory);
 
-        var json = JsonSerializer.Serialize(_generalSettings, jsonOptions.Value);
+        var json = JsonSerializer.Serialize(_applicationSettings, jsonOptions.Value);
         File.WriteAllText(path, json);
     }
 
-    private void SaveRenderSettings()
+    private void SaveDecompositionSettings()
     {
-        var path = foldersOptions.Value.RenderSettingsPath;
-        if (!File.Exists(path)) Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        var path = foldersOptions.Value.DecompositionSettingsPath;
+        if (!File.Exists(path)) Directory.CreateDirectory(foldersOptions.Value.SettingsDirectory);
 
-        var json = JsonSerializer.Serialize(_renderSettings, jsonOptions.Value);
+        var json = JsonSerializer.Serialize(_decompositionSettings, jsonOptions.Value);
         File.WriteAllText(path, json);
     }
 
-    private void LoadGeneralSettings()
+    private void SaveVisualizationSettings()
     {
-        var path = foldersOptions.Value.GeneralSettingsPath;
+        var path = foldersOptions.Value.VisualizationSettingsPath;
+        if (!File.Exists(path)) Directory.CreateDirectory(foldersOptions.Value.SettingsDirectory);
+
+        var json = JsonSerializer.Serialize(_visualizationSettings, jsonOptions.Value);
+        File.WriteAllText(path, json);
+    }
+
+    private void LoadApplicationSettings()
+    {
+        var path = foldersOptions.Value.ApplicationSettingsPath;
         if (!File.Exists(path))
         {
-            ResetGeneralSettings();
+            ResetApplicationSettings();
             return;
         }
 
         try
         {
             using var config = File.OpenRead(path);
-            _generalSettings = JsonSerializer.Deserialize<GeneralSettings>(config, jsonOptions.Value);
+            _applicationSettings = JsonSerializer.Deserialize<ApplicationSettings>(config, jsonOptions.Value);
         }
         catch (Exception exception)
         {
-            logger.LogError(exception, "General settings loading error");
+            logger.LogError(exception, "Application settings loading error");
         }
     }
 
-    private void LoadRenderSettings()
+    private void LoadDecompositionSettings()
     {
-        var path = foldersOptions.Value.RenderSettingsPath;
+        var path = foldersOptions.Value.DecompositionSettingsPath;
         if (!File.Exists(path))
         {
-            ResetRenderSettings();
+            ResetDecompositionSettings();
             return;
         }
 
         try
         {
             using var config = File.OpenRead(path);
-            _renderSettings = JsonSerializer.Deserialize<RenderSettings>(config, jsonOptions.Value);
+            _decompositionSettings = JsonSerializer.Deserialize<DecompositionSettings>(config, jsonOptions.Value);
         }
         catch (Exception exception)
         {
-            logger.LogError(exception, "General settings loading error");
+            logger.LogError(exception, "Decomposition settings loading error");
         }
     }
 
-    public void ResetGeneralSettings()
+    private void LoadVisualizationSettings()
     {
-        _generalSettings = new GeneralSettings
+        var path = foldersOptions.Value.VisualizationSettingsPath;
+        if (!File.Exists(path))
+        {
+            ResetVisualizationSettings();
+            return;
+        }
+
+        try
+        {
+            using var config = File.OpenRead(path);
+            _visualizationSettings = JsonSerializer.Deserialize<VisualizationSettings>(config, jsonOptions.Value);
+        }
+        catch (Exception exception)
+        {
+            logger.LogError(exception, "Application settings loading error");
+        }
+    }
+
+    public void ResetApplicationSettings()
+    {
+        _applicationSettings = new ApplicationSettings
         {
             Theme = ApplicationTheme.Light,
             Background = WindowBackdropType.None,
             Transition = Transition.None,
-            IncludeStatic = true,
-            IncludeEvents = true,
             UseHardwareRendering = true
         };
     }
 
-    public void ResetRenderSettings()
+    public void ResetDecompositionSettings()
     {
-        _renderSettings = new RenderSettings
+        _decompositionSettings = new DecompositionSettings
+        {
+            IncludeStatic = true,
+            IncludeEvents = true,
+            IncludeExtensions = true,
+        };
+    }
+
+    public void ResetVisualizationSettings()
+    {
+        _visualizationSettings = new VisualizationSettings
         {
             BoundingBoxSettings = new BoundingBoxVisualizationSettings
             {

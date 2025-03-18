@@ -17,19 +17,19 @@ public sealed partial class XyzVisualizationViewModel(
 {
     private readonly XyzVisualizationServer _server = new();
 
-    [ObservableProperty] private double _axisLength = settingsService.RenderSettings.XyzSettings.AxisLength;
-    [ObservableProperty] private double _transparency = settingsService.RenderSettings.XyzSettings.Transparency;
+    [ObservableProperty] private double _axisLength = settingsService.VisualizationSettings.XyzSettings.AxisLength;
+    [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.XyzSettings.Transparency;
 
-    [ObservableProperty] private Color _xColor = settingsService.RenderSettings.XyzSettings.XColor;
-    [ObservableProperty] private Color _yColor = settingsService.RenderSettings.XyzSettings.YColor;
-    [ObservableProperty] private Color _zColor = settingsService.RenderSettings.XyzSettings.ZColor;
+    [ObservableProperty] private Color _xColor = settingsService.VisualizationSettings.XyzSettings.XColor;
+    [ObservableProperty] private Color _yColor = settingsService.VisualizationSettings.XyzSettings.YColor;
+    [ObservableProperty] private Color _zColor = settingsService.VisualizationSettings.XyzSettings.ZColor;
 
-    [ObservableProperty] private bool _showPlane = settingsService.RenderSettings.XyzSettings.ShowPlane;
-    [ObservableProperty] private bool _showXAxis = settingsService.RenderSettings.XyzSettings.ShowXAxis;
-    [ObservableProperty] private bool _showYAxis = settingsService.RenderSettings.XyzSettings.ShowYAxis;
-    [ObservableProperty] private bool _showZAxis = settingsService.RenderSettings.XyzSettings.ShowZAxis;
+    [ObservableProperty] private bool _showPlane = settingsService.VisualizationSettings.XyzSettings.ShowPlane;
+    [ObservableProperty] private bool _showXAxis = settingsService.VisualizationSettings.XyzSettings.ShowXAxis;
+    [ObservableProperty] private bool _showYAxis = settingsService.VisualizationSettings.XyzSettings.ShowYAxis;
+    [ObservableProperty] private bool _showZAxis = settingsService.VisualizationSettings.XyzSettings.ShowZAxis;
 
-    public double MinAxisLength => settingsService.RenderSettings.XyzSettings.MinAxisLength;
+    public double MinAxisLength => settingsService.VisualizationSettings.XyzSettings.MinAxisLength;
 
     public void RegisterServer(object xyzObject)
     {
@@ -68,55 +68,55 @@ public sealed partial class XyzVisualizationViewModel(
 
     partial void OnXColorChanged(Color value)
     {
-        settingsService.RenderSettings.XyzSettings.XColor = value;
+        settingsService.VisualizationSettings.XyzSettings.XColor = value;
         UpdateXColor(value);
     }
 
     partial void OnYColorChanged(Color value)
     {
-        settingsService.RenderSettings.XyzSettings.YColor = value;
+        settingsService.VisualizationSettings.XyzSettings.YColor = value;
         UpdateYColor(value);
     }
 
     partial void OnZColorChanged(Color value)
     {
-        settingsService.RenderSettings.XyzSettings.ZColor = value;
+        settingsService.VisualizationSettings.XyzSettings.ZColor = value;
         UpdateZColor(value);
     }
 
     partial void OnAxisLengthChanged(double value)
     {
-        settingsService.RenderSettings.XyzSettings.AxisLength = value;
+        settingsService.VisualizationSettings.XyzSettings.AxisLength = value;
         UpdateAxisLength(value);
     }
 
     partial void OnTransparencyChanged(double value)
     {
-        settingsService.RenderSettings.XyzSettings.Transparency = value;
+        settingsService.VisualizationSettings.XyzSettings.Transparency = value;
         UpdateTransparency(value);
     }
 
     partial void OnShowPlaneChanged(bool value)
     {
-        settingsService.RenderSettings.XyzSettings.ShowPlane = value;
+        settingsService.VisualizationSettings.XyzSettings.ShowPlane = value;
         UpdateShowPlane(value);
     }
 
     partial void OnShowXAxisChanged(bool value)
     {
-        settingsService.RenderSettings.XyzSettings.ShowXAxis = value;
+        settingsService.VisualizationSettings.XyzSettings.ShowXAxis = value;
         UpdateShowXAxis(value);
     }
 
     partial void OnShowYAxisChanged(bool value)
     {
-        settingsService.RenderSettings.XyzSettings.ShowYAxis = value;
+        settingsService.VisualizationSettings.XyzSettings.ShowYAxis = value;
         UpdateShowYAxis(value);
     }
 
     partial void OnShowZAxisChanged(bool value)
     {
-        settingsService.RenderSettings.XyzSettings.ShowZAxis = value;
+        settingsService.VisualizationSettings.XyzSettings.ShowZAxis = value;
         UpdateShowZAxis(value);
     }
 

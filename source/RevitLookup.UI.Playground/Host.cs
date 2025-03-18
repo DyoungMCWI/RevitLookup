@@ -8,7 +8,8 @@ using RevitLookup.Abstractions.Services.Settings;
 using RevitLookup.UI.Framework.Services;
 using RevitLookup.UI.Framework.Services.Presentation;
 using RevitLookup.UI.Playground.Client.Services;
-using RevitLookup.UI.Playground.Mockups.Config;
+using RevitLookup.UI.Playground.Mockups.Config.Logging;
+using RevitLookup.UI.Playground.Mockups.Config.Options;
 using RevitLookup.UI.Playground.Mockups.Services.Appearance;
 using RevitLookup.UI.Playground.Mockups.Services.Application;
 using RevitLookup.UI.Playground.Mockups.Services.Decomposition;
@@ -32,8 +33,7 @@ public static class Host
         services.AddLogging(builder => builder.AddSerilogConfiguration());
 
         services.AddApplicationOptions();
-        services.AddAssemblyOptions();
-        services.AddFolderOptions();
+        services.AddResourceLocationsOptions();
         services.AddSerializerOptions();
 
         //Frontend services

@@ -13,12 +13,6 @@
     <GroupStyle
         x:Key="DefaultSummaryGridGroupStyle"
         ContainerStyleSelector="{StaticResource DataGridRowStyleSelector}">
-        <GroupStyle.Panel>
-            <ItemsPanelTemplate>
-                <VirtualizingStackPanel
-                    VirtualizationMode="Recycling" />
-            </ItemsPanelTemplate>
-        </GroupStyle.Panel>
         <GroupStyle.ContainerStyle>
             <Style
                 TargetType="{x:Type GroupItem}">
@@ -33,7 +27,7 @@
                                     Height="26"
                                     BorderThickness="0 0 1 1"
                                     Background="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}"
-                                    BorderBrush="{DynamicResource ControlElevationBorderBrush}">
+                                    BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}">
                                     <rl:TextBlock
                                         VerticalAlignment="Center"
                                         Margin="6 0"

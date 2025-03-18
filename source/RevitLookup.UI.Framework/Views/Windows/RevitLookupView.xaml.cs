@@ -75,17 +75,17 @@ public sealed partial class RevitLookupView
 
     private void ApplyEffects()
     {
-        WindowBackdropType = _settingsService.GeneralSettings.Background;
-        RootNavigation.Transition = _settingsService.GeneralSettings.Transition;
-        WindowBackgroundManager.UpdateBackground(this, _settingsService.GeneralSettings.Theme, WindowBackdropType);
+        WindowBackdropType = _settingsService.ApplicationSettings.Background;
+        RootNavigation.Transition = _settingsService.ApplicationSettings.Transition;
+        WindowBackgroundManager.UpdateBackground(this, _settingsService.ApplicationSettings.Theme, WindowBackdropType);
     }
 
     private void ApplyWindowSize()
     {
-        if (!_settingsService.GeneralSettings.UseSizeRestoring) return;
+        if (!_settingsService.ApplicationSettings.UseSizeRestoring) return;
 
-        if (_settingsService.GeneralSettings.WindowWidth >= MinWidth) Width = _settingsService.GeneralSettings.WindowWidth;
-        if (_settingsService.GeneralSettings.WindowHeight >= MinHeight) Height = _settingsService.GeneralSettings.WindowHeight;
+        if (_settingsService.ApplicationSettings.WindowWidth >= MinWidth) Width = _settingsService.ApplicationSettings.WindowWidth;
+        if (_settingsService.ApplicationSettings.WindowHeight >= MinHeight) Height = _settingsService.ApplicationSettings.WindowHeight;
 
         EnableSizeTracking();
     }
@@ -103,8 +103,8 @@ public sealed partial class RevitLookupView
     private static void OnSizeChanged(object sender, SizeChangedEventArgs args)
     {
         var self = (RevitLookupView) sender;
-        self._settingsService.GeneralSettings.WindowWidth = args.NewSize.Width;
-        self._settingsService.GeneralSettings.WindowHeight = args.NewSize.Height;
+        self._settingsService.ApplicationSettings.WindowWidth = args.NewSize.Width;
+        self._settingsService.ApplicationSettings.WindowHeight = args.NewSize.Height;
     }
 
     protected override AutomationPeer OnCreateAutomationPeer()

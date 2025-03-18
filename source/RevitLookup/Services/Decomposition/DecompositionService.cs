@@ -119,13 +119,13 @@ public sealed class DecompositionService(ISettingsService settingsService) : IDe
         return new DecomposeOptions<Document>
         {
             Context = Context.ActiveDocument!,
-            IncludeRoot = settingsService.GeneralSettings.IncludeRootHierarchy,
-            IncludeFields = settingsService.GeneralSettings.IncludeFields,
-            IncludeEvents = settingsService.GeneralSettings.IncludeEvents,
-            IncludeUnsupported = settingsService.GeneralSettings.IncludeUnsupported,
-            IncludePrivateMembers = settingsService.GeneralSettings.IncludePrivate,
-            IncludeStaticMembers = settingsService.GeneralSettings.IncludeStatic,
-            EnableExtensions = settingsService.GeneralSettings.IncludeExtensions,
+            IncludeRoot = settingsService.DecompositionSettings.IncludeRoot,
+            IncludeFields = settingsService.DecompositionSettings.IncludeFields,
+            IncludeEvents = settingsService.DecompositionSettings.IncludeEvents,
+            IncludeUnsupported = settingsService.DecompositionSettings.IncludeUnsupported,
+            IncludePrivateMembers = settingsService.DecompositionSettings.IncludePrivate,
+            IncludeStaticMembers = settingsService.DecompositionSettings.IncludeStatic,
+            EnableExtensions = settingsService.DecompositionSettings.IncludeExtensions,
             EnableRedirection = true,
             TypeResolver = DescriptorsMap.FindDescriptor
         };

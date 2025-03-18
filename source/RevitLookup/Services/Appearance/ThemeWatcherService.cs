@@ -52,9 +52,9 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
 
     public void ApplyTheme()
     {
-        var theme = settingsService.GeneralSettings.Theme;
+        var theme = settingsService.ApplicationSettings.Theme;
 #if REVIT2024_OR_GREATER
-        if (settingsService.GeneralSettings.Theme == ApplicationTheme.Auto)
+        if (settingsService.ApplicationSettings.Theme == ApplicationTheme.Auto)
         {
             theme = GetRevitTheme();
 
@@ -65,7 +65,7 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
             }
         }
 #endif
-        ApplicationThemeManager.Apply(theme, settingsService.GeneralSettings.Background);
+        ApplicationThemeManager.Apply(theme, settingsService.ApplicationSettings.Background);
         UpdateBackground(theme);
     }
 
@@ -154,7 +154,7 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
     {
         foreach (var window in _observedElements.Select(Window.GetWindow).Distinct())
         {
-            WindowBackgroundManager.UpdateBackground(window, theme, settingsService.GeneralSettings.Background);
+            WindowBackgroundManager.UpdateBackground(window, theme, settingsService.ApplicationSettings.Background);
         }
     }
 }

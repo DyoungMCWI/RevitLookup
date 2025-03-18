@@ -21,7 +21,7 @@
         <StackPanel>
             <rl:CardControl
                 Icon="{rl:SymbolIcon Color24}"
-                Margin="0,8,0,0">
+                Margin="0,4,0,0">
                 <rl:CardControl.Header>
                     <StackPanel>
                         <rl:TextBlock
@@ -133,7 +133,7 @@
         <StackPanel>
             <rl:CardControl
                 Icon="{rl:SymbolIcon PanelRightCursor24}"
-                Margin="0,8,0,0">
+                Margin="0,4,0,0">
                 <rl:CardControl.Header>
                     <StackPanel>
                         <rl:TextBlock
@@ -156,7 +156,7 @@
         <StackPanel>
             <rl:CardAction
                 Icon="{rl:SymbolIcon ArrowReset24}"
-                Margin="0,8,0,0"
+                Margin="0,4,0,0"
                 Command="{Binding ViewModel.ResetSettingsCommand}">
                 <rl:CardAction.Content>
                     <StackPanel>

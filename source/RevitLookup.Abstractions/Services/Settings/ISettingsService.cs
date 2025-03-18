@@ -4,10 +4,12 @@ namespace RevitLookup.Abstractions.Services.Settings;
 
 public interface ISettingsService
 {
-    public GeneralSettings GeneralSettings { get; }
-    public RenderSettings RenderSettings { get; }
+    public ApplicationSettings ApplicationSettings { get; }
+    public DecompositionSettings DecompositionSettings { get; }
+    public VisualizationSettings VisualizationSettings { get; }
     void SaveSettings();
     void LoadSettings();
-    void ResetGeneralSettings();
-    void ResetRenderSettings();
+    void ResetApplicationSettings();
+    void ResetDecompositionSettings();
+    void ResetVisualizationSettings();
 }

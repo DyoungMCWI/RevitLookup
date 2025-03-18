@@ -262,7 +262,7 @@ public partial class SummaryViewBase : Page, INavigableView<ISummaryViewModel>
     /// </summary>
     private void ValidateTimeColumn(DataGrid control)
     {
-        control.Columns[2].Visibility = _settingsService.GeneralSettings.ShowTimeColumn ? Visibility.Visible : Visibility.Collapsed;
+        control.Columns[2].Visibility = _settingsService.DecompositionSettings.ShowTimeColumn ? Visibility.Visible : Visibility.Collapsed;
     }
 
     /// <summary>
@@ -270,6 +270,6 @@ public partial class SummaryViewBase : Page, INavigableView<ISummaryViewModel>
     /// </summary>
     private void ValidateAllocatedColumn(DataGrid control)
     {
-        control.Columns[3].Visibility = _settingsService.GeneralSettings.ShowMemoryColumn ? Visibility.Visible : Visibility.Collapsed;
+        control.Columns[3].Visibility = _settingsService.DecompositionSettings.ShowMemoryColumn ? Visibility.Visible : Visibility.Collapsed;
     }
 }

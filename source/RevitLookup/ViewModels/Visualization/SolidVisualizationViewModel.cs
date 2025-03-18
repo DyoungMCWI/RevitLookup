@@ -17,14 +17,14 @@ public sealed partial class SolidVisualizationViewModel(
 {
     private readonly SolidVisualizationServer _server = new();
 
-    [ObservableProperty] private double _scale = settingsService.RenderSettings.SolidSettings.Scale;
-    [ObservableProperty] private double _transparency = settingsService.RenderSettings.SolidSettings.Transparency;
+    [ObservableProperty] private double _scale = settingsService.VisualizationSettings.SolidSettings.Scale;
+    [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.SolidSettings.Transparency;
 
-    [ObservableProperty] private Color _faceColor = settingsService.RenderSettings.SolidSettings.FaceColor;
-    [ObservableProperty] private Color _edgeColor = settingsService.RenderSettings.SolidSettings.EdgeColor;
+    [ObservableProperty] private Color _faceColor = settingsService.VisualizationSettings.SolidSettings.FaceColor;
+    [ObservableProperty] private Color _edgeColor = settingsService.VisualizationSettings.SolidSettings.EdgeColor;
 
-    [ObservableProperty] private bool _showFace = settingsService.RenderSettings.SolidSettings.ShowFace;
-    [ObservableProperty] private bool _showEdge = settingsService.RenderSettings.SolidSettings.ShowEdge;
+    [ObservableProperty] private bool _showFace = settingsService.VisualizationSettings.SolidSettings.ShowFace;
+    [ObservableProperty] private bool _showEdge = settingsService.VisualizationSettings.SolidSettings.ShowEdge;
 
     public void RegisterServer(object solidObject)
     {
@@ -60,37 +60,37 @@ public sealed partial class SolidVisualizationViewModel(
 
     partial void OnFaceColorChanged(Color value)
     {
-        settingsService.RenderSettings.SolidSettings.FaceColor = value;
+        settingsService.VisualizationSettings.SolidSettings.FaceColor = value;
         UpdateFaceColor(value);
     }
 
     partial void OnEdgeColorChanged(Color value)
     {
-        settingsService.RenderSettings.SolidSettings.EdgeColor = value;
+        settingsService.VisualizationSettings.SolidSettings.EdgeColor = value;
         UpdateEdgeColor(value);
     }
 
     partial void OnTransparencyChanged(double value)
     {
-        settingsService.RenderSettings.SolidSettings.Transparency = value;
+        settingsService.VisualizationSettings.SolidSettings.Transparency = value;
         UpdateTransparency(value);
     }
 
     partial void OnScaleChanged(double value)
     {
-        settingsService.RenderSettings.SolidSettings.Scale = value;
+        settingsService.VisualizationSettings.SolidSettings.Scale = value;
         UpdateScale(value);
     }
 
     partial void OnShowFaceChanged(bool value)
     {
-        settingsService.RenderSettings.SolidSettings.ShowFace = value;
+        settingsService.VisualizationSettings.SolidSettings.ShowFace = value;
         UpdateShowFace(value);
     }
 
     partial void OnShowEdgeChanged(bool value)
     {
-        settingsService.RenderSettings.SolidSettings.ShowEdge = value;
+        settingsService.VisualizationSettings.SolidSettings.ShowEdge = value;
         UpdateShowEdge(value);
     }
 

@@ -17,18 +17,18 @@ public sealed partial class PolylineVisualizationViewModel(
 {
     private readonly PolylineVisualizationServer _server = new();
 
-    [ObservableProperty] private double _diameter = settingsService.RenderSettings.PolylineSettings.Diameter;
-    [ObservableProperty] private double _transparency = settingsService.RenderSettings.PolylineSettings.Transparency;
+    [ObservableProperty] private double _diameter = settingsService.VisualizationSettings.PolylineSettings.Diameter;
+    [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.PolylineSettings.Transparency;
 
-    [ObservableProperty] private Color _surfaceColor = settingsService.RenderSettings.PolylineSettings.SurfaceColor;
-    [ObservableProperty] private Color _curveColor = settingsService.RenderSettings.PolylineSettings.CurveColor;
-    [ObservableProperty] private Color _directionColor = settingsService.RenderSettings.PolylineSettings.DirectionColor;
+    [ObservableProperty] private Color _surfaceColor = settingsService.VisualizationSettings.PolylineSettings.SurfaceColor;
+    [ObservableProperty] private Color _curveColor = settingsService.VisualizationSettings.PolylineSettings.CurveColor;
+    [ObservableProperty] private Color _directionColor = settingsService.VisualizationSettings.PolylineSettings.DirectionColor;
 
-    [ObservableProperty] private bool _showSurface = settingsService.RenderSettings.PolylineSettings.ShowSurface;
-    [ObservableProperty] private bool _showCurve = settingsService.RenderSettings.PolylineSettings.ShowCurve;
-    [ObservableProperty] private bool _showDirection = settingsService.RenderSettings.PolylineSettings.ShowDirection;
+    [ObservableProperty] private bool _showSurface = settingsService.VisualizationSettings.PolylineSettings.ShowSurface;
+    [ObservableProperty] private bool _showCurve = settingsService.VisualizationSettings.PolylineSettings.ShowCurve;
+    [ObservableProperty] private bool _showDirection = settingsService.VisualizationSettings.PolylineSettings.ShowDirection;
 
-    public double MinThickness => settingsService.RenderSettings.PolylineSettings.MinThickness;
+    public double MinThickness => settingsService.VisualizationSettings.PolylineSettings.MinThickness;
 
     public void RegisterServer(object curveOrEdge)
     {
@@ -76,49 +76,49 @@ public sealed partial class PolylineVisualizationViewModel(
 
     partial void OnSurfaceColorChanged(Color value)
     {
-        settingsService.RenderSettings.PolylineSettings.SurfaceColor = value;
+        settingsService.VisualizationSettings.PolylineSettings.SurfaceColor = value;
         UpdateSurfaceColor(value);
     }
 
     partial void OnCurveColorChanged(Color value)
     {
-        settingsService.RenderSettings.PolylineSettings.CurveColor = value;
+        settingsService.VisualizationSettings.PolylineSettings.CurveColor = value;
         UpdateCurveColor(value);
     }
 
     partial void OnDirectionColorChanged(Color value)
     {
-        settingsService.RenderSettings.PolylineSettings.DirectionColor = value;
+        settingsService.VisualizationSettings.PolylineSettings.DirectionColor = value;
         UpdateDirectionColor(value);
     }
 
     partial void OnDiameterChanged(double value)
     {
-        settingsService.RenderSettings.PolylineSettings.Diameter = value;
+        settingsService.VisualizationSettings.PolylineSettings.Diameter = value;
         UpdateDiameter(value);
     }
 
     partial void OnTransparencyChanged(double value)
     {
-        settingsService.RenderSettings.PolylineSettings.Transparency = value;
+        settingsService.VisualizationSettings.PolylineSettings.Transparency = value;
         UpdateTransparency(value);
     }
 
     partial void OnShowSurfaceChanged(bool value)
     {
-        settingsService.RenderSettings.PolylineSettings.ShowSurface = value;
+        settingsService.VisualizationSettings.PolylineSettings.ShowSurface = value;
         UpdateShowSurface(value);
     }
 
     partial void OnShowCurveChanged(bool value)
     {
-        settingsService.RenderSettings.PolylineSettings.ShowCurve = value;
+        settingsService.VisualizationSettings.PolylineSettings.ShowCurve = value;
         UpdateShowCurve(value);
     }
 
     partial void OnShowDirectionChanged(bool value)
     {
-        settingsService.RenderSettings.PolylineSettings.ShowDirection = value;
+        settingsService.VisualizationSettings.PolylineSettings.ShowDirection = value;
         UpdateShowDirection(value);
     }
 

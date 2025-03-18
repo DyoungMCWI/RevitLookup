@@ -76,7 +76,6 @@ public sealed partial class ModulesViewModel : ObservableObject, IModulesViewMod
             {
                 var formattedText = value.Trim();
                 var searchResults = new List<ModuleInfo>();
-                // ReSharper disable once LoopCanBeConvertedToQuery
                 foreach (var module in Modules)
                 {
                     if (module.Name.Contains(formattedText, StringComparison.OrdinalIgnoreCase) ||

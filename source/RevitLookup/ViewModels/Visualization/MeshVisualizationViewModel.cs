@@ -17,18 +17,18 @@ public sealed partial class MeshVisualizationViewModel(
 {
     private readonly MeshVisualizationServer _server = new();
 
-    [ObservableProperty] private double _extrusion = settingsService.RenderSettings.MeshSettings.Extrusion;
-    [ObservableProperty] private double _transparency = settingsService.RenderSettings.MeshSettings.Transparency;
+    [ObservableProperty] private double _extrusion = settingsService.VisualizationSettings.MeshSettings.Extrusion;
+    [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.MeshSettings.Transparency;
 
-    [ObservableProperty] private Color _surfaceColor = settingsService.RenderSettings.MeshSettings.SurfaceColor;
-    [ObservableProperty] private Color _meshColor = settingsService.RenderSettings.MeshSettings.MeshColor;
-    [ObservableProperty] private Color _normalVectorColor = settingsService.RenderSettings.MeshSettings.NormalVectorColor;
+    [ObservableProperty] private Color _surfaceColor = settingsService.VisualizationSettings.MeshSettings.SurfaceColor;
+    [ObservableProperty] private Color _meshColor = settingsService.VisualizationSettings.MeshSettings.MeshColor;
+    [ObservableProperty] private Color _normalVectorColor = settingsService.VisualizationSettings.MeshSettings.NormalVectorColor;
 
-    [ObservableProperty] private bool _showSurface = settingsService.RenderSettings.MeshSettings.ShowSurface;
-    [ObservableProperty] private bool _showMeshGrid = settingsService.RenderSettings.MeshSettings.ShowMeshGrid;
-    [ObservableProperty] private bool _showNormalVector = settingsService.RenderSettings.MeshSettings.ShowNormalVector;
+    [ObservableProperty] private bool _showSurface = settingsService.VisualizationSettings.MeshSettings.ShowSurface;
+    [ObservableProperty] private bool _showMeshGrid = settingsService.VisualizationSettings.MeshSettings.ShowMeshGrid;
+    [ObservableProperty] private bool _showNormalVector = settingsService.VisualizationSettings.MeshSettings.ShowNormalVector;
 
-    public double MinExtrusion => settingsService.RenderSettings.MeshSettings.MinExtrusion;
+    public double MinExtrusion => settingsService.VisualizationSettings.MeshSettings.MinExtrusion;
 
     public void RegisterServer(object meshObject)
     {
@@ -66,49 +66,49 @@ public sealed partial class MeshVisualizationViewModel(
 
     partial void OnSurfaceColorChanged(Color value)
     {
-        settingsService.RenderSettings.MeshSettings.SurfaceColor = value;
+        settingsService.VisualizationSettings.MeshSettings.SurfaceColor = value;
         UpdateSurfaceColor(value);
     }
 
     partial void OnMeshColorChanged(Color value)
     {
-        settingsService.RenderSettings.MeshSettings.MeshColor = value;
+        settingsService.VisualizationSettings.MeshSettings.MeshColor = value;
         UpdateMeshColor(value);
     }
 
     partial void OnNormalVectorColorChanged(Color value)
     {
-        settingsService.RenderSettings.MeshSettings.NormalVectorColor = value;
+        settingsService.VisualizationSettings.MeshSettings.NormalVectorColor = value;
         UpdateNormalVectorColor(value);
     }
 
     partial void OnExtrusionChanged(double value)
     {
-        settingsService.RenderSettings.MeshSettings.Extrusion = value;
+        settingsService.VisualizationSettings.MeshSettings.Extrusion = value;
         UpdateExtrusion(value);
     }
 
     partial void OnTransparencyChanged(double value)
     {
-        settingsService.RenderSettings.MeshSettings.Transparency = value;
+        settingsService.VisualizationSettings.MeshSettings.Transparency = value;
         UpdateTransparency(value);
     }
 
     partial void OnShowSurfaceChanged(bool value)
     {
-        settingsService.RenderSettings.MeshSettings.ShowSurface = value;
+        settingsService.VisualizationSettings.MeshSettings.ShowSurface = value;
         UpdateShowSurface(value);
     }
 
     partial void OnShowMeshGridChanged(bool value)
     {
-        settingsService.RenderSettings.MeshSettings.ShowMeshGrid = value;
+        settingsService.VisualizationSettings.MeshSettings.ShowMeshGrid = value;
         UpdateShowMeshGrid(value);
     }
 
     partial void OnShowNormalVectorChanged(bool value)
     {
-        settingsService.RenderSettings.MeshSettings.ShowNormalVector = value;
+        settingsService.VisualizationSettings.MeshSettings.ShowNormalVector = value;
         UpdateShowNormalVector(value);
     }
 

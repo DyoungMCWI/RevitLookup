@@ -35,8 +35,8 @@ public sealed class MockThemeWatcherService(ISettingsService settingsService) : 
 
     public void ApplyTheme()
     {
-        var theme = settingsService.GeneralSettings.Theme;
-        ApplicationThemeManager.Apply(theme, settingsService.GeneralSettings.Background);
+        var theme = settingsService.ApplicationSettings.Theme;
+        ApplicationThemeManager.Apply(theme, settingsService.ApplicationSettings.Background);
         UpdateBackground(theme);
     }
 
@@ -66,7 +66,7 @@ public sealed class MockThemeWatcherService(ISettingsService settingsService) : 
     {
         foreach (var window in _observedElements.Select(Window.GetWindow).Distinct())
         {
-            WindowBackgroundManager.UpdateBackground(window, theme, settingsService.GeneralSettings.Background);
+            WindowBackgroundManager.UpdateBackground(window, theme, settingsService.ApplicationSettings.Background);
         }
     }
 }

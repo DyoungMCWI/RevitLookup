@@ -51,7 +51,7 @@ public sealed class RevitRibbonService(ISettingsService settingsService)
         pullButton.AddPushButton<ShowDashboardCommand>("Dashboard")
             .SetAvailabilityController<CommandAlwaysAvailableController>();
 
-        if (!settingsService.GeneralSettings.UseModifyTab)
+        if (!settingsService.ApplicationSettings.UseModifyTab)
         {
             pullButton.AddPushButton<DecomposeSelectionCommand>("Snoop Selection")
                 .AddShortcuts("SS");
@@ -68,7 +68,7 @@ public sealed class RevitRibbonService(ISettingsService settingsService)
         pullButton.AddPushButton<ShowEventMonitorCommand>("Event monitor")
             .SetAvailabilityController<CommandAlwaysAvailableController>();
 
-        if (settingsService.GeneralSettings.UseModifyTab)
+        if (settingsService.ApplicationSettings.UseModifyTab)
         {
             var modifyPanel = application.CreatePanel("Revit Lookup", "Modify");
             modifyPanel.AddPushButton<DecomposeSelectionCommand>("\u00a0Snoop\u00a0\nSelection")
