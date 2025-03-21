@@ -16,7 +16,7 @@ using Wpf.Ui;
 
 namespace RevitLookup.Services.Application;
 
-public sealed class UiOrchestratorService : IUiOrchestratorService, IHistoryOrchestrator, IInteractionOrchestrator
+public sealed class UiOrchestratorService : IUiOrchestratorService, IHistoryOrchestrator
 {
     private static readonly Dispatcher Dispatcher;
     private UiServiceImpl _uiService = null!; //Late init in the constructor

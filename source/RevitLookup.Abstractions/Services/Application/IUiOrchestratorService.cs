@@ -8,7 +8,7 @@ namespace RevitLookup.Abstractions.Services.Application;
 /// <summary>
 ///     API for the RevitLookup UI service.
 /// </summary>
-public interface IUiOrchestratorService : IRelationshipOrchestrator, IDecompositionOrchestrator, INavigationOrchestrator;
+public interface IUiOrchestratorService : IRelationshipOrchestrator, IDecompositionOrchestrator, INavigationOrchestrator, IInteractionOrchestrator;
 
 /// <summary>
 ///     API for parent-child communication.
@@ -81,7 +81,7 @@ public interface INavigationOrchestrator
 public interface IInteractionOrchestrator
 {
     /// <summary>
-    ///     Run the service after opening and navigating to the page.
+    ///     Run the service in the UI thread.
     /// </summary>
     void RunService<T>(Action<T> handler) where T : class;
 }

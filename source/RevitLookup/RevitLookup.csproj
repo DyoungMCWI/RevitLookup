@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <UseWPF>true</UseWPF>
-        <DeployRevitAddin>true</DeployRevitAddin>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <Configurations>Debug R21;Debug R22;Debug R23;Debug R24;Debug R25;Debug R26</Configurations>
         <Configurations>$(Configurations);Release R21;Release R22;Release R23;Release R24;Release R25;Release R26</Configurations>
@@ -18,6 +17,7 @@
     <!-- Build configuration -->
     <!-- https://github.com/Nice3point/Revit.Build.Tasks -->
     <PropertyGroup>
+        <DeployRevitAddin>true</DeployRevitAddin>
         <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable>
         <RepackBinariesExcludes>$(AssemblyName).UI.dll;$(AssemblyName).UI.Abstractions.dll;LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
@@ -55,6 +55,7 @@
 
         <!-- Build -->
         <PackageReference Include="ILRepack" ExcludeAssets="Runtime"/>
+        <PackageReference Include="System.Diagnostics.DiagnosticSource" ExcludeAssets="Runtime"/>
     </ItemGroup>
 
     <ItemGroup>
