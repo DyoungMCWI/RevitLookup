@@ -32,7 +32,7 @@ public sealed partial class MockEventsSummaryViewModel(
 
     public void Navigate(object? value)
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .AddParent(serviceProvider)
             .AddStackHistory(SelectedDecomposedObject!)
             .Decompose(value)
@@ -41,7 +41,7 @@ public sealed partial class MockEventsSummaryViewModel(
 
     public void Navigate(ObservableDecomposedObject value)
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .AddParent(serviceProvider)
             .Decompose(value)
             .Show<DecompositionSummaryPage>();
@@ -49,7 +49,7 @@ public sealed partial class MockEventsSummaryViewModel(
 
     public void Navigate(List<ObservableDecomposedObject> values)
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .AddParent(serviceProvider)
             .Decompose(values)
             .Show<DecompositionSummaryPage>();

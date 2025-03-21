@@ -22,17 +22,48 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization;
 
+/// <summary>
+///     Represents the data for solid geometry visualization.
+/// </summary>
 public interface ISolidVisualizationViewModel
 {
+    /// <summary>
+    ///     The scale factor of visualization.
+    /// </summary>
     double Scale { get; set; }
+
+    /// <summary>
+    ///     The transparency level of visualization.
+    /// </summary>
     double Transparency { get; set; }
 
+    /// <summary>
+    ///     The color of solid faces.
+    /// </summary>
     Color FaceColor { get; set; }
+
+    /// <summary>
+    ///     The color of solid edges.
+    /// </summary>
     Color EdgeColor { get; set; }
 
+    /// <summary>
+    ///     Whether to show solid faces.
+    /// </summary>
     bool ShowFace { get; set; }
+
+    /// <summary>
+    ///     Whether to show solid edges.
+    /// </summary>
     bool ShowEdge { get; set; }
 
+    /// <summary>
+    ///     Register Solid visualization server.
+    /// </summary>
     public void RegisterServer(object solid);
+
+    /// <summary>
+    ///     Unregister Solid visualization server.
+    /// </summary>
     public void UnregisterServer();
 }

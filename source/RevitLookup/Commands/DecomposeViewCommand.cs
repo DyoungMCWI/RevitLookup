@@ -32,7 +32,7 @@ public class DecomposeViewCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(KnownDecompositionObject.View)
             .Show<DecompositionSummaryPage>();
     }

@@ -32,7 +32,7 @@ public class DecomposeEdgeCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(KnownDecompositionObject.Edge)
             .Show<DecompositionSummaryPage>();
     }

@@ -23,9 +23,12 @@ using System.Windows.Controls;
 namespace RevitLookup.Abstractions.Configuration;
 
 /// <summary>
-///     Indicates that additional members can be added to the descriptor
+///     Defines a method to expand the context menu of a UI component.
 /// </summary>
 public interface IContextMenuConnector
 {
+    /// <summary>
+    ///     Register the context menu extension for UI components.
+    /// </summary>
     void RegisterMenu(ContextMenu contextMenu, IServiceProvider serviceProvider);
 }

@@ -22,21 +22,63 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization;
 
+/// <summary>
+///     Represents the data for polyline visualization.
+/// </summary>
 public interface IPolylineVisualizationViewModel
 {
+    /// <summary>
+    ///     The minimum thickness of polyline.
+    /// </summary>
     double MinThickness { get; }
 
+    /// <summary>
+    ///     The diameter of polyline.
+    /// </summary>
     double Diameter { get; set; }
+
+    /// <summary>
+    ///     The transparency level of visualization.
+    /// </summary>
     double Transparency { get; set; }
 
+    /// <summary>
+    ///     The color of polyline surface.
+    /// </summary>
     Color SurfaceColor { get; set; }
+
+    /// <summary>
+    ///     The color of polyline curve.
+    /// </summary>
     Color CurveColor { get; set; }
+
+    /// <summary>
+    ///     The color of polyline direction indicators.
+    /// </summary>
     Color DirectionColor { get; set; }
 
+    /// <summary>
+    ///     Whether to show polyline surface.
+    /// </summary>
     bool ShowSurface { get; set; }
+
+    /// <summary>
+    ///     Whether to show polyline curve.
+    /// </summary>
     bool ShowCurve { get; set; }
+
+    /// <summary>
+    ///     Whether to show polyline direction indicators.
+    /// </summary>
     bool ShowDirection { get; set; }
 
+    /// <summary>
+    ///     Register Polyline visualization server.
+    /// </summary>
     public void RegisterServer(object curveOrEdge);
+
+    /// <summary>
+    ///     Unregister Polyline visualization server.
+    /// </summary>
     public void UnregisterServer();
 }

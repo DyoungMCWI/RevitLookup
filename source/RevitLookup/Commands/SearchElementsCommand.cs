@@ -32,7 +32,7 @@ public class SearchElementsCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Show<DashboardPage>()
             .RunService<IDashboardViewModel>(dashboard => dashboard.OpenDialogCommand.Execute("search"));
     }

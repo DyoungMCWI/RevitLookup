@@ -32,7 +32,7 @@ public class DecomposeFaceCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(KnownDecompositionObject.Face)
             .Show<DecompositionSummaryPage>();
     }

@@ -17,14 +17,14 @@ public sealed partial class WindowsViewModel : ObservableObject
     [RelayCommand]
     private void ShowRevitLookupWindow()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Show<DashboardPage>();
     }
 
     [RelayCommand]
     private void ShowEventsWindow()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Show<EventsSummaryPage>();
     }
 
@@ -44,7 +44,7 @@ public sealed partial class WindowsViewModel : ObservableObject
             ));
         }
 
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(colors)
             .Show<DecompositionSummaryPage>();
     }
@@ -60,7 +60,7 @@ public sealed partial class WindowsViewModel : ObservableObject
             strings.Add(faker.Lorem.Sentence(666));
         }
 
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(strings)
             .Show<DecompositionSummaryPage>();
     }
@@ -69,7 +69,7 @@ public sealed partial class WindowsViewModel : ObservableObject
     private void ShowDecomposeTypesWindow()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(assembly.GetTypes())
             .Show<DecompositionSummaryPage>();
     }
@@ -89,7 +89,7 @@ public sealed partial class WindowsViewModel : ObservableObject
             ));
         }
 
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(vectors)
             .Show<DecompositionSummaryPage>();
     }

@@ -1,5 +1,8 @@
 ﻿namespace RevitLookup.Abstractions.Models.AboutProgram;
 
+/// <summary>
+///     Represents information about open-source software.
+/// </summary>
 public sealed class OpenSourceSoftware
 {
     public required string SoftwareName { get; set; }

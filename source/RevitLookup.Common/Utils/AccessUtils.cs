@@ -24,8 +24,14 @@ using System.Security.Principal;
 
 namespace RevitLookup.Common.Utils;
 
+/// <summary>
+///     Helper class to check access rights in the system
+/// </summary>
 public static class AccessUtils
 {
+    /// <summary>
+    ///     Check if the current user has write access to the specified path
+    /// </summary>
     public static bool CheckWriteAccess(string path)
     {
         var identity = WindowsIdentity.GetCurrent();

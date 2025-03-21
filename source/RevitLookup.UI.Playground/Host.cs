@@ -57,7 +57,7 @@ public static class Host
         services.AddScoped<IDecompositionService, MockDecompositionService>();
         services.AddScoped<IVisualDecompositionService, MockVisualDecompositionService>();
         services.AddScoped<IDecompositionSearchService, MockDecompositionSearchService>();
-        services.AddTransient<IRevitLookupUiService, MockRevitLookupUiService>();
+        services.AddTransient<IUiOrchestratorService, MockUiOrchestratorService>();
 
         return services.BuildServiceProvider();
     }

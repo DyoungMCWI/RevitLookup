@@ -31,7 +31,7 @@ namespace RevitLookup.Common.Utils;
 /// </remarks>
 public static class ColorRepresentationUtils
 {
-    private static readonly Dictionary<string, string> KnownColors = new()
+    private static readonly Dictionary<string, string> KnownColorNames = new()
     {
         {"000000", "Black"},
         {"000080", "Navy blue"},
@@ -742,7 +742,7 @@ public static class ColorRepresentationUtils
     {
         var colorName = string.Empty;
         var closestDistance = double.MaxValue;
-        foreach (var entry in KnownColors)
+        foreach (var entry in KnownColorNames)
         {
             var knownColor = ConvertHexStringToColor(entry.Key);
             var distance = CalculateColorDistance(color, knownColor);

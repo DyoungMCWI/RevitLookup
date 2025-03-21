@@ -22,22 +22,68 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization;
 
+/// <summary>
+///     Represents the data for XYZ coordinate visualization.
+/// </summary>
 public interface IXyzVisualizationViewModel
 {
+    /// <summary>
+    ///     The minimum length of coordinate axes.
+    /// </summary>
     public double MinAxisLength { get; }
 
+    /// <summary>
+    ///     The length of coordinate axes.
+    /// </summary>
     double AxisLength { get; set; }
+
+    /// <summary>
+    ///     The transparency level of visualization.
+    /// </summary>
     double Transparency { get; set; }
 
+    /// <summary>
+    ///     The color of X axis.
+    /// </summary>
     Color XColor { get; set; }
+
+    /// <summary>
+    ///     The color of Y axis.
+    /// </summary>
     Color YColor { get; set; }
+
+    /// <summary>
+    ///     The color of Z axis.
+    /// </summary>
     Color ZColor { get; set; }
 
+    /// <summary>
+    ///     Whether to show the coordinate plane.
+    /// </summary>
     bool ShowPlane { get; set; }
+
+    /// <summary>
+    ///     Whether to show the X axis.
+    /// </summary>
     bool ShowXAxis { get; set; }
+
+    /// <summary>
+    ///     Whether to show the Y axis.
+    /// </summary>
     bool ShowYAxis { get; set; }
+
+    /// <summary>
+    ///     Whether to show the Z axis.
+    /// </summary>
     bool ShowZAxis { get; set; }
 
+    /// <summary>
+    ///     Register XYZ server.
+    /// </summary>
     public void RegisterServer(object xyz);
+
+    /// <summary>
+    ///     Unregister XYZ server.
+    /// </summary>
     public void UnregisterServer();
 }

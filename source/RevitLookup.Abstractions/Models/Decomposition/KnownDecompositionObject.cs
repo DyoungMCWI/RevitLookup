@@ -1,5 +1,8 @@
 ﻿namespace RevitLookup.Abstractions.Models.Decomposition;
 
+/// <summary>
+///     Supported object types for decomposition.
+/// </summary>
 public enum KnownDecompositionObject
 {
     View,

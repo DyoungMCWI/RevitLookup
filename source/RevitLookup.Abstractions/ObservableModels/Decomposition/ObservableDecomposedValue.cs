@@ -3,6 +3,9 @@ using LookupEngine.Abstractions.Decomposition;
 
 namespace RevitLookup.Abstractions.ObservableModels.Decomposition;
 
+/// <summary>
+///     Represents the observable model for the LookupEngine decomposed value.
+/// </summary>
 public sealed class ObservableDecomposedValue : ObservableObject
 {
     public required object? RawValue { get; init; }

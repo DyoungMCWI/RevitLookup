@@ -22,18 +22,53 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization;
 
+/// <summary>
+///     Represents the data for bounding box visualization.
+/// </summary>
 public interface IBoundingBoxVisualizationViewModel
 {
+    /// <summary>
+    ///     The transparency level of visualization.
+    /// </summary>
     double Transparency { get; set; }
 
+    /// <summary>
+    ///     The color of bounding box surface.
+    /// </summary>
     Color SurfaceColor { get; set; }
+
+    /// <summary>
+    ///     The color of bounding box edges.
+    /// </summary>
     Color EdgeColor { get; set; }
+
+    /// <summary>
+    ///     The color of bounding box axes.
+    /// </summary>
     Color AxisColor { get; set; }
 
+    /// <summary>
+    ///     Whether to show bounding box surface.
+    /// </summary>
     bool ShowSurface { get; set; }
+
+    /// <summary>
+    ///     Whether to show bounding box edges.
+    /// </summary>
     bool ShowEdge { get; set; }
+
+    /// <summary>
+    ///     Whether to show bounding box axes.
+    /// </summary>
     bool ShowAxis { get; set; }
 
+    /// <summary>
+    ///     Register BoundingBox visualization server.
+    /// </summary>
     void RegisterServer(object boundingBoxXyz);
+
+    /// <summary>
+    ///     Unregister BoundingBox visualization server.
+    /// </summary>
     void UnregisterServer();
 }

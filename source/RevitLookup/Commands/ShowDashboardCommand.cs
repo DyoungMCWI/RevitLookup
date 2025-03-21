@@ -31,7 +31,7 @@ public class ShowDashboardCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Show<DashboardPage>();
     }
 }

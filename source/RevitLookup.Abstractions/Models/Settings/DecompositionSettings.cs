@@ -5,6 +5,9 @@ using Wpf.Ui.Controls;
 
 namespace RevitLookup.Abstractions.Models.Settings;
 
+/// <summary>
+///     Schema for LookupEngine settings.
+/// </summary>
 [Serializable]
 public sealed class DecompositionSettings
 {

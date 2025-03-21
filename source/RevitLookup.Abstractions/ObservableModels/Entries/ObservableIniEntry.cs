@@ -23,6 +23,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace RevitLookup.Abstractions.ObservableModels.Entries;
 
+/// <summary>
+///     Represents the observable model for the Revit INI entry.
+/// </summary>
 public sealed partial class ObservableIniEntry : ObservableValidator
 {
     [ObservableProperty] [Required] [NotifyDataErrorInfo] private string _category = string.Empty;

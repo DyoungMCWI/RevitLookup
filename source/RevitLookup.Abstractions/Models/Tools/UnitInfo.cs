@@ -20,10 +20,28 @@
 
 namespace RevitLookup.Abstractions.Models.Tools;
 
+/// <summary>
+///     Represents information about the Revit unit.
+/// </summary>
 public sealed class UnitInfo
 {
+    /// <summary>
+    ///     The unit name.
+    /// </summary>
     public required string Unit { get; init; }
+
+    /// <summary>
+    ///     The unit label.
+    /// </summary>
     public required string Label { get; init; }
+
+    /// <summary>
+    ///     The unit value.
+    /// </summary>
     public required object Value { get; init; }
+
+    /// <summary>
+    ///     The unit class.
+    /// </summary>
     public string? Class { get; init; }
 }

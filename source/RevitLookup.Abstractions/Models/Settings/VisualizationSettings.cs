@@ -3,6 +3,9 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.Models.Settings;
 
+/// <summary>
+///     Schema for visualization settings.
+/// </summary>
 [Serializable]
 public sealed class VisualizationSettings
 {
@@ -14,6 +17,9 @@ public sealed class VisualizationSettings
     [JsonPropertyName("XyzSettings")] public required XyzVisualizationSettings XyzSettings { get; set; }
 }
 
+/// <summary>
+///     Schema for bounding box visualization settings.
+/// </summary>
 [Serializable]
 public class BoundingBoxVisualizationSettings
 {
@@ -28,6 +34,9 @@ public class BoundingBoxVisualizationSettings
     [JsonPropertyName("ShowAxis")] public bool ShowAxis { get; set; }
 }
 
+/// <summary>
+///     Schema for face visualization settings.
+/// </summary>
 [Serializable]
 public class FaceVisualizationSettings
 {
@@ -44,6 +53,9 @@ public class FaceVisualizationSettings
     [JsonPropertyName("ShowNormalVector")] public bool ShowNormalVector { get; set; }
 }
 
+/// <summary>
+///     Schema for mesh visualization settings.
+/// </summary>
 [Serializable]
 public class MeshVisualizationSettings
 {
@@ -60,6 +72,9 @@ public class MeshVisualizationSettings
     [JsonPropertyName("ShowNormalVector")] public bool ShowNormalVector { get; set; }
 }
 
+/// <summary>
+///     Schema for polyline visualization settings.
+/// </summary>
 [Serializable]
 public class PolylineVisualizationSettings
 {
@@ -76,6 +91,9 @@ public class PolylineVisualizationSettings
     [JsonPropertyName("ShowDirection")] public bool ShowDirection { get; set; }
 }
 
+/// <summary>
+///     Schema for solid visualization settings.
+/// </summary>
 [Serializable]
 public sealed class SolidVisualizationSettings
 {
@@ -89,6 +107,9 @@ public sealed class SolidVisualizationSettings
     [JsonPropertyName("ShowEdge")] public bool ShowEdge { get; set; }
 }
 
+/// <summary>
+///     Schema for XYZ visualization settings.
+/// </summary>
 [Serializable]
 public class XyzVisualizationSettings
 {

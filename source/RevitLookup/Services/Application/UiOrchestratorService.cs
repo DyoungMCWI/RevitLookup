@@ -16,12 +16,12 @@ using Wpf.Ui;
 
 namespace RevitLookup.Services.Application;
 
-public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupServiceParentStage, ILookupServiceRunStage
+public sealed class UiOrchestratorService : IUiOrchestratorService, IHistoryOrchestrator, IInteractionOrchestrator
 {
     private static readonly Dispatcher Dispatcher;
     private UiServiceImpl _uiService = null!; //Late init in the constructor
 
-    static RevitLookupUiService()
+    static UiOrchestratorService()
     {
         var uiThread = new Thread(Dispatcher.Run);
         uiThread.SetApartmentState(ApartmentState.STA);
@@ -30,7 +30,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         Dispatcher = EnsureDispatcherStart(uiThread);
     }
 
-    public RevitLookupUiService(IServiceScopeFactory scopeFactory)
+    public UiOrchestratorService(IServiceScopeFactory scopeFactory)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -42,7 +42,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         }
     }
 
-    public ILookupServiceShowStage Decompose(KnownDecompositionObject decompositionObject)
+    public INavigationOrchestrator Decompose(KnownDecompositionObject decompositionObject)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -56,7 +56,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceShowStage Decompose(object? obj)
+    public INavigationOrchestrator Decompose(object? obj)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -70,7 +70,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceShowStage Decompose(IEnumerable objects)
+    public INavigationOrchestrator Decompose(IEnumerable objects)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -84,7 +84,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceShowStage Decompose(ObservableDecomposedObject decomposedObject)
+    public INavigationOrchestrator Decompose(ObservableDecomposedObject decomposedObject)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -98,7 +98,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceShowStage Decompose(List<ObservableDecomposedObject> decomposedObjects)
+    public INavigationOrchestrator Decompose(List<ObservableDecomposedObject> decomposedObjects)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -112,7 +112,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceParentStage AddParent(IServiceProvider parentProvider)
+    public IHistoryOrchestrator AddParent(IServiceProvider parentProvider)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -126,7 +126,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceDecomposeStage AddStackHistory(ObservableDecomposedObject item)
+    public IDecompositionOrchestrator AddStackHistory(ObservableDecomposedObject item)
     {
         if (Dispatcher.CheckAccess())
         {
@@ -140,7 +140,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         return this;
     }
 
-    public ILookupServiceRunStage Show<T>() where T : Page
+    public IInteractionOrchestrator Show<T>() where T : Page
     {
         if (Dispatcher.CheckAccess())
         {
@@ -192,7 +192,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
         private readonly IVisualDecompositionService _visualDecompositionService;
         private readonly INavigationService _navigationService;
         private readonly INotificationService _notificationService;
-        private readonly ILogger<RevitLookupUiService> _logger;
+        private readonly ILogger<UiOrchestratorService> _logger;
         private readonly Window _host;
 
         public UiServiceImpl(IServiceScopeFactory scopeFactory)
@@ -204,7 +204,7 @@ public sealed class RevitLookupUiService : IRevitLookupUiService, ILookupService
             _visualDecompositionService = _scope.ServiceProvider.GetRequiredService<IVisualDecompositionService>();
             _navigationService = _scope.ServiceProvider.GetRequiredService<INavigationService>();
             _notificationService = _scope.ServiceProvider.GetRequiredService<INotificationService>();
-            _logger = _scope.ServiceProvider.GetRequiredService<ILogger<RevitLookupUiService>>();
+            _logger = _scope.ServiceProvider.GetRequiredService<ILogger<UiOrchestratorService>>();
 
             _host.Closed += (_, _) => _scope.Dispose();
         }

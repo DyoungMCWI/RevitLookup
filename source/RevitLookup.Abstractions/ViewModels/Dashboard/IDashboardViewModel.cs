@@ -23,9 +23,23 @@ using RevitLookup.Abstractions.Models.UserInterface;
 
 namespace RevitLookup.Abstractions.ViewModels.Dashboard;
 
+/// <summary>
+///     Represents the data for the Dashboard view.
+/// </summary>
 public interface IDashboardViewModel
 {
+    /// <summary>
+    ///     The list of navigation actions.
+    /// </summary>
     List<NavigationCardGroup> NavigationGroups { get; }
+    
+    /// <summary>
+    ///     Navigate to a specific page.
+    /// </summary>
     IAsyncRelayCommand<string?> NavigatePageCommand { get; }
+    
+    /// <summary>
+    ///     Open a dialog for an action.
+    /// </summary>
     IAsyncRelayCommand<string?> OpenDialogCommand { get; }
 }

@@ -31,7 +31,7 @@ public class ShowEventMonitorCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Show<EventsSummaryPage>();
     }
 }

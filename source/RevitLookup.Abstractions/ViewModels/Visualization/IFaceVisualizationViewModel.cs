@@ -22,21 +22,63 @@ using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization;
 
+/// <summary>
+///     Represents the data for face visualization.
+/// </summary>
 public interface IFaceVisualizationViewModel
 {
+    /// <summary>
+    ///     The minimum extrusion value for face.
+    /// </summary>
     public double MinExtrusion { get; }
 
+    /// <summary>
+    ///     The extrusion value for face.
+    /// </summary>
     double Extrusion { get; set; }
+
+    /// <summary>
+    ///     The transparency level of visualization.
+    /// </summary>
     double Transparency { get; set; }
 
+    /// <summary>
+    ///     The color of face surface.
+    /// </summary>
     Color SurfaceColor { get; set; }
+
+    /// <summary>
+    ///     The color of face mesh.
+    /// </summary>
     Color MeshColor { get; set; }
+
+    /// <summary>
+    ///     The color of face normal vectors.
+    /// </summary>
     Color NormalVectorColor { get; set; }
 
+    /// <summary>
+    ///     Whether to show face surface.
+    /// </summary>
     bool ShowSurface { get; set; }
+
+    /// <summary>
+    ///     Whether to show face mesh grid.
+    /// </summary>
     bool ShowMeshGrid { get; set; }
+
+    /// <summary>
+    ///     Whether to show face normal vectors.
+    /// </summary>
     bool ShowNormalVector { get; set; }
 
+    /// <summary>
+    ///     Register Face visualization server.
+    /// </summary>
     public void RegisterServer(object face);
+
+    /// <summary>
+    ///     Unregister Face visualization server.
+    /// </summary>
     public void UnregisterServer();
 }

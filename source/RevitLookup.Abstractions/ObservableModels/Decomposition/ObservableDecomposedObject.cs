@@ -3,6 +3,9 @@ using LookupEngine.Abstractions.Decomposition;
 
 namespace RevitLookup.Abstractions.ObservableModels.Decomposition;
 
+/// <summary>
+///     Represents the observable model for the LookupEngine decomposed object.
+/// </summary>
 public sealed partial class ObservableDecomposedObject : ObservableObject
 {
     [ObservableProperty] private List<ObservableDecomposedMember> _members = [];

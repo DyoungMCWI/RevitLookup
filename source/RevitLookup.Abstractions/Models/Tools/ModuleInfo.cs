@@ -20,11 +20,33 @@
 
 namespace RevitLookup.Abstractions.Models.Tools;
 
+/// <summary>
+///     Represents a metadata of an assembly runtime module.
+/// </summary>
 public sealed class ModuleInfo
 {
+    /// <summary>
+    ///     The module name.
+    /// </summary>
     public required string Name { get; init; }
+
+    /// <summary>
+    ///     The module file path.
+    /// </summary>
     public required string Path { get; init; }
+
+    /// <summary>
+    ///     The module load order.
+    /// </summary>
     public required int Order { get; init; }
+
+    /// <summary>
+    ///     The module version.
+    /// </summary>
     public required string Version { get; init; }
+
+    /// <summary>
+    ///     The module container. Isolation context or domain.
+    /// </summary>
     public required string Container { get; init; }
 }

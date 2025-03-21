@@ -80,7 +80,7 @@ public static class Host
         builder.Services.AddScoped<IDecompositionService, DecompositionService>();
         builder.Services.AddScoped<IVisualDecompositionService, VisualDecompositionService>();
         builder.Services.AddScoped<IDecompositionSearchService, DecompositionSearchService>();
-        builder.Services.AddTransient<IRevitLookupUiService, RevitLookupUiService>();
+        builder.Services.AddTransient<IUiOrchestratorService, UiOrchestratorService>();
 
         //Revit tools services
         builder.Services.AddTransient<EventsMonitoringService>();

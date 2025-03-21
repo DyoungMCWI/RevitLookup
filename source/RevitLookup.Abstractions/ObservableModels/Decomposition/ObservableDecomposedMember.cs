@@ -3,6 +3,9 @@ using LookupEngine.Abstractions.Enums;
 
 namespace RevitLookup.Abstractions.ObservableModels.Decomposition;
 
+/// <summary>
+///     Represents the observable model for the LookupEngine decomposed member.
+/// </summary>
 public sealed class ObservableDecomposedMember : ObservableObject
 {
     public required int Depth { get; set; }

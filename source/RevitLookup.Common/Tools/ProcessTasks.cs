@@ -3,8 +3,14 @@ using System.Text;
 
 namespace RevitLookup.Common.Tools;
 
+/// <summary>
+///     Tasks for starting and managing processes. Supports different APIs for .NET Core and .NET Framework.
+/// </summary>
 public static class ProcessTasks
 {
+    /// <summary>
+    ///     Start a process and redirect its output to the logger
+    /// </summary>
     public static Process? StartProcess(string toolPath, string arguments = "", Action<OutputType, string>? logger = null)
     {
         var startInfo = new ProcessStartInfo
@@ -26,6 +32,9 @@ public static class ProcessTasks
         return process;
     }
 
+    /// <summary>
+    ///     Start a shell process
+    /// </summary>
     public static Process? StartShell(string toolPath, string arguments = "")
     {
         var startInfo = new ProcessStartInfo
@@ -39,6 +48,9 @@ public static class ProcessTasks
         return Process.Start(startInfo);
     }
 
+    /// <summary>
+    ///     Redirect the process output to the logger
+    /// </summary>
     private static void RedirectProcessOutput(Process process, Action<OutputType, string>? logger)
     {
         logger ??= DefaultLogger;
@@ -57,12 +69,18 @@ public static class ProcessTasks
         process.BeginErrorReadLine();
     }
 
+    /// <summary>
+    ///     Default logger for the process output
+    /// </summary>
     private static void DefaultLogger(OutputType type, string output)
     {
         Console.WriteLine(output);
     }
 }
 
+/// <summary>
+///     Process output type
+/// </summary>
 public enum OutputType
 {
     Standard,

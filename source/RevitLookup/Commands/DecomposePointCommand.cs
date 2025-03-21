@@ -32,7 +32,7 @@ public class DecomposePointCommand : ExternalCommand
 {
     public override void Execute()
     {
-        Host.GetService<IRevitLookupUiService>()
+        Host.GetService<IUiOrchestratorService>()
             .Decompose(KnownDecompositionObject.Point)
             .Show<DecompositionSummaryPage>();
     }

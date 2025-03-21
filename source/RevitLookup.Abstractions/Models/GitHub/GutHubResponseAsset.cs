@@ -2,6 +2,9 @@ using System.Text.Json.Serialization;
 
 namespace RevitLookup.Abstractions.Models.GitHub;
 
+/// <summary>
+///     Represents a GitHub response asset.
+/// </summary>
 [Serializable]
 public sealed class GutHubResponseAsset
 {

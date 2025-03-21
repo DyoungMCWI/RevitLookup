@@ -20,10 +20,28 @@
 
 namespace RevitLookup.Abstractions.States;
 
+/// <summary>
+///     The state of the application update.
+/// </summary>
 public enum SoftwareUpdateState
 {
+    /// <summary>
+    ///     The application is up to date.
+    /// </summary>
     UpToDate,
+
+    /// <summary>
+    ///     The new version is available on the server.
+    /// </summary>
     ReadyToDownload,
+
+    /// <summary>
+    ///     The new version is downloaded and ready to install.
+    /// </summary>
     ReadyToInstall,
+
+    /// <summary>
+    ///     Error occurred during the update process.
+    /// </summary>
     Error
 }

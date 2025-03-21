@@ -5,6 +5,9 @@ using Wpf.Ui.Controls;
 
 namespace RevitLookup.Abstractions.Models.Settings;
 
+/// <summary>
+///     Schema for application settings.
+/// </summary>
 [Serializable]
 public sealed class ApplicationSettings
 {

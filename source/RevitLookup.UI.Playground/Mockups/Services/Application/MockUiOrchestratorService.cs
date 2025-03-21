@@ -13,7 +13,7 @@ using Wpf.Ui;
 
 namespace RevitLookup.UI.Playground.Mockups.Services.Application;
 
-public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupServiceParentStage, ILookupServiceRunStage
+public sealed class MockUiOrchestratorService : IUiOrchestratorService, IHistoryOrchestrator, IInteractionOrchestrator
 {
     private IServiceProvider? _parentProvider;
     private readonly List<Task> _activeTasks = [];
@@ -22,10 +22,10 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
     private readonly IVisualDecompositionService _visualDecompositionService;
     private readonly INavigationService _navigationService;
     private readonly INotificationService _notificationService;
-    private readonly ILogger<MockRevitLookupUiService> _logger;
+    private readonly ILogger<MockUiOrchestratorService> _logger;
     private readonly Window _host;
 
-    public MockRevitLookupUiService(IServiceScopeFactory scopeFactory)
+    public MockUiOrchestratorService(IServiceScopeFactory scopeFactory)
     {
         _scope = scopeFactory.CreateScope();
 
@@ -34,12 +34,12 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         _visualDecompositionService = _scope.ServiceProvider.GetRequiredService<IVisualDecompositionService>();
         _navigationService = _scope.ServiceProvider.GetRequiredService<INavigationService>();
         _notificationService = _scope.ServiceProvider.GetRequiredService<INotificationService>();
-        _logger = _scope.ServiceProvider.GetRequiredService<ILogger<MockRevitLookupUiService>>();
+        _logger = _scope.ServiceProvider.GetRequiredService<ILogger<MockUiOrchestratorService>>();
 
         _host.Closed += (_, _) => _scope.Dispose();
     }
 
-    public ILookupServiceShowStage Decompose(KnownDecompositionObject decompositionObject)
+    public INavigationOrchestrator Decompose(KnownDecompositionObject decompositionObject)
     {
         PushTask();
         return this;
@@ -61,7 +61,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceShowStage Decompose(object? obj)
+    public INavigationOrchestrator Decompose(object? obj)
     {
         PushTask();
         return this;
@@ -83,7 +83,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceShowStage Decompose(IEnumerable objects)
+    public INavigationOrchestrator Decompose(IEnumerable objects)
     {
         PushTask();
         return this;
@@ -105,7 +105,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceShowStage Decompose(ObservableDecomposedObject decomposedObject)
+    public INavigationOrchestrator Decompose(ObservableDecomposedObject decomposedObject)
     {
         PushTask();
         return this;
@@ -127,7 +127,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceShowStage Decompose(List<ObservableDecomposedObject> decomposedObjects)
+    public INavigationOrchestrator Decompose(List<ObservableDecomposedObject> decomposedObjects)
     {
         PushTask();
         return this;
@@ -149,7 +149,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceParentStage AddParent(IServiceProvider parentProvider)
+    public IHistoryOrchestrator AddParent(IServiceProvider parentProvider)
     {
         PushTask();
         return this;
@@ -173,7 +173,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceDecomposeStage AddStackHistory(ObservableDecomposedObject item)
+    public IDecompositionOrchestrator AddStackHistory(ObservableDecomposedObject item)
     {
         PushTask();
         return this;
@@ -195,7 +195,7 @@ public sealed class MockRevitLookupUiService : IRevitLookupUiService, ILookupSer
         }
     }
 
-    public ILookupServiceRunStage Show<T>() where T : Page
+    public IInteractionOrchestrator Show<T>() where T : Page
     {
         PushTask();
         return this;
