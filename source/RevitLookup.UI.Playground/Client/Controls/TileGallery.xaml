@@ -69,7 +69,7 @@
                 </controls:HeaderTile>
                 <controls:HeaderTile
                     Title="RevitLookup GitHub"
-                    Description="Project source repository"
+                    Description="Project source repository page"
                     Link="https://github.com/jeremytammik/RevitLookup"
                     Margin="12 0 0 0">
                     <controls:HeaderTile.Source>

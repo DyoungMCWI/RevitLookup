@@ -10,16 +10,26 @@
     Height="210"
     mc:Ignorable="d">
 
-    <ui:Button
+    <Button
         Padding="24"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         HorizontalContentAlignment="Stretch"
         VerticalContentAlignment="Stretch"
-        CornerRadius="8"
         AutomationProperties.Name="{Binding Title, 
             RelativeSource={RelativeSource AncestorType=controls:HeaderTile}}"
         Click="OnTileClicked">
+
+        <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
+        <Button.Resources>
+            <Style
+                BasedOn="{StaticResource DefaultButtonStyle}"
+                TargetType="{x:Type Button}">
+                <Setter
+                    Property="Border.CornerRadius"
+                    Value="8" />
+            </Style>
+        </Button.Resources>
 
         <Grid
             HorizontalAlignment="Stretch"
@@ -63,5 +73,5 @@
                         FallbackValue='Description'}" />
             </StackPanel>
         </Grid>
-    </ui:Button>
+    </Button>
 </UserControl>
