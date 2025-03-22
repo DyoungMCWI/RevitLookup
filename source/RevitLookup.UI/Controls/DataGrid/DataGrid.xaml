@@ -499,54 +499,36 @@
                     <Border
                         x:Name="Border"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{DynamicResource SubtleFillColorSecondaryBrush}">
                         <Rectangle
                             x:Name="Thumb"
                             Width="4"
                             Height="16"
                             Margin="{TemplateBinding Padding}"
+                            Fill="{DynamicResource TextFillColorSecondaryBrush}"
                             RadiusX="2"
                             RadiusY="2" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Fill" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource SubtleFillColorTransparentBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource SubtleFillColorTransparentBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="Opacity" To="0" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Fill" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource TextFillColorSecondaryBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource SubtleFillColorSecondaryBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Fill" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource TextFillColorTertiaryBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource SubtleFillColorTertiaryBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="Opacity" To="0.8" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Fill" Duration="0">
-                                            <DiscreteObjectKeyFrame Value="{DynamicResource TextFillColorDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background" Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource SubtleFillColorDisabledBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border" Storyboard.TargetProperty="Opacity" To="0.6" Duration="0" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

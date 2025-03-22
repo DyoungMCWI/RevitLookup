@@ -13,16 +13,11 @@
         <rl:ControlsDictionary />
         <menu:MenusDictionary />
 
-        <ResourceDictionary
-            Source="pack://application:,,,/RevitLookup.UI.Framework;component/Controls/ContentPlaceholder/ContentPlaceholder.xaml" />
-        <ResourceDictionary
-            Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/ObjectsTree/TreeGroupTemplates.xaml" />
-        <ResourceDictionary
-            Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridGroupStyles.xaml" />
-        <ResourceDictionary
-            Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridRowStyle.xaml" />
-        <ResourceDictionary
-            Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridCellTemplate.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/RevitLookup.UI.Framework;component/Controls/ContentPlaceholder/ContentPlaceholder.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/ObjectsTree/TreeGroupTemplates.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridGroupStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridRowStyle.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/RevitLookup;component/Styles/ComponentStyles/MembersGrid/DataGridCellTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
