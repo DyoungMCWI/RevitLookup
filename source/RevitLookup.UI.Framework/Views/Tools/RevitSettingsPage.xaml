@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:converters="clr-namespace:RevitLookup.UI.Framework.Converters"
     xmlns:contentPlaceholder="clr-namespace:RevitLookup.UI.Framework.Controls.ContentPlaceholder"
     xmlns:valueConverters="clr-namespace:RevitLookup.UI.Framework.Converters.ValueConverters"
@@ -13,14 +13,14 @@
     d:DesignHeight="600"
     d:DesignWidth="500"
     d:DataContext="{d:DesignInstance tools:RevitSettingsPage}"
-    rl:NavigationView.HeaderContent="Revit settings"
+    ui:NavigationView.HeaderContent="Revit settings"
     ScrollViewer.CanContentScroll="False"
     Foreground="{DynamicResource TextFillColorPrimaryBrush}">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <rl:ControlsDictionary />
+                <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
 
             <GroupStyle
@@ -65,39 +65,39 @@
             DockPanel.Dock="Top"
             VerticalAlignment="Top"
             LastChildFill="False">
-            <rl:Button
+            <ui:Button
                 DockPanel.Dock="Left"
-                Icon="{rl:SymbolIcon Add20}"
+                Icon="{ui:SymbolIcon Add20}"
                 Content="New entry"
                 Command="{Binding ViewModel.CreateEntryCommand}" />
-            <rl:Button
+            <ui:Button
                 DockPanel.Dock="Right"
                 Appearance="Transparent"
                 FontSize="20"
                 Padding="10 4"
-                Icon="{rl:SymbolIcon QuestionCircle20}"
+                Icon="{ui:SymbolIcon QuestionCircle20}"
                 Command="{Binding ViewModel.ShowHelpCommand}" />
-            <rl:Button
+            <ui:Button
                 DockPanel.Dock="Right"
                 Margin="0 0 4 0"
                 Appearance="Transparent"
                 FontSize="20"
                 Padding="10 4"
-                Icon="{rl:SymbolIcon Open20}"
+                Icon="{ui:SymbolIcon Open20}"
                 Command="{Binding ViewModel.OpenSettingsCommand}" />
-            <rl:Button
+            <ui:Button
                 DockPanel.Dock="Right"
                 Margin="0 0 4 0"
                 Appearance="Transparent"
                 Padding="10 4"
                 Click="OnFilterClicked">
-                <rl:Button.Content>
+                <ui:Button.Content>
                     <Grid>
-                        <rl:FontIcon
+                        <ui:FontIcon
                             VerticalAlignment="Center"
                             FontSize="16"
                             Glyph="&#xe71c;" />
-                        <rl:InfoBadge
+                        <ui:InfoBadge
                             Severity="Attention"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
@@ -107,7 +107,7 @@
                             Visibility="{Binding ViewModel.Filtered, Mode=OneWay, 
                                 Converter={converters:BooleanCollapsedVisibilityConverter}, 
                                 FallbackValue=Visible}" />
-                        <rl:Flyout
+                        <ui:Flyout
                             x:Name="FilterFlyout"
                             Placement="Left">
                             <StackPanel
@@ -115,50 +115,50 @@
                                 HorizontalAlignment="Stretch">
                                 <Label
                                     Content="Category" />
-                                <rl:TextBox
+                                <ui:TextBox
                                     IconPlacement="Right"
-                                    Icon="{rl:SymbolIcon Search24}"
+                                    Icon="{ui:SymbolIcon Search24}"
                                     Text="{Binding ViewModel.CategoryFilter, UpdateSourceTrigger=PropertyChanged}">
-                                </rl:TextBox>
+                                </ui:TextBox>
                                 <Label
                                     Margin="0 8 0 0"
                                     Content="Property" />
-                                <rl:TextBox
+                                <ui:TextBox
                                     IconPlacement="Right"
-                                    Icon="{rl:SymbolIcon Search24}"
+                                    Icon="{ui:SymbolIcon Search24}"
                                     Text="{Binding ViewModel.PropertyFilter, UpdateSourceTrigger=PropertyChanged}">
-                                </rl:TextBox>
+                                </ui:TextBox>
                                 <Label
                                     Margin="0 8 0 0"
                                     Content="Value" />
-                                <rl:TextBox
+                                <ui:TextBox
                                     IconPlacement="Right"
-                                    Icon="{rl:SymbolIcon Search24}"
+                                    Icon="{ui:SymbolIcon Search24}"
                                     Text="{Binding ViewModel.ValueFilter, UpdateSourceTrigger=PropertyChanged}">
-                                </rl:TextBox>
-                                <rl:ToggleSwitch
+                                </ui:TextBox>
+                                <ui:ToggleSwitch
                                     Margin="0 12 0 0"
                                     Content="Show only user settings"
                                     IsChecked="{Binding ViewModel.ShowUserSettingsFilter}" />
-                                <rl:Button
+                                <ui:Button
                                     Margin="0 12 0 0"
                                     Appearance="Primary"
                                     HorizontalAlignment="Right"
                                     Content="Clear filters"
                                     Command="{Binding ViewModel.ClearFiltersCommand}" />
                             </StackPanel>
-                        </rl:Flyout>
+                        </ui:Flyout>
                     </Grid>
-                </rl:Button.Content>
-            </rl:Button>
+                </ui:Button.Content>
+            </ui:Button>
         </DockPanel>
-        <rl:Card
+        <ui:Card
             VerticalAlignment="Stretch"
             VerticalContentAlignment="Stretch"
             Margin="0 8 0 0"
             Padding="0">
             <Grid>
-                <rl:ListView
+                <ui:ListView
                     x:Name="EntriesList"
                     FontSize="12"
                     SelectedItem="{Binding ViewModel.SelectedEntry}"
@@ -171,7 +171,7 @@
                         <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
                         <Style
                             BasedOn="{StaticResource ListViewItemStyle}"
-                            TargetType="{x:Type rl:ListViewItem}">
+                            TargetType="{x:Type ui:ListViewItem}">
                             <Setter
                                 Property="Padding"
                                 Value="0" />
@@ -191,23 +191,23 @@
                         <DataTemplate>
                             <DockPanel
                                 Margin="8 0">
-                                <rl:Button
+                                <ui:Button
                                     DockPanel.Dock="Right"
                                     VerticalAlignment="Center"
                                     Appearance="Transparent"
                                     FontSize="18"
                                     Margin="0 0 8 0"
-                                    Icon="{rl:SymbolIcon Delete20}"
+                                    Icon="{ui:SymbolIcon Delete20}"
                                     Command="{Binding DataContext.ViewModel.DeleteEntryCommand, ElementName=EntriesList}"
                                     CommandParameter="{Binding}" />
-                                <rl:ToggleSwitch
+                                <ui:ToggleSwitch
                                     DockPanel.Dock="Right"
                                     VerticalAlignment="Center"
                                     Margin="0 0 8 0"
                                     IsChecked="{Binding IsActive}"
                                     Command="{Binding DataContext.ViewModel.ActivateEntryCommand, ElementName=EntriesList}"
                                     CommandParameter="{Binding}" />
-                                <rl:Button
+                                <ui:Button
                                     DockPanel.Dock="Right"
                                     VerticalAlignment="Center"
                                     Appearance="Transparent"
@@ -216,7 +216,7 @@
                                     Visibility="{Binding IsModified,
                                         Mode=OneWay,
                                         Converter={converters:BooleanHiddenVisibilityConverter}}"
-                                    Icon="{rl:SymbolIcon ArrowClockwise24}"
+                                    Icon="{ui:SymbolIcon ArrowClockwise24}"
                                     Command="{Binding DataContext.ViewModel.RestoreDefaultCommand, ElementName=EntriesList}"
                                     CommandParameter="{Binding}" />
                                 <Grid>
@@ -226,13 +226,13 @@
                                         <ColumnDefinition
                                             Width="3*" />
                                     </Grid.ColumnDefinitions>
-                                    <rl:TextBlock
+                                    <ui:TextBlock
                                         Grid.Column="0"
                                         FontTypography="Caption"
                                         VerticalAlignment="Center"
                                         TextTrimming="CharacterEllipsis"
                                         Text="{Binding Property}" />
-                                    <rl:TextBlock
+                                    <ui:TextBlock
                                         Grid.Column="1"
                                         VerticalAlignment="Center"
                                         TextWrapping="Wrap"
@@ -243,7 +243,7 @@
                             </DockPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </rl:ListView>
+                </ui:ListView>
                 <contentPlaceholder:ContentPlaceholder
                     Content="Nothing to show"
                     MaxHeight="300">
@@ -273,10 +273,10 @@
                     </contentPlaceholder:ContentPlaceholder.Visibility>
                     <contentPlaceholder:ContentPlaceholder.Content>
                         <StackPanel>
-                            <rl:TextBlock
+                            <ui:TextBlock
                                 FontTypography="Subtitle"
                                 Text="Not found" />
-                            <rl:HyperlinkButton
+                            <ui:HyperlinkButton
                                 Margin="0 12 0 0"
                                 HorizontalAlignment="Center"
                                 Command="{Binding ViewModel.ClearFiltersCommand}"
@@ -294,13 +294,13 @@
                         FontSize="24"
                         FontWeight="Medium"
                         Text="Scanning..." />
-                    <rl:ProgressRing
+                    <ui:ProgressRing
                         Margin="0 12 0 0"
                         IsIndeterminate="True"
                         VerticalAlignment="Center" />
                 </StackPanel>
             </Grid>
-        </rl:Card>
+        </ui:Card>
     </DockPanel>
 
 </Page>

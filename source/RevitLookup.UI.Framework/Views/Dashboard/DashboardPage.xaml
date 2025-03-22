@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:dashboard="clr-namespace:RevitLookup.UI.Framework.Views.Dashboard"
     xmlns:converters="clr-namespace:RevitLookup.UI.Framework.Converters"
     xmlns:valueConverters="clr-namespace:RevitLookup.UI.Framework.Converters.ValueConverters"
@@ -19,7 +19,7 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
-                    <rl:TextBlock
+                    <ui:TextBlock
                         Margin="0,12,0,0"
                         FontTypography="BodyStrong"
                         Text="{Binding GroupName}" />
@@ -44,26 +44,26 @@
                         </ItemsControl.ItemContainerStyle>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <rl:CardAction
+                                <ui:CardAction
                                     Command="{Binding Command}"
                                     CommandParameter="{Binding CommandParameter}">
-                                    <rl:CardAction.Icon>
-                                        <rl:SymbolIcon
+                                    <ui:CardAction.Icon>
+                                        <ui:SymbolIcon
                                             Symbol="{Binding Icon}" />
-                                    </rl:CardAction.Icon>
-                                    <rl:CardAction.Content>
+                                    </ui:CardAction.Icon>
+                                    <ui:CardAction.Content>
                                         <StackPanel>
-                                            <rl:TextBlock
+                                            <ui:TextBlock
                                                 Text="{Binding Title}" />
-                                            <rl:TextBlock
+                                            <ui:TextBlock
                                                 Appearance="Secondary"
                                                 FontTypography="Caption"
                                                 TextTrimming="CharacterEllipsis"
                                                 Text="{Binding Description}"
                                                 Visibility="{Binding Description, Converter={converters:StringVisibilityConverter}}" />
                                         </StackPanel>
-                                    </rl:CardAction.Content>
-                                </rl:CardAction>
+                                    </ui:CardAction.Content>
+                                </ui:CardAction>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

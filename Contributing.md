@@ -54,6 +54,20 @@ If you haven't already installed these frameworks, you can do so by visiting the
 * [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48)
 * [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet)
 
+### Initialize and update submodules
+
+Run this command to update all related modules:
+
+```shell
+git submodule update --init --force --recursive
+cd source/LookupEngine
+git sparse-checkout init --cone
+git sparse-checkout set source/
+cd ../LookupEngine.UI
+git sparse-checkout init --cone
+git sparse-checkout set source/
+```
+
 ### Compiling Source Code
 
 We recommend JetBrains Rider as preferred IDE, since it has outstanding .NET support. If you don't have Rider installed, you can download it

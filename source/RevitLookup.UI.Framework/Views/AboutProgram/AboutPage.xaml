@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:converters="clr-namespace:RevitLookup.UI.Framework.Converters"
     xmlns:valueConverters="clr-namespace:RevitLookup.UI.Framework.Converters.ValueConverters"
     xmlns:aboutProgram="clr-namespace:RevitLookup.UI.Framework.Views.AboutProgram"
@@ -25,60 +25,60 @@
             Source="pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductLogo.png" />
         <StackPanel
             Margin="30,0,0,0">
-            <rl:TextBlock
+            <ui:TextBlock
                 Text="RevitLookup"
                 FontTypography="TitleLarge" />
-            <rl:TextBlock
+            <ui:TextBlock
                 Margin="0,12,0,0"
                 TextWrapping="WrapWithOverflow"
                 HorizontalAlignment="Left"
                 Appearance="Tertiary"
                 Text="Interactive Revit RFA and RVT project database exploration tool to view and navigate BIM element parameters, properties and relationships." />
-            <rl:TextBlock
+            <ui:TextBlock
                 Margin="0,12,0,0"
                 FontTypography="BodyStrong"
                 Text="Version" />
-            <rl:CardControl
+            <ui:CardControl
                 Margin="0,4,0,0"
-                Icon="{rl:SymbolIcon ArrowSync24}">
+                Icon="{ui:SymbolIcon ArrowSync24}">
                 <StackPanel
                     Orientation="Horizontal">
-                    <rl:ProgressRing
+                    <ui:ProgressRing
                         Width="20"
                         Height="20"
                         IsIndeterminate="True"
                         VerticalAlignment="Center"
                         Visibility="{Binding ViewModel.CheckUpdatesCommand.IsRunning, Converter={converters:BooleanCollapsedVisibilityConverter}}" />
-                    <rl:Button
+                    <ui:Button
                         Margin="9 0 0 0"
                         Appearance="Secondary"
                         Content="Check for updates"
                         Visibility="{Binding ViewModel.DownloadUpdateCommand.IsRunning, Converter={converters:InverseBooleanCollapsedVisibilityConverter}}"
                         Command="{Binding ViewModel.CheckUpdatesCommand}" />
                 </StackPanel>
-                <rl:CardControl.Header>
+                <ui:CardControl.Header>
                     <StackPanel>
                         <TextBlock
                             Text="{Binding ViewModel.CurrentVersion, FallbackValue='1.0.0'}" />
-                        <rl:TextBlock
+                        <ui:TextBlock
                             FontTypography="Caption"
                             Visibility="{Binding ViewModel.LatestCheckDate, Converter={converters:StringVisibilityConverter}}"
                             Text="{Binding ViewModel.LatestCheckDate, StringFormat='Last checked: {0}', FallbackValue='Latest check: 2030.01.01'}" />
-                        <rl:HyperlinkButton
+                        <ui:HyperlinkButton
                             Padding="0"
                             Margin="0 4 0 0"
                             NavigateUri="https://github.com/jeremytammik/RevitLookup/releases">
-                            <rl:HyperlinkButton.Content>
-                                <rl:TextBlock
+                            <ui:HyperlinkButton.Content>
+                                <ui:TextBlock
                                     FontTypography="Caption"
                                     FontWeight="Medium"
                                     Text="Release Notes" />
-                            </rl:HyperlinkButton.Content>
-                        </rl:HyperlinkButton>
+                            </ui:HyperlinkButton.Content>
+                        </ui:HyperlinkButton>
                     </StackPanel>
-                </rl:CardControl.Header>
-            </rl:CardControl>
-            <rl:CardControl
+                </ui:CardControl.Header>
+            </ui:CardControl>
+            <ui:CardControl
                 Margin="0,4,0,0"
                 Visibility="{Binding ViewModel.State, 
                         Converter={valueConverters:SoftwareUpdateStateCollapsedVisibilityConverter},
@@ -86,19 +86,19 @@
                 <StackPanel
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-                    <rl:ProgressRing
+                    <ui:ProgressRing
                         Width="20"
                         Height="20"
                         IsIndeterminate="True"
                         VerticalAlignment="Center"
                         Visibility="{Binding ViewModel.DownloadUpdateCommand.IsRunning, Converter={converters:BooleanCollapsedVisibilityConverter}}" />
-                    <rl:Button
+                    <ui:Button
                         Margin="9,0,0,0"
                         Appearance="Secondary"
                         Content="Download &amp; Install"
                         Command="{Binding ViewModel.DownloadUpdateCommand}" />
                 </StackPanel>
-                <rl:CardControl.Header>
+                <ui:CardControl.Header>
                     <Grid
                         Margin="4,0,0,0">
                         <Grid.RowDefinitions>
@@ -110,14 +110,14 @@
                                 Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <rl:SymbolIcon
+                        <ui:SymbolIcon
                             Grid.Row="0"
                             Grid.Column="0"
                             Filled="True"
                             FontSize="16"
                             Symbol="CheckmarkCircle24"
                             Foreground="{DynamicResource InfoBarSuccessSeverityIconBackground}" />
-                        <rl:TextBlock
+                        <ui:TextBlock
                             Grid.Row="0"
                             Grid.Column="1"
                             Margin="20,0,0,0"
@@ -131,22 +131,22 @@
                             <TextBlock
                                 Margin="10,0,0,0"
                                 Text="{Binding ViewModel.NewVersion, FallbackValue='1.0.0'}" />
-                            <rl:HyperlinkButton
+                            <ui:HyperlinkButton
                                 Margin="10,0,0,0"
                                 Padding="0"
                                 NavigateUri="{Binding ViewModel.ReleaseNotesUrl}">
-                                <rl:HyperlinkButton.Content>
-                                    <rl:TextBlock
+                                <ui:HyperlinkButton.Content>
+                                    <ui:TextBlock
                                         FontTypography="Caption"
                                         FontWeight="Medium"
                                         Text="See what's new in this version" />
-                                </rl:HyperlinkButton.Content>
-                            </rl:HyperlinkButton>
+                                </ui:HyperlinkButton.Content>
+                            </ui:HyperlinkButton>
                         </StackPanel>
                     </Grid>
-                </rl:CardControl.Header>
-            </rl:CardControl>
-            <rl:InfoBar
+                </ui:CardControl.Header>
+            </ui:CardControl>
+            <ui:InfoBar
                 Severity="Success"
                 Message="The new version has been downloaded and will be installed when Revit is closed"
                 Margin="0 4 0 0"
@@ -154,8 +154,8 @@
                         Converter={valueConverters:SoftwareUpdateStateBooleanConverter},
                         ConverterParameter={x:Static states:SoftwareUpdateState.ReadyToInstall},
                         FallbackValue=True}">
-            </rl:InfoBar>
-            <rl:InfoBar
+            </ui:InfoBar>
+            <ui:InfoBar
                 Severity="Success"
                 Margin="0,4,0,0"
                 Message="RevitLookup is up to date"
@@ -163,8 +163,8 @@
                         Converter={valueConverters:SoftwareUpdateStateBooleanConverter},
                         ConverterParameter={x:Static states:SoftwareUpdateState.UpToDate},
                         FallbackValue=True}">
-            </rl:InfoBar>
-            <rl:InfoBar
+            </ui:InfoBar>
+            <ui:InfoBar
                 Margin="0,4,0,0"
                 Severity="Error"
                 Message="{Binding ViewModel.ErrorMessage, 
@@ -173,35 +173,35 @@
                         Converter={valueConverters:SoftwareUpdateStateBooleanConverter},
                         ConverterParameter={x:Static states:SoftwareUpdateState.Error},
                         FallbackValue=True}">
-            </rl:InfoBar>
-            <rl:TextBlock
+            </ui:InfoBar>
+            <ui:TextBlock
                 Margin="0,12,0,0"
                 FontTypography="Caption"
                 Text="{Binding ViewModel.Runtime, FallbackValue='Runtime'}" />
-            <rl:TextBlock
+            <ui:TextBlock
                 Margin="0,6,0,0"
                 FontTypography="Caption"
                 Text="Copyright © 2013-2025 Autodesk Inc." />
-            <rl:TextBlock
+            <ui:TextBlock
                 Margin="0,6,0,0"
                 FontTypography="Caption"
                 Text="Developed and designed by Nice3point 🕊️" />
-            <rl:HyperlinkButton
+            <ui:HyperlinkButton
                 Margin="0,12,0,0"
                 Content="Project website"
-                Icon="{rl:SymbolIcon Link48}"
+                Icon="{ui:SymbolIcon Link48}"
                 NavigateUri="https://thebuildingcoder.typepad.com" />
-            <rl:HyperlinkButton
+            <ui:HyperlinkButton
                 Content="Source repository on GitHub"
-                Icon="{rl:SymbolIcon Link48}"
+                Icon="{ui:SymbolIcon Link48}"
                 NavigateUri="https://github.com/jeremytammik/RevitLookup" />
-            <rl:HyperlinkButton
+            <ui:HyperlinkButton
                 Content="Powered by open-source software"
-                Icon="{rl:SymbolIcon Link48}"
+                Icon="{ui:SymbolIcon Link48}"
                 Command="{Binding ViewModel.ShowSoftwareDialogCommand}" />
-            <rl:HyperlinkButton
+            <ui:HyperlinkButton
                 Content="Contact Us"
-                Icon="{rl:SymbolIcon Link48}"
+                Icon="{ui:SymbolIcon Link48}"
                 NavigateUri="https://github.com/jeremytammik/RevitLookup/issues" />
         </StackPanel>
     </DockPanel>

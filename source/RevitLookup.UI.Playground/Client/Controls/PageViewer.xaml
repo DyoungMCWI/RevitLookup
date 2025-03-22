@@ -1,10 +1,10 @@
-﻿<rl:FluentWindow
+﻿<ui:FluentWindow
     x:Class="RevitLookup.UI.Playground.Client.Controls.PageViewer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     mc:Ignorable="d"
     SizeToContent="WidthAndHeight"
     WindowStartupLocation="CenterScreen"
@@ -14,19 +14,19 @@
 
     <Grid>
         <DockPanel>
-            <rl:TitleBar
+            <ui:TitleBar
                 DockPanel.Dock="Top"
                 Title="Page preview"
-                Icon="{rl:ImageIcon 'pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductIcon.png'}" />
+                Icon="{ui:ImageIcon 'pack://application:,,,/RevitLookup.UI.Framework;component/Resources/Images/ProductIcon.png'}" />
             <Frame
                 x:Name="Viewer">
             </Frame>
         </DockPanel>
 
-        <rl:SnackbarPresenter
+        <ui:SnackbarPresenter
             x:Name="RootSnackbar" />
         <ContentPresenter
             x:Name="RootContentDialog" />
     </Grid>
 
-</rl:FluentWindow>
+</ui:FluentWindow>

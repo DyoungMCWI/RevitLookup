@@ -1,10 +1,10 @@
-﻿<rl:ContentDialog
+﻿<ui:ContentDialog
     x:Class="RevitLookup.UI.Framework.Views.EditDialogs.EditValueDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:editDialogs="clr-namespace:RevitLookup.UI.Framework.Views.EditDialogs"
     Title="Update the value"
     PrimaryButtonText="Update"
@@ -15,25 +15,25 @@
     d:DesignHeight="540"
     d:DesignWidth="1000">
 
-    <rl:ContentDialog.Resources>
+    <ui:ContentDialog.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <rl:ControlsDictionary />
+                <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
             <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
             <Style
                 BasedOn="{StaticResource DefaultContentDialogStyle}"
                 TargetType="{x:Type editDialogs:EditValueDialog}" />
         </ResourceDictionary>
-    </rl:ContentDialog.Resources>
+    </ui:ContentDialog.Resources>
 
     <StackPanel
         MinWidth="350">
         <Label
             x:Name="ValueLabel"
             Content="Name" />
-        <rl:TextBox
+        <ui:TextBox
             x:Name="ValueBox" />
     </StackPanel>
 
-</rl:ContentDialog>
+</ui:ContentDialog>

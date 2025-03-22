@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:converters="clr-namespace:RevitLookup.UI.Framework.Converters"
     xmlns:contentPlaceholder="clr-namespace:RevitLookup.UI.Framework.Controls.ContentPlaceholder"
     xmlns:valueConverters="clr-namespace:RevitLookup.UI.Framework.Converters.ValueConverters"
@@ -32,7 +32,7 @@
                 </MultiBinding>
             </contentPlaceholder:ContentPlaceholder.Visibility>
             <contentPlaceholder:ContentPlaceholder.Content>
-                <rl:TextBlock
+                <ui:TextBlock
                     FontTypography="Subtitle"
                     Text="Nothing to show" />
             </contentPlaceholder:ContentPlaceholder.Content>
@@ -58,28 +58,28 @@
             </Grid.ColumnDefinitions>
             <DockPanel
                 Grid.Column="0">
-                <rl:TextBox
+                <ui:TextBox
                     x:Name="SummarySearchBox"
                     DockPanel.Dock="Top"
                     BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}"
-                    Icon="{rl:SymbolIcon Search24}"
+                    Icon="{ui:SymbolIcon Search24}"
                     PlaceholderText="Search..."
                     IconPlacement="Right"
                     Text="{Binding ViewModel.SearchText,
                         Mode=TwoWay,
                         UpdateSourceTrigger=PropertyChanged}" />
                 <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
-                <rl:TreeView
+                <ui:TreeView
                     x:Name="SummaryTreeView"
                     Margin="0 8 0 0"
                     ItemsSource="{Binding Path=ViewModel.(viewModelsSummary:IEventsSummaryViewModel.FilteredDecomposedObjects)}"
                     ItemTemplateSelector="{StaticResource TreeViewItemTemplateSelector}"
                     VirtualizingPanel.IsVirtualizing="True"
                     VirtualizingPanel.VirtualizationMode="Standard">
-                </rl:TreeView>
+                </ui:TreeView>
             </DockPanel>
             <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
-            <rl:DataGrid
+            <ui:DataGrid
                 x:Name="SummaryDataGrid"
                 Grid.Column="2"
                 ColumnHeaderHeight="30"
@@ -112,7 +112,7 @@
                     <DataGridTemplateColumn
                         Width="*">
                         <DataGridTemplateColumn.Header>
-                            <rl:TextBlock
+                            <ui:TextBlock
                                 FontTypography="Caption"
                                 Text="Member"
                                 FontWeight="Bold" />
@@ -121,12 +121,12 @@
                             <DataTemplate>
                                 <StackPanel
                                     Orientation="Horizontal">
-                                    <rl:SymbolIcon
+                                    <ui:SymbolIcon
                                         FontSize="16"
                                         Symbol="{Binding MemberAttributes,
                                             Converter={valueConverters:MemberAttributeIconConverter},
                                             Mode=OneTime}" />
-                                    <rl:TextBlock
+                                    <ui:TextBlock
                                         Margin="4 0 0 0"
                                         VerticalAlignment="Center"
                                         FontTypography="Caption"
@@ -142,7 +142,7 @@
                         Width="2*"
                         CellTemplateSelector="{StaticResource DataGridCellTemplateSelector}">
                         <DataGridTemplateColumn.Header>
-                            <rl:TextBlock
+                            <ui:TextBlock
                                 FontTypography="Caption"
                                 Text="Value"
                                 FontWeight="Bold" />
@@ -153,14 +153,14 @@
                         MinWidth="61"
                         CanUserResize="False">
                         <DataGridTemplateColumn.Header>
-                            <rl:TextBlock
+                            <ui:TextBlock
                                 FontTypography="Caption"
                                 Text="Time"
                                 FontWeight="Bold" />
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <rl:TextBlock
+                                <ui:TextBlock
                                     VerticalAlignment="Center"
                                     FontTypography="Caption"
                                     FontWeight="{Binding FontWeight, 
@@ -176,14 +176,14 @@
                         MinWidth="73"
                         CanUserResize="False">
                         <DataGridTemplateColumn.Header>
-                            <rl:TextBlock
+                            <ui:TextBlock
                                 FontTypography="Caption"
                                 Text="Memory"
                                 FontWeight="Bold" />
                         </DataGridTemplateColumn.Header>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <rl:TextBlock
+                                <ui:TextBlock
                                     VerticalAlignment="Center"
                                     FontTypography="Caption"
                                     FontWeight="{Binding FontWeight, 
@@ -195,7 +195,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
-            </rl:DataGrid>
+            </ui:DataGrid>
         </Grid>
     </Grid>
 

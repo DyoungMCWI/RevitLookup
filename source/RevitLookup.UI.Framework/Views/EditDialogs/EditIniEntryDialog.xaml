@@ -1,10 +1,10 @@
-﻿<rl:ContentDialog
+﻿<ui:ContentDialog
     x:Class="RevitLookup.UI.Framework.Views.EditDialogs.EditSettingsEntryDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:editDialogs="clr-namespace:RevitLookup.UI.Framework.Views.EditDialogs"
     xmlns:converters="clr-namespace:RevitLookup.UI.Framework.Converters"
     xmlns:entries="clr-namespace:RevitLookup.Abstractions.ObservableModels.Entries;assembly=RevitLookup.Abstractions"
@@ -18,23 +18,23 @@
     d:DesignWidth="600"
     d:DataContext="{d:DesignInstance entries:ObservableIniEntry}">
 
-    <rl:ContentDialog.Resources>
+    <ui:ContentDialog.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <rl:ControlsDictionary />
+                <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
             <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
             <Style
                 BasedOn="{StaticResource DefaultContentDialogStyle}"
                 TargetType="{x:Type editDialogs:EditSettingsEntryDialog}" />
         </ResourceDictionary>
-    </rl:ContentDialog.Resources>
+    </ui:ContentDialog.Resources>
 
     <StackPanel
         MinWidth="350">
         <Label
             Content="Category" />
-        <rl:TextBox
+        <ui:TextBox
             TextWrapping="Wrap"
             PlaceholderText="{Binding Category, Mode=OneTime}"
             Text="{Binding Category,
@@ -43,7 +43,7 @@
         <Label
             Margin="0 8 0 0"
             Content="Property" />
-        <rl:TextBox
+        <ui:TextBox
             TextWrapping="Wrap"
             PlaceholderText="{Binding Property, Mode=OneTime}"
             Text="{Binding Property,
@@ -52,10 +52,10 @@
         <Label
             Margin="0 8 0 0"
             Content="Value" />
-        <rl:TextBox
+        <ui:TextBox
             TextWrapping="Wrap"
             PlaceholderText="{Binding Value, Mode=OneTime}"
             Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
 
-</rl:ContentDialog>
+</ui:ContentDialog>

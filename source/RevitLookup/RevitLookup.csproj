@@ -59,11 +59,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\LookupEngine\LookupEngine.csproj"/>
+        <ProjectReference Include="..\LookupEngine\source\LookupEngine\LookupEngine.csproj" />
         <ProjectReference Include="..\RevitLookup.Abstractions\RevitLookup.Abstractions.csproj"/>
         <ProjectReference Include="..\RevitLookup.Common\RevitLookup.Common.csproj"/>
         <ProjectReference Include="..\RevitLookup.UI.Framework\RevitLookup.UI.Framework.csproj"/>
-        <ProjectReference Include="..\RevitLookup.UI\RevitLookup.UI.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

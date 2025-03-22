@@ -1,10 +1,10 @@
-﻿<rl:ContentDialog
+﻿<ui:ContentDialog
     x:Class="RevitLookup.UI.Framework.Views.Visualization.XyzVisualizationDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:colorPicker="clr-namespace:RevitLookup.UI.Framework.Controls.ColorPicker"
     xmlns:local="clr-namespace:RevitLookup.UI.Framework.Views.Visualization"
     xmlns:visualization="clr-namespace:RevitLookup.Abstractions.ViewModels.Visualization;assembly=RevitLookup.Abstractions"
@@ -16,17 +16,17 @@
     d:DesignWidth="600"
     d:DataContext="{d:DesignInstance visualization:IXyzVisualizationViewModel}">
 
-    <rl:ContentDialog.Resources>
+    <ui:ContentDialog.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <rl:ControlsDictionary />
+                <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
             <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
             <Style
                 BasedOn="{StaticResource DefaultContentDialogStyle}"
                 TargetType="{x:Type local:XyzVisualizationDialog}" />
         </ResourceDictionary>
-    </rl:ContentDialog.Resources>
+    </ui:ContentDialog.Resources>
 
     <StackPanel>
         <CheckBox
@@ -77,7 +77,7 @@
         </StackPanel>
         <DockPanel
             Margin="0 8 0 0">
-            <rl:SymbolIcon
+            <ui:SymbolIcon
                 DockPanel.Dock="Right"
                 Margin="8 0 0 0"
                 FontSize="20"
@@ -92,7 +92,7 @@
         </DockPanel>
         <DockPanel
             Margin="0 8 0 0">
-            <rl:SymbolIcon
+            <ui:SymbolIcon
                 DockPanel.Dock="Right"
                 Margin="8 0 0 0"
                 FontSize="20"
@@ -107,7 +107,7 @@
         </DockPanel>
         <DockPanel
             Margin="0 8 0 0">
-            <rl:SymbolIcon
+            <ui:SymbolIcon
                 DockPanel.Dock="Right"
                 Margin="8 0 0 0"
                 FontSize="20"
@@ -122,4 +122,4 @@
         </DockPanel>
     </StackPanel>
 
-</rl:ContentDialog>
+</ui:ContentDialog>

@@ -54,7 +54,7 @@
         </Project>
     </Folder>
     <Folder Name="/Engine/">
-        <Project Path="source\LookupEngine.Abstractions\LookupEngine.Abstractions.csproj" Type="Classic C#">
+        <Project Path="source\LookupEngine\source\LookupEngine.Abstractions\LookupEngine.Abstractions.csproj" Type="Classic C#">
             <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU"/>
@@ -72,7 +72,7 @@
             <Configuration Solution="Release R25|Any CPU" Project="Release|Any CPU"/>
             <Configuration Solution="Release R26|Any CPU" Project="Release|Any CPU"/>
         </Project>
-        <Project Path="source\LookupEngine\LookupEngine.csproj" Type="Classic C#">
+        <Project Path="source\LookupEngine\source\LookupEngine\LookupEngine.csproj" Type="Classic C#">
             <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU"/>
@@ -92,7 +92,7 @@
         </Project>
     </Folder>
     <Folder Name="/Frontend/">
-        <Project Path="source\RevitLookup.UI.Abstractions\RevitLookup.UI.Abstractions.csproj" Type="Classic C#">
+        <Project Path="source\LookupEngine.UI\source\LookupEngine.UI.Abstractions\LookupEngine.UI.Abstractions.csproj" Type="Classic C#">
             <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU"/>
@@ -146,7 +146,7 @@
             <Configuration Solution="Release R25|Any CPU" Project="Release|Any CPU|NoBuild"/>
             <Configuration Solution="Release R26|Any CPU" Project="Release|Any CPU|NoBuild"/>
         </Project>
-        <Project Path="source\RevitLookup.UI\RevitLookup.UI.csproj" Type="Classic C#">
+        <Project Path="source\LookupEngine.UI\source\LookupEngine.UI\LookupEngine.UI.csproj" Type="Classic C#">
             <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU|NoBuild"/>
             <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU"/>
             <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU"/>
@@ -180,44 +180,6 @@
         <File Path="Build\Build.Configuration.cs"/>
         <File Path="Directory.Packages.props"/>
         <File Path="Directory.Build.props"/>
-    </Folder>
-    <Folder Name="/Tests/">
-        <Project Path="tests\LookupEngine.Tests.Performance\LookupEngine.Tests.Performance.csproj" Type="Classic C#">
-            <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R22|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R23|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
-            <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R22|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R23|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R24|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R25|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R26|Any CPU" Project="Release|Any CPU|NoBuild"/>
-        </Project>
-        <Project Path="tests\LookupEngine.Tests.Unit\LookupEngine.Tests.Unit.csproj" Type="Classic C#">
-            <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU"/>
-            <Configuration Solution="Debug Frontend|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R21|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R22|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R23|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R24|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R25|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Debug R26|Any CPU" Project="Debug|Any CPU|NoBuild"/>
-            <Configuration Solution="Release Engine|Any CPU" Project="Release|Any CPU"/>
-            <Configuration Solution="Release Frontend|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R21|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R22|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R23|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R24|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R25|Any CPU" Project="Release|Any CPU|NoBuild"/>
-            <Configuration Solution="Release R26|Any CPU" Project="Release|Any CPU|NoBuild"/>
-        </Project>
     </Folder>
     <Project Path="source\RevitLookup.Abstractions\RevitLookup.Abstractions.csproj" Type="Classic C#">
         <Configuration Solution="Debug Engine|Any CPU" Project="Debug|Any CPU|NoBuild"/>

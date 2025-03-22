@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:rl="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:membersGrid="clr-namespace:RevitLookup.Styles.ComponentStyles.MembersGrid"
     mc:Ignorable="d">
 
@@ -28,7 +28,7 @@
                                     BorderThickness="0 0 1 1"
                                     Background="{DynamicResource LayerOnMicaBaseAltFillColorSecondaryBrush}"
                                     BorderBrush="{DynamicResource ControlStrokeColorSecondaryBrush}">
-                                    <rl:TextBlock
+                                    <ui:TextBlock
                                         VerticalAlignment="Center"
                                         Margin="6 0"
                                         FontTypography="Caption"

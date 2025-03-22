@@ -1,7 +1,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ui="http://revitlookup.com/xaml"
+    xmlns:ui="http://lookupengine.com/xaml"
     xmlns:controls="clr-namespace:RevitLookup.UI.Playground.Client.Controls"
     xmlns:helpers="clr-namespace:RevitLookup.UI.Playground.Client.Helpers">
 
