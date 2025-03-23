@@ -14,8 +14,7 @@ improvements. Let's move to the details.
 - **Unlocked Ribbon buttons** for document-independent actions. Some dialogs can be opened without opening a document.
 - **Improved context actions**. Now `Delete` command shows the number of deleted Elements from the document.
 - **Improved exception handling**. Now shows more informational messages, added more supported error types. Fixed some application crashes.
-- **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues. For the .NET Core version,
-  everything is unchanged, RevitLookup uses an isolated context.
+- **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues.
 
 ## User Interface
 
@@ -67,7 +66,7 @@ Updated and improved Summary page components.
 - **Adjusted default window sizes** for better display due to changes in Win.UI components.
 - **Synchronised UI library** and styles with Wpf.UI.
 - **Improved theme synchronization** with Windows.
-- **Added high contrast** theme.
+- **Added a new high contrast** theme.
 
 ## LookupEngine
 
@@ -76,7 +75,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 
 - **The engine is much faster** than the integrated version, it allocates less memory, and supports more features.
 - **Added context support**, now allows additional metadata to be used to resolve members.
-- **Fixed CLR exceptions** for critical .NET Core components when analyzing members.
+- **Fixed CLR exceptions** for critical .NET Core components when evaluating members.
 - **New Lookup Engine API**. Isolation encouraged independent use of the API in any application.
 - **Improved context detection**, objects now understand what context they are in and provide values specific to their context, not just the active context.
 - **Added navigation stack**, now it will be easier to add support for new unsupported parent-dependent methods.
@@ -87,11 +86,11 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `DatumPlane.CanBeVisibleInView`
     - `DatumPlane.GetPropagationViews`
     - `IndependentTag.TagText`
-- Added new **View extensions**:
+- Added new **View* extensions:
     - `GetAllPlacedInstances`
-- Added new **Wall extensions**:
+- Added new **Wall** extensions:
     - `IsWallCrossSectionValid`
-- Added new **CompoundStructure extensions**:
+- Added new **CompoundStructure** extensions:
     - `CanLayerBeStructuralMaterial`
     - `CanLayerBeVariable`
     - `CanLayerWidthBeNonZero`
@@ -120,18 +119,18 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 
 ## Development notes:
 
+- **Redesigned project structure**:
+    - Standalone [LookupEngine](https://github.com/LookupEngine/LookupEngine.UI). The LookupEngine is now a separate project, independent of RevitLookup.
+    - Standalone [LookupEngine.UI](https://github.com/LookupEngine/LookupEngine.UI). The LookupEngine UI is now a separate project, independent of RevitLookup.
+    - UI Playground for development and testing the UI outside the Revit, independently.
 - **Moving to Central Package Management**, all dependencies are now managed in a single file.
 - **Moving to Central Build Management**, common build configurations are now managed in a single file.
 - **Automatic registration of MVVM components** in the service provider, no longer need to register each component manually.
-- **Added unit tests** for Revit-independent components.
 - **.NET 9 SDK support** for development.
 - **Migrated to SLNX solution format**, to avoid Git merge conflicts.
-- **Changed API for ContextMenu**, simplified and integrated with the service provider.
+- **Changed API for ContextMenu**. Now it provides dependecies and execution context.
 - **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
-- **Redesigned project structure**:
-    - UI design is now a separate project, independent of RevitLookup. All UI components are now developed and tested outside Revit, greatly speeding up the implementation of new
-      features.
-    - Standalone LookupEngine. The LookupEngine development is now a separate project, independent of RevitLookup.
+- **Updated** [Contribution](https://github.com/jeremytammik/RevitLookup/blob/dev/Contributing.md) guide.
 
 Made with love by @Nice3point 🕊️
 
@@ -168,7 +167,7 @@ Feedback: https://github.com/jeremytammik/RevitLookup/pull/296
 The **Revit.ini** file is a key configuration file in Revit that stores settings related to user preferences, system behavior, and project defaults.
 
 The **Revit.ini File Editor** provides a simple and efficient way to manage these settings without the need for manual editing.
-With this tool, users can quickly adjust Revit’s configurations to match project needs or personal preferences, making it an essential utility for both professionals and teams
+With this tool, users can quickly adjust Revit's configurations to match project needs or personal preferences, making it an essential utility for both professionals and teams
 working with Revit.
 
 ![image](https://github.com/user-attachments/assets/701a0a97-1906-419d-950b-b70f9b852966)
@@ -192,9 +191,9 @@ Many thanks to @RichardPinka for testing tools in the discussion: https://github
 
 ## Public RevitLookup roadmap
 
-Curious about what’s next? Stay updated on the latest developments for RevitLookup and share your feedback.
+Curious about what's next? Stay updated on the latest developments for RevitLookup and share your feedback.
 
-Check out our Public Roadmap to see what’s coming up in future releases.: https://github.com/users/jeremytammik/projects/1
+Check out our Public Roadmap to see what's coming up in future releases.: https://github.com/users/jeremytammik/projects/1
 
 ![image](https://github.com/user-attachments/assets/14c3479d-871a-4f32-a933-a4b365e566bc)
 
@@ -656,7 +655,7 @@ Many thanks to @SergeyNefyodov for contributing to RevitLookup
 
 - **Modules view**
 
-  The new Modules view lets you inspect the dynamic link libraries (DLLs) and executables that your app uses. In this view, you’ll find information such as module names, versions,
+  The new Modules view lets you inspect the dynamic link libraries (DLLs) and executables that your app uses. In this view, you'll find information such as module names, versions,
   application domains, paths to the module.
   ![image](https://github.com/jeremytammik/RevitLookup/assets/20504884/b9f23a6c-24c8-4ff5-a4d1-59a3a685ac4d)
 
