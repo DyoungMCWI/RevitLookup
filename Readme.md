@@ -44,7 +44,11 @@ We truly love pull requests! If you wish to help, you can learn more about how t
 
 The source code is published under [MIT License](http://opensource.org/licenses/MIT), the license is available [here](License.md).
 
-## Technology Sponsors
+## Sponsors
+
+Thanks to [Kinship](https://kinship.io/) for providing cloud services and digital technologies that improve user experience and development quality!
+
+[<img src="https://github.com/user-attachments/assets/b0d772fd-db50-4dd3-81ae-3c19df69dbb5" width="450" />](https://jetbrains.com/)
 
 Thanks to [JetBrains](https://jetbrains.com) for providing licenses for [Rider](https://jetbrains.com/rider), [dotUltimate](https://www.jetbrains.com/dotnet/) and [Qodana Ultimate Plus](https://www.jetbrains.com/qodana/), which both
 make open-source development a real pleasure!
