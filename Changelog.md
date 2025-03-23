@@ -88,9 +88,9 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `IndependentTag.TagText`
 - Added new **View** extensions:
     - `GetAllPlacedInstances`
-- Added new **Wall** extensions:
+- Added new **Wall** method overloads:
     - `IsWallCrossSectionValid`
-- Added new **CompoundStructure** extensions:
+- Added new **CompoundStructure** method overloads:
     - `CanLayerBeStructuralMaterial`
     - `CanLayerBeVariable`
     - `CanLayerWidthBeNonZero`
