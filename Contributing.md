@@ -1,29 +1,33 @@
 ﻿## Table of contents
 
 <!-- TOC -->
-* [Fork, Clone, Branch and Create your PR](#fork-clone-branch-and-create-your-pr)
-* [Rules](#rules)
-* [Building](#building)
-  * [Prerequisites](#prerequisites)
-  * [Initialize and update submodules](#initialize-and-update-submodules)
-  * [Compiling Source Code](#compiling-source-code)
-  * [Creating MSI installer on a local machine](#creating-msi-installer-on-a-local-machine)
-* [Publish a new Release](#publish-a-new-release)
-  * [Creating a new release from the IDE](#creating-a-new-release-from-the-ide)
-  * [Creating a new release from the Terminal](#creating-a-new-release-from-the-terminal)
-  * [Creating a new release on GitHub](#creating-a-new-release-on-github)
-* [Architecture](#architecture)
-  * [Descriptors](#descriptors)
-  * [IDescriptorResolver](#idescriptorresolver)
-    * [Single Value Resolution](#single-value-resolution)
-    * [Multiple Value Resolution](#multiple-value-resolution)
-    * [Disabling Methods](#disabling-methods)
-    * [Targeting Specific Overloads](#targeting-specific-overloads)
-  * [IDescriptorExtension](#idescriptorextension)
-  * [IDescriptorRedirector](#idescriptorredirector)
-  * [IDescriptorCollector](#idescriptorcollector)
-  * [IDescriptorConnector](#idescriptorconnector)
-  * [UI Styling](#ui-styling)
+  * [Fork, Clone, Branch and Create your PR](#fork-clone-branch-and-create-your-pr)
+  * [Rules](#rules)
+  * [Building](#building)
+    * [Prerequisites](#prerequisites)
+    * [Initialize and update submodules](#initialize-and-update-submodules)
+    * [Compiling Source Code](#compiling-source-code)
+    * [Creating MSI installer on a local machine](#creating-msi-installer-on-a-local-machine)
+  * [Publish a new Release](#publish-a-new-release)
+    * [Creating a new release from the IDE](#creating-a-new-release-from-the-ide)
+    * [Creating a new release from the Terminal](#creating-a-new-release-from-the-terminal)
+    * [Creating a new release on GitHub](#creating-a-new-release-on-github)
+  * [Architecture](#architecture)
+    * [Descriptors](#descriptors)
+    * [IDescriptorResolver](#idescriptorresolver)
+      * [Single Value Resolution](#single-value-resolution)
+      * [Multiple Value Resolution](#multiple-value-resolution)
+      * [Disabling Methods](#disabling-methods)
+      * [Targeting Specific Overloads](#targeting-specific-overloads)
+    * [IDescriptorExtension](#idescriptorextension)
+    * [IDescriptorRedirector](#idescriptorredirector)
+    * [IDescriptorCollector](#idescriptorcollector)
+    * [IDescriptorConnector](#idescriptorconnector)
+    * [UI Styling](#ui-styling)
+  * [UI Development and Testing](#ui-development-and-testing)
+    * [Setting Up the UI Playground](#setting-up-the-ui-playground)
+    * [Benefits of UI Playground](#benefits-of-ui-playground)
+    * [UI Development Workflow](#ui-development-workflow)
 <!-- TOC -->
 
 ## Fork, Clone, Branch and Create your PR
@@ -443,3 +447,25 @@ public sealed class TreeViewItemTemplateSelector : DataTemplateSelector
 ```
 
 For custom visualization of specific data types, create specialized templates following the pattern above and register them in the appropriate style selectors.
+
+## UI Development and Testing
+
+RevitLookup provides a dedicated environment for UI development and testing without launching Revit, which significantly speeds up the development cycle. All UI changes should first be developed and tested in the `RevitLookup.UI.Playground` project using the `Debug Frontend` solution configuration.
+
+### Setting Up the UI Playground
+
+1. Select the `Debug Frontend` configuration from the solution configuration dropdown.
+2. Set `RevitLookup.UI.Playground` as the startup project.
+
+### Benefits of UI Playground
+
+- **Faster Development Cycle**: No need to wait for Revit to launch, which can save significant time during UI development.
+- **Isolated Testing**: Test UI components in isolation without Revit's complexity.
+- **Mock Data**: The playground uses mock data that simulates real Revit objects for realistic UI testing.
+
+### UI Development Workflow
+
+1. **Design and Implement** your UI changes in the `RevitLookup.UI.Playground` project.
+2. **Test and Debug** your changes in the playground environment.
+3. **Refine and Polish** your UI based on the test results.
+4. **Integrate** your changes into the main RevitLookup codebase only after you're satisfied with the results in the playground.
