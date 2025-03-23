@@ -1,27 +1,29 @@
 ﻿## Table of contents
 
 <!-- TOC -->
-  * [Fork, Clone, Branch and Create your PR](#fork-clone-branch-and-create-your-pr)
-  * [Rules](#rules)
-  * [Compiling RevitLookup](#compiling-revitlookup)
-    * [Prerequisites for Compiling RevitLookup](#prerequisites-for-compiling-revitlookup)
-    * [Install .Net versions](#install-net-versions)
-    * [Compiling Source Code](#compiling-source-code)
-    * [Creating MSI installer on a local machine](#creating-msi-installer-on-a-local-machine)
-    * [Creating a new release on GitHub](#creating-a-new-release-on-github)
-  * [Solution structure](#solution-structure)
-  * [Project structure](#project-structure)
-  * [Architecture](#architecture)
-    * [IDescriptorCollector](#idescriptorcollector)
-    * [IDescriptorResolver](#idescriptorresolver)
-      * [Resolution with only one variant](#resolution-with-only-one-variant)
-      * [Resolution with multiple values](#resolution-with-multiple-values)
-      * [Resolution without variants](#resolution-without-variants)
-      * [Disabling methods](#disabling-methods)
-    * [IDescriptorExtension](#idescriptorextension)
-    * [IDescriptorRedirection](#idescriptorredirection)
-    * [IDescriptorConnector](#idescriptorconnector)
-    * [Styles](#styles)
+* [Fork, Clone, Branch and Create your PR](#fork-clone-branch-and-create-your-pr)
+* [Rules](#rules)
+* [Building](#building)
+  * [Prerequisites](#prerequisites)
+  * [Initialize and update submodules](#initialize-and-update-submodules)
+  * [Compiling Source Code](#compiling-source-code)
+  * [Creating MSI installer on a local machine](#creating-msi-installer-on-a-local-machine)
+* [Publish a new Release](#publish-a-new-release)
+  * [Creating a new release from the IDE](#creating-a-new-release-from-the-ide)
+  * [Creating a new release from the Terminal](#creating-a-new-release-from-the-terminal)
+  * [Creating a new release on GitHub](#creating-a-new-release-on-github)
+* [Architecture](#architecture)
+  * [Descriptors](#descriptors)
+  * [IDescriptorResolver](#idescriptorresolver)
+    * [Single Value Resolution](#single-value-resolution)
+    * [Multiple Value Resolution](#multiple-value-resolution)
+    * [Disabling Methods](#disabling-methods)
+    * [Targeting Specific Overloads](#targeting-specific-overloads)
+  * [IDescriptorExtension](#idescriptorextension)
+  * [IDescriptorRedirector](#idescriptorredirector)
+  * [IDescriptorCollector](#idescriptorcollector)
+  * [IDescriptorConnector](#idescriptorconnector)
+  * [UI Styling](#ui-styling)
 <!-- TOC -->
 
 ## Fork, Clone, Branch and Create your PR
@@ -198,199 +200,184 @@ To update the changelog:
 
 ## Architecture
 
-Descriptors and interfaces are used to extend functionality in the project. They are located in the `RevitLookup/Core/ComponentModel` path.
+RevitLookup is built on the LookupEngine framework, which provides system for analyzing object structures at runtime. This section explains how you can extend and modify core components of the project.
 
-The Descriptors directory contains descriptors that describe exactly how the program should handle types and what data to show the user.
+### Descriptors
 
-The DescriptorMap file is responsible for mapping a descriptor to a type. The map is searched both roughly, for displaying to the user, and precisely by type, for the work of
-adding extensions and additional functionality to a particular type.
+Descriptors are specialized classes that define how objects should be handled by the LookupEngine. Each descriptor is responsible for a specific type or family of types in Revit.
 
-To add descriptors for new classes, you must add a new file and update the DescriptorMap.
+To add a descriptor for a new class:
 
-Interfaces are responsible for extending functionality:
-
-### IDescriptorCollector
-
-Indicates that the descriptor can retrieve object members by reflection.
-If you add this interface, the user can click on the object and analyze its members.
-
-```c#
-public sealed class ApplicationDescriptor : Descriptor, IDescriptorCollector
-{
-    public ApplicationDescriptor(Autodesk.Revit.ApplicationServices.Application application)
-    {
-        Name = application.VersionName;
-    }
-}
-```
+1. Create a new descriptor class in the appropriate folder under `RevitLookup\Core\Decomposition\Descriptors`
+2. Register the descriptor in the descriptor map located at `RevitLookup\Core\Decomposition\DescriptorMap.cs`
 
 ### IDescriptorResolver
 
-Indicates that the descriptor can decide to call methods/properties with parameters or override their values.
+This interface allows descriptors to control how methods and properties with parameters are evaluated. In RevitLookup, `Document` serves as the context for resolution.
 
-#### Resolution with only one variant
+#### Single Value Resolution
 
-To resolve member with only one variant, or you want to disable some method, use the `Variants.Single()`:
-
-```c#
-public sealed class DocumentDescriptor : Descriptor, IDescriptorResolver
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ElementDescriptor.cs
+public class ElementDescriptor(Element element) : Descriptor, IDescriptorResolver<Document>
 {
-    public Func<IVariants> Resolve(Document context, string target, ParameterInfo[] parameters)
+    public virtual Func<Document, IVariant>? Resolve(string target, ParameterInfo[] parameters)
     {
         return target switch
         {
-            nameof(Document.PlanTopologies) => ResolvePlanTopologies,
+            nameof(Element.IsHidden) => ResolveIsHidden,
             _ => null
         };
-        
-        IVariants ResolvePlanTopologies()
+
+        IVariant ResolveIsHidden(Document context)
         {
-            return Variants.Single(_document.PlanTopologies);
+            return Variants.Value(element.IsHidden(context.ActiveView), "Active view");
         }
     }
 }
 ```
 
-#### Resolution with multiple values
+#### Multiple Value Resolution
 
-To resolve member with different input parameters, create a new Variants collection and specify variant count `new Variants<double>(count)`:
-
-```c#
-public sealed class PlanViewRangeDescriptor : Descriptor, IDescriptorResolver
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ElementDescriptor.cs
+public class ElementDescriptor(Element element) : Descriptor, IDescriptorResolver<Document>
 {
-    public ResolveSet Resolve(Document context, string target, ParameterInfo[] parameters)
+    public virtual Func<Document, IVariant>? Resolve(string target, ParameterInfo[] parameters)
     {
         return target switch
         {
-            nameof(PlanViewRange.GetOffset) => ResolveGetOffset,
-            nameof(PlanViewRange.GetLevelId) => ResolveGetLevelId,
+            nameof(Element.GetBoundingBox) => ResolveBoundingBox,
             _ => null
         };
-        
-        IVariants ResolveGetOffset()
+
+        IVariant ResolveBoundingBox(Document context)
         {
-            return new Variants<double>(2)
-                .Add(viewRange.GetOffset(PlanViewPlane.TopClipPlane), "Top clip plane")
-                .Add(viewRange.GetOffset(PlanViewPlane.CutPlane), "Cut plane")
-        }
-        
-        IVariants ResolveGetLevelId()
-        {
-            return new Variants<ElementId>(2)
-                .Add(viewRange.GetLevelId(PlanViewPlane.TopClipPlane), "Top clip plane")
-                .Add(viewRange.GetLevelId(PlanViewPlane.CutPlane), "Cut plane")
+            return Variants.Values<BoundingBoxXYZ>(2)
+                .Add(element.get_BoundingBox(null), "Model")
+                .Add(element.get_BoundingBox(context.ActiveView), "Active view")
+                .Consume();
         }
     }
 }
 ```
 
-#### Resolution without variants
+#### Disabling Methods
 
-If your member is not resolved, use the `Variants.Empty()` method. For example, you want to disable Enumerator call but want to display this member:
-
-```c#
-public sealed class UiElementDescriptor : Descriptor, IDescriptorResolver
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\DocumentDescriptor.cs
+public class DocumentDescriptor(Document document) : Descriptor, IDescriptorResolver
 {
-    public Func<IVariants> Resolve(Document context, string target, ParameterInfo[] parameters)
+    public virtual Func<IVariant>? Resolve(string target, ParameterInfo[] parameters)
     {
         return target switch
         {
-            nameof(UIElement.GetLocalValueEnumerator) => ResolveGetLocalValueEnumerator,
+            nameof(Document.Close) => Variants.Disabled,
             _ => null
         };
-        
-        IVariants ResolveGetLocalValueEnumerator()
-        {
-            return Variants.Empty<LocalValueEnumerator>();
-        }
     }
 }
 ```
 
-In another situation you have nothing to return by the condition, use the `Variants.Empty()` as well:
+#### Targeting Specific Overloads
 
-```c#
-public sealed class DocumentDescriptor : Descriptor, IDescriptorResolver
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\EntityDescriptor.cs
+public sealed class EntityDescriptor(Entity entity) : Descriptor, IDescriptorResolver
 {
-    public Func<IVariants> Resolve(Document context, string target, ParameterInfo[] parameters)
+    public Func<IVariant>? Resolve(string target, ParameterInfo[] parameters)
     {
         return target switch
         {
-            nameof(Document.PlanTopologies) when parameters.Length == 0 => ResolvePlanTopologies,
+            nameof(Entity.Get) when parameters.Length == 1 &&
+                                    parameters[0].ParameterType == typeof(string) => ResolveGetByField,
             _ => null
         };
         
-        IVariants ResolvePlanTopologies()
+        IVariant ResolveGetByField()
         {
-            if (_document.IsReadOnly) return Variants.Empty<PlanTopologySet>();
-            
-            return Variants.Single(_document.PlanTopologies);
+            return Variants.Value(entity.Get("Parameter Name"));
         }
-    }
-}
-```
-
-#### Disabling methods
-
-If you want to disable some method, use `Variants.Disabled` property:
-
-```c#
-public class UiElementDescriptor : Descriptor, IDescriptorResolver
-{
-    public ResolveSet Resolve(Document context, string target, ParameterInfo[] parameters)
-    {
-        return target switch
-        {
-            nameof(UIElement.Focus) => Variants.Disabled,
-            _ => null
-        };
     }
 }
 ```
 
 ### IDescriptorExtension
 
-Indicates that additional members can be added to the descriptor.
+This interface allows adding custom methods and properties to objects that don't exist in the original type. In RevitLookup, this can use the `Document` context to provide additional functionality.
 
-Adding a new `HEX()` method for the `Color` class:
-
-```c#
-public void RegisterExtensions(IExtensionManager manager)
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ColorDescriptor.cs
+public sealed class ColorDescriptor(Color color) : Descriptor, IDescriptorExtension
 {
-    manager.Register("HEX", context => ColorRepresentationUtils.ColorToHex(_color.GetDrawingColor()));
-    manager.Register("RGB", context => ColorRepresentationUtils.ColorToRgb(_color.GetDrawingColor()));
-    manager.Register("HSL", context => ColorRepresentationUtils.ColorToHsl(_color.GetDrawingColor()));
-    manager.Register("HSV", context => ColorRepresentationUtils.ColorToHsv(_color.GetDrawingColor()));
-    manager.Register("CMYK", context => ColorRepresentationUtils.ColorToCmyk(_color.GetDrawingColor()));
+    public void RegisterExtensions(IExtensionManager manager)
+    {
+        manager.Register("HEX", () => Variants.Value(ColorRepresentationUtils.ColorToHex(color)));
+        manager.Register("RGB", () => Variants.Value(ColorRepresentationUtils.ColorToRgb(color)));
+        manager.Register("HSL", () => Variants.Value(ColorRepresentationUtils.ColorToHsl(color)));
+    }
 }
 ```
 
-### IDescriptorRedirection
+With context:
 
-Indicates that the object can be redirected to another.
-
-Redirect from `ElementId` to `Element` if Element itself exists:
-
-```c#
-public sealed class ElementIdDescriptor : Descriptor, IDescriptorRedirection
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\SchemaDescriptor.cs
+public sealed class SchemaDescriptor(Schema schema) : Descriptor, IDescriptorExtension<Document>
 {
-    public bool TryRedirect(Document context, string target, out object output)
+    public void RegisterExtensions(IExtensionManager<Document> manager)
     {
-        output = _elementId.ToElement(context);
-        if (element is null) return false;
+        manager.Register("GetElements", context => Variants.Value(context
+            .GetElements()
+            .WherePasses(new ExtensibleStorageFilter(schema.GUID))
+            .ToElements()));
+    }
+}
+```
 
-        return true;
+### IDescriptorRedirector
+
+This interface lets a descriptor redirect to another object. For example, converting from an ID to the actual element.
+
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ElementIdDescriptor.cs
+public sealed class ElementIdDescriptor(ElementId elementId) : Descriptor, IDescriptorRedirector<Document>
+{
+    public bool TryRedirect(string target, Document context, out object result)
+    {
+        if (elementId == ElementId.InvalidElementId) 
+        {
+            result = null;
+            return false;
+        }
+
+        result = elementId.ToElement(context);
+        return result != null;
+    }
+}
+```
+
+### IDescriptorCollector
+
+This interface serves as a marker indicating that the descriptor can decompose the object's members. It's essential for allowing users to inspect an object's internal structure.
+
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ApplicationDescriptor.cs
+public sealed class ApplicationDescriptor : Descriptor, IDescriptorCollector
+{
+    public ApplicationDescriptor(Application application)
+    {
+        Name = application.VersionName;
     }
 }
 ```
 
 ### IDescriptorConnector
 
-Indicates that the descriptor can interact with the UI and execute commands.
+This interface enables integration with the RevitLookup UI, allowing descriptors to add custom context menu options and commands.
 
-Adding an option for the context menu:
-
-```c#
+```csharp
+// RevitLookup\Core\Decomposition\Descriptors\ElementDescriptor.cs
 public sealed class ElementDescriptor : Descriptor, IDescriptorConnector
 {
     public void RegisterMenu(ContextMenu contextMenu)
@@ -401,51 +388,58 @@ public sealed class ElementDescriptor : Descriptor, IDescriptorConnector
             .SetCommand(_element, element =>
             {
                 Context.UiDocument.ShowElements(element);
-                Context.UiDocument.Selection.SetElementIds(new List<ElementId>(1) {element.Id});
+                Context.UiDocument.Selection.SetElementIds([element.Id]);
             })
             .AddShortcut(ModifierKeys.Alt, Key.F7);
     }
 }
 ```
 
-### Styles
+### UI Styling
 
-The application UI is divided into templates, where each template can be customized for different types of data.
-There are several different rules for customizing TreeView, DataGrid row, DataGrid cell and they are all located in the
-file `RevitLookup/Views/Pages/Abstraction/SnoopViewBase.Styles.cs`.
+The application UI is data-template based, with templates customizable for different data types. Templates are located in `RevitLookup\Styles\ComponentStyles` directory.
 
-Use the DataTemplate `x:Key` property to search for `templateName` inside the switch block:
+To customize the display of a specific type:
 
-```C#
-public override DataTemplate SelectTemplate(object item, DependencyObject container)
-{
-    if (item is null) return null;
+1. Create a DataTemplate in a XAML file within the Controls directory
 
-    var descriptor = (Descriptor) item;
-    var presenter = (FrameworkElement) container;
-    var templateName = descriptor.Value.Descriptor switch
-    {
-        ColorDescriptor => "DataGridColorCellTemplate",
-        ColorMediaDescriptor => "DataGridColorCellTemplate",
-        _ => "DefaultLookupDataGridCellTemplate"
-    };
-
-    return (DataTemplate) presenter.FindResource(templateName);
-}
-```
-
-The templates themselves are located in the `RevitLookup/Views/Controls` folder.
-For example, in the `RevitLookup/Views/Controls/DataGrid/DataGridCellTemplate.xaml` file there is a cell template that displays the text:
-
-```xaml
+```xml
+// RevitLookup\Styles\ComponentStyles\ObjectsTree\TreeGroupTemplates.xaml
 <DataTemplate
-    x:Key="DefaultLookupDataGridCellTemplate">
-    <TextBlock
-        d:DataContext="{d:DesignInstance objects:Descriptor}"
-        Text="{Binding Value.Descriptor,
-            Converter={converters:CombinedDescriptorConverter},
+    x:Key="DefaultSummaryTreeItemTemplate"
+    DataType="{x:Type decomposition:ObservableDecomposedObject}">
+    <ui:TextBlock
+        FontTypography="Caption"
+        Text="{Binding .,
+            Converter={valueConverters:SingleDescriptorLabelConverter},
             Mode=OneTime}" />
 </DataTemplate>
 ```
 
-References to additional files must be registered in `RevitLookup/Views/Resources/RevitLookup.Ui.xaml`.
+2. Add a selector rule in the `TemplateSelector` class:
+
+```csharp
+// RevitLookup\Styles\ComponentStyles\ObjectsTree\TreeViewItemTemplateSelector.cs
+public sealed class TreeViewItemTemplateSelector : DataTemplateSelector
+{
+    /// <summary>
+    ///     Tree view row style selector
+    /// </summary>
+    public override DataTemplate? SelectTemplate(object? item, DependencyObject container)
+    {
+        if (item is null) return null;
+
+        var presenter = (FrameworkElement) container;
+        var decomposedObject = (ObservableDecomposedObject) item;
+        var templateName = decomposedObject.RawValue switch
+        {
+            Color => "SummaryMediaColorItemTemplate",
+            _ => "DefaultSummaryTreeItemTemplate"
+        };
+
+        return (DataTemplate) presenter.FindResource(templateName);
+    }
+}
+```
+
+For custom visualization of specific data types, create specialized templates following the pattern above and register them in the appropriate style selectors.
