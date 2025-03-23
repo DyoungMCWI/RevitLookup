@@ -86,7 +86,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `DatumPlane.CanBeVisibleInView`
     - `DatumPlane.GetPropagationViews`
     - `IndependentTag.TagText`
-- Added new **View* extensions:
+- Added new **View** extensions:
     - `GetAllPlacedInstances`
 - Added new **Wall** extensions:
     - `IsWallCrossSectionValid`
