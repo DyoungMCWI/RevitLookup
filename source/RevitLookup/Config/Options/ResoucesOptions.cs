@@ -30,6 +30,7 @@ public static class ResourcesOptions
 
             //Roaming files
             options.ApplicationSettingsPath = options.SettingsDirectory.AppendPath("Application.json");
+            options.DecompositionSettingsPath = options.SettingsDirectory.AppendPath("LookupEngine.json");
             options.VisualizationSettingsPath = options.SettingsDirectory.AppendPath("Visualization.json");
         });
     }
