@@ -40,3 +40,8 @@ jobs:
         run: ./.nuke/build.cmd PublishGitHub --ReleaseVersion ${{ github.event.inputs.version || github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AZURE_VAULT_URI: ${{ secrets.AZURE_VAULT_URI }}
+          AZURE_VAULT_CLIENT_ID: ${{ secrets.AZURE_VAULT_CLIENT_ID }}
+          AZURE_VAULT_CLIENT_SECRET: ${{ secrets.AZURE_VAULT_CLIENT_SECRET }}
+          AZURE_VAULT_CERTIFICATE_NAME: ${{ secrets.AZURE_VAULT_CERTIFICATE_NAME }}
+          AZURE_VAULT_TENANT_ID: ${{ secrets.AZURE_VAULT_TENANT_ID }}

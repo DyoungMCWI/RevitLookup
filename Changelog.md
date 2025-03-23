@@ -131,6 +131,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 - **Changed API for ContextMenu**. Now it provides dependecies and execution context.
 - **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
 - **Updated** [Contribution](https://github.com/jeremytammik/RevitLookup/blob/dev/Contributing.md) guide.
+- **Added digital signature**. Thanks [Kinship](https://kinship.io/) for providing cloud services!
 
 Made with love by @Nice3point 🕊️
 

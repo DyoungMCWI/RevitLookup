@@ -97,6 +97,31 @@ sealed partial class Build
     ///     Solution structure metadata.
     /// </summary>
     [Solution(GenerateProjects = true)] Solution Solution;
+    
+    /// <summary>
+    ///     Azure Key Vault URI
+    /// </summary>
+    [Parameter] [Secret] readonly string AzureVaultUri = EnvironmentInfo.GetVariable("AZURE_VAULT_URI");
+
+    /// <summary>
+    ///    Azure Key Vault tenant ID
+    /// </summary>
+    [Parameter] [Secret] readonly string AzureVaultTenantId = EnvironmentInfo.GetVariable("AZURE_VAULT_TENANT_ID");
+    
+    /// <summary>
+    ///     Azure Key Vault client ID
+    /// </summary>
+    [Parameter] [Secret] readonly string AzureVaultClientId = EnvironmentInfo.GetVariable("AZURE_VAULT_CLIENT_ID");
+
+    /// <summary>
+    ///     Azure Key Vault client secret
+    /// </summary>
+    [Parameter] [Secret] readonly string AzureVaultClientSecret = EnvironmentInfo.GetVariable("AZURE_VAULT_CLIENT_SECRET");
+
+    /// <summary>
+    ///     Azure Key Vault certificate name
+    /// </summary>
+    [Parameter] [Secret] readonly string AzureVaultCertificateName = EnvironmentInfo.GetVariable("AZURE_VAULT_CERTIFICATE_NAME");
 
     /// <summary>
     ///     Set not-defined properties.
