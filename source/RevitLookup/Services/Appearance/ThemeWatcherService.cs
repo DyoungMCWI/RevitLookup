@@ -138,7 +138,7 @@ public sealed class ThemeWatcherService(ISettingsService settingsService) : IThe
     private static void UpdateDictionary(FrameworkElement frameworkElement)
     {
         var themedResources = frameworkElement.Resources.MergedDictionaries
-            .Where(dictionary => dictionary.Source.OriginalString.Contains("revitlookup.ui;", StringComparison.OrdinalIgnoreCase))
+            .Where(dictionary => dictionary.Source.OriginalString.Contains("LookupEngine.UI;", StringComparison.OrdinalIgnoreCase))
             .ToArray();
 
         frameworkElement.Resources.MergedDictionaries.Insert(0, UiApplication.Current.Resources.MergedDictionaries[0]);

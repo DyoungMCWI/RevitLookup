@@ -19,7 +19,7 @@
     <PropertyGroup>
         <DeployRevitAddin>true</DeployRevitAddin>
         <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable>
-        <RepackBinariesExcludes>$(AssemblyName).UI.dll;$(AssemblyName).UI.Abstractions.dll;LookupEngine*.dll</RepackBinariesExcludes>
+        <RepackBinariesExcludes>LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
 
     <ItemGroup Condition="!$(DefineConstants.Contains('NETCOREAPP'))">
