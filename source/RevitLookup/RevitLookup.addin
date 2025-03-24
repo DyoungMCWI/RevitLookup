@@ -6,6 +6,7 @@
         <AddInId>356CDA5A-E6C5-4c2f-A9EF-B3222116B8C8</AddInId>
         <VendorId>ANDK</VendorId>
         <VendorDescription>Andekan, www.andekan.com</VendorDescription>
+        <VendorEmail></VendorEmail>
     </AddIn>
     <ManifestSettings>
         <UseRevitContext>False</UseRevitContext>

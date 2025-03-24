@@ -7,7 +7,7 @@
     * [Prerequisites](#prerequisites)
     * [Initialize and update submodules](#initialize-and-update-submodules)
     * [Compiling Source Code](#compiling-source-code)
-    * [Creating MSI installer on a local machine](#creating-msi-installer-on-a-local-machine)
+    * [Building the MSI installer and the Autodesk bundle on local machine](#building-the-msi-installer-and-the-autodesk-bundle-on-local-machine)
   * [Publish a new Release](#publish-a-new-release)
     * [Creating a new release from the IDE](#creating-a-new-release-from-the-ide)
     * [Creating a new release from the Terminal](#creating-a-new-release-from-the-terminal)
@@ -90,34 +90,39 @@ from [here](https://www.jetbrains.com/rider/).
 4. After the solution loads, you can build it by clicking on `Build -> Build Solution`.
 5. Use the `Debug` button to start debugging.
 
-### Creating MSI installer on a local machine
+### Building the MSI installer and the Autodesk bundle on local machine
 
-To build the RevitLookup for all versions and create the installer, use [NUKE](https://github.com/nuke-build/nuke)
+To build the project for all versions, create the installer and bundle, this project uses [NUKE](https://github.com/nuke-build/nuke)
 
 To execute your NUKE build locally, you can follow these steps:
 
 1. **Install NUKE as a global tool**. First, make sure you have NUKE installed as a global tool. You can install it using dotnet CLI:
 
-    ```powershell
+    ```shell
     dotnet tool install Nuke.GlobalTool --global
     ```
 
    You only need to do this once on your machine.
 
-2. **Navigate to the solution directory**. Open a terminal / command prompt and navigate to RevitLookup root directory.
-3. **Run the build**. Once you have navigated to your solution directory, you can run the NUKE build by calling:
+2. **Navigate to your project directory**. Open a terminal / command prompt and navigate to your project's root directory.
+3. **Run the build**. Once you have navigated to your project's root directory, you can run the NUKE build by calling:
 
    Compile:
-   ```powershell
+   ```shell
    nuke
    ```
 
-   Create an installer:
-   ```powershell
+   Create installer:
+   ```shell
    nuke createinstaller
    ```
-   
-   This command will execute the NUKE build, defined in the RevitLookup project.
+
+   Create installer and bundle:
+   ```shell
+   nuke createinstaller createbundle
+   ```
+
+   This command will execute the NUKE build defined in your project.
 
 ## Publish a new Release
 

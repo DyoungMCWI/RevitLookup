@@ -27,6 +27,14 @@ sealed partial class Build
     };
     
     /// <summary>
+    ///     Projects packed in the Autodesk Bundle.
+    /// </summary>
+    Project[] Bundles =>
+    [
+        Solution.Revit.RevitLookup
+    ];
+    
+    /// <summary>
     ///     Mapping between used installer project and the project containing the installation files.
     /// </summary>
     Dictionary<Project, Project> InstallersMap => new()
