@@ -17,8 +17,8 @@ Whether you are a seasoned professional or just starting out, the RevitLookup is
 <br/>
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/9ea2b54b-dc82-4338-97cc-07b30119a23e">
-        <img alt="RevitLookup" src="https://github.com/user-attachments/assets/7d936ccd-3476-4ecf-b000-e1c3099ae5af">
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/e291769a-e400-401c-aa23-052e083e5cfd">
+        <img alt="RevitLookup" src="https://github.com/user-attachments/assets/516e648a-18fe-43cc-98d5-393eb57adb01">
     </picture>
 </div>
 
