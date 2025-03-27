@@ -1,4 +1,4 @@
-﻿// Copyright 2003-2024 by Autodesk, Inc.
+// Copyright 2003-2024 by Autodesk, Inc.
 // 
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -55,6 +55,8 @@ public static class DescriptorsMap
     {
         return obj switch
         {
+            CurveLoop value when type is null || type == typeof(CurveLoop) => new CurveLoopDescriptor(value),
+
             //System
             string value when type is null || type == typeof(string) => new StringDescriptor(value),
             bool value when type is null || type == typeof(bool) => new BooleanDescriptor(value),

@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Text.Json;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
@@ -187,6 +187,18 @@ public sealed class MockSettingsService(
                 ShowNormalVector = true
             },
             PolylineSettings = new PolylineVisualizationSettings
+            {
+                Transparency = 20,
+                Diameter = 2,
+                MinThickness = 0.1,
+                SurfaceColor = Colors.DodgerBlue,
+                CurveColor = Color.FromArgb(255, 30, 81, 255),
+                DirectionColor = Color.FromArgb(255, 255, 89, 30),
+                ShowSurface = true,
+                ShowCurve = true,
+                ShowDirection = true
+            },
+            CurveLoopSettings = new CurveLoopVisualizationSettings
             {
                 Transparency = 20,
                 Diameter = 2,
