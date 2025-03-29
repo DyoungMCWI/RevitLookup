@@ -1,18 +1,18 @@
 // Copyright 2003-2024 by Autodesk, Inc.
-// 
+//
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
 // provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
 // restricted rights notice below appear in all supporting
 // documentation.
-// 
+//
 // AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
 // MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
-// 
+//
 // Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
@@ -36,11 +36,11 @@ namespace RevitLookup.Core.Decomposition.Descriptors;
 
 public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, IContextMenuConnector
 {
-    private readonly CurveLoop _curveloop;
+    private readonly CurveLoop _curveLoop;
 
     public CurveLoopDescriptor(CurveLoop curveloop)
     {
-        _curveloop = curveloop;
+        _curveLoop = curveloop;
         Name = $"{curveloop.GetExactLength().ToString(CultureInfo.InvariantCulture)} ft";
     }
 
@@ -58,7 +58,7 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
         {
             var variants = Variants.Values<int>(1);
 
-            variants.Add(_curveloop.NumberOfCurves(), "number of curves in the curve loop");
+            variants.Add(_curveLoop.NumberOfCurves(), "number of curves in the curve loop");
 
             return variants.Consume();
         }
@@ -66,14 +66,14 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
         IVariant ResolveIsOpen()
         {
             return Variants.Values<bool>(1)
-                .Add(_curveloop.IsOpen(), "whether the curve loop is open or closed")
+                .Add(_curveLoop.IsOpen(), "whether the curve loop is open or closed")
                 .Consume();
         }
 
         IVariant ResolveGetPlane()
         {
             return Variants.Values<Plane>(1)
-                .Add(_curveloop.GetPlane(), "Plane")
+                .Add(_curveLoop.GetPlane(), "Plane")
                 .Consume();
         }
     }
@@ -90,8 +90,8 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
             .SetShortcut(Key.F7);
 #endif
         contextMenu.AddMenuItem("VisualizeMenuItem")
-            .SetAvailability(true && _curveloop.GetExactLength() > 1e-6)
-            .SetCommand(_curveloop, VisualizeCurve)
+            .SetAvailability(true && _curveLoop.GetExactLength() > 1e-6)
+            .SetCommand(_curveLoop, VisualizeCurve)
             .SetShortcut(Key.F8);
 
         async Task VisualizeCurve(CurveLoop curveloop)

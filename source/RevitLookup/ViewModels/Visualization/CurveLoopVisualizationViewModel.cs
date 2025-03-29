@@ -16,57 +16,26 @@ using Color = System.Windows.Media.Color;
 namespace RevitLookup.ViewModels.Visualization
 {
     [UsedImplicitly]
-    public sealed partial class CurveLoopVisualizationViewModel : ObservableObject, ICurveLoopVisualizationViewModel
+    public sealed partial class CurveLoopVisualizationViewModel(
+        ISettingsService settingsService,
+        INotificationService notificationService,
+        ILogger<CurveLoopVisualizationViewModel> logger)
+        : ObservableObject, ICurveLoopVisualizationViewModel
     {
         private readonly CurveLoopVisualizationServer _server = new();
-        private readonly ISettingsService _settingsService;
-        private readonly INotificationService _notificationService;
-        private readonly ILogger<CurveLoopVisualizationViewModel> _logger;
 
-        public CurveLoopVisualizationViewModel(
-            ISettingsService settingsService,
-            INotificationService notificationService,
-            ILogger<CurveLoopVisualizationViewModel> logger)
-        {
-            _settingsService = settingsService;
-            _notificationService = notificationService;
-            _logger = logger;
+        [ObservableProperty] private double _diameter = settingsService.VisualizationSettings.CurveLoopSettings.Diameter;
+        [ObservableProperty] private double _transparency = settingsService.VisualizationSettings.CurveLoopSettings.Transparency;
 
-            Diameter = _settingsService.VisualizationSettings.CurveLoopSettings.Diameter;
-            Transparency = _settingsService.VisualizationSettings.CurveLoopSettings.Transparency;
-            SurfaceColor = _settingsService.VisualizationSettings.CurveLoopSettings.SurfaceColor;
-            CurveColor = _settingsService.VisualizationSettings.CurveLoopSettings.CurveColor;
-            DirectionColor = _settingsService.VisualizationSettings.CurveLoopSettings.DirectionColor;
-            ShowSurface = _settingsService.VisualizationSettings.CurveLoopSettings.ShowSurface;
-            ShowCurve = _settingsService.VisualizationSettings.CurveLoopSettings.ShowCurve;
-            ShowDirection = _settingsService.VisualizationSettings.CurveLoopSettings.ShowDirection;
-        }
+        [ObservableProperty] private Color _surfaceColor = settingsService.VisualizationSettings.CurveLoopSettings.SurfaceColor;
+        [ObservableProperty] private Color _curveColor = settingsService.VisualizationSettings.CurveLoopSettings.CurveColor;
+        [ObservableProperty] private Color _directionColor = settingsService.VisualizationSettings.CurveLoopSettings.DirectionColor;
 
-        public double MinThickness => _settingsService.VisualizationSettings.CurveLoopSettings.MinThickness;
+        [ObservableProperty] private bool _showSurface = settingsService.VisualizationSettings.CurveLoopSettings.ShowSurface;
+        [ObservableProperty] private bool _showCurve = settingsService.VisualizationSettings.CurveLoopSettings.ShowCurve;
+        [ObservableProperty] private bool _showDirection = settingsService.VisualizationSettings.CurveLoopSettings.ShowDirection;
 
-        [ObservableProperty]
-        private double _diameter;
-
-        [ObservableProperty]
-        private double _transparency;
-
-        [ObservableProperty]
-        private Color _surfaceColor;
-
-        [ObservableProperty]
-        private Color _curveColor;
-
-        [ObservableProperty]
-        private Color _directionColor;
-
-        [ObservableProperty]
-        private bool _showSurface;
-
-        [ObservableProperty]
-        private bool _showCurve;
-
-        [ObservableProperty]
-        private bool _showDirection;
+        public double MinThickness => settingsService.VisualizationSettings.CurveLoopSettings.MinThickness;
 
         public void RegisterServer(object curveLoop)
         {
@@ -74,24 +43,30 @@ namespace RevitLookup.ViewModels.Visualization
             {
                 Initialize();
                 _server.RenderFailed += HandleRenderFailure;
-                var allVertices = new List<XYZ>();
-                foreach (var curve in loop)
-                {
-                    var collectionPts = curve.Tessellate().ToList();
-                    foreach (var vertex in collectionPts)
-                    {
-                        if (allVertices.Any(pt => pt.IsAlmostEqualTo(vertex))) continue;
-
-                        allVertices.Add(vertex);
-                    }
-                }
-
-                if (!loop.IsOpen()) allVertices.Add(allVertices[0]);
+                var allVertices = CollectVertices(loop);
 
                 _server.Register(allVertices);
                 return;
             }
             throw new ArgumentException("Unexpected CurveLoop type", nameof(curveLoop));
+        }
+
+        private static List<XYZ> CollectVertices(CurveLoop loop)
+        {
+            var allVertices = new List<XYZ>();
+            foreach (var curve in loop)
+            {
+                var collectionPts = curve.Tessellate().ToList();
+                foreach (var vertex in collectionPts)
+                {
+                    if (allVertices.Any(pt => pt.IsAlmostEqualTo(vertex))) continue;
+
+                    allVertices.Add(vertex);
+                }
+            }
+
+            if (!loop.IsOpen()) allVertices.Add(allVertices[0]);
+            return allVertices;
         }
 
         private void Initialize()
@@ -116,55 +91,55 @@ namespace RevitLookup.ViewModels.Visualization
 
         private void HandleRenderFailure(object? sender, RenderFailedEventArgs args)
         {
-            _logger.LogError(args.ExceptionObject, "Render error");
-            _notificationService.ShowError("Render error", args.ExceptionObject);
+            logger.LogError(args.ExceptionObject, "Render error");
+            notificationService.ShowError("Render error", args.ExceptionObject);
         }
 
         partial void OnSurfaceColorChanged(Color value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.SurfaceColor = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.SurfaceColor = value;
             UpdateSurfaceColor(value);
         }
 
         partial void OnCurveColorChanged(Color value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.CurveColor = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.CurveColor = value;
             UpdateCurveColor(value);
         }
 
         partial void OnDirectionColorChanged(Color value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.DirectionColor = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.DirectionColor = value;
             UpdateDirectionColor(value);
         }
 
         partial void OnDiameterChanged(double value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.Diameter = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.Diameter = value;
             UpdateDiameter(value);
         }
 
         partial void OnTransparencyChanged(double value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.Transparency = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.Transparency = value;
             UpdateTransparency(value);
         }
 
         partial void OnShowSurfaceChanged(bool value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.ShowSurface = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.ShowSurface = value;
             UpdateShowSurface(value);
         }
 
         partial void OnShowCurveChanged(bool value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.ShowCurve = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.ShowCurve = value;
             UpdateShowCurve(value);
         }
 
         partial void OnShowDirectionChanged(bool value)
         {
-            _settingsService.VisualizationSettings.CurveLoopSettings.ShowDirection = value;
+            settingsService.VisualizationSettings.CurveLoopSettings.ShowDirection = value;
             UpdateShowDirection(value);
         }
 

@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="RevitLookup.UI.Playground.Client.Views.Pages.DialogsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -80,6 +80,11 @@
         <ui:CardAction
             Margin="0 4 0 0"
             Icon="{ui:SymbolIcon Wallpaper24}"
+            Content="CurveLoop visualization dialog"
+            Command="{Binding ViewModel.ShowCurveLoopVisualizationDialogCommand}" />
+        <ui:CardAction
+            Margin="0 4 0 0"
+            Icon="{ui:SymbolIcon Wallpaper24}"
             Content="Solid visualization dialog"
             Command="{Binding ViewModel.ShowSolidVisualizationDialogCommand}" />
         <ui:CardAction
@@ -108,5 +113,4 @@
             Content="Create INI entry dialog"
             Command="{Binding ViewModel.ShowCreateIniEntryDialogCommand}" />
     </StackPanel>
-
 </Page>
