@@ -82,15 +82,15 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
     {
 #if REVIT2023_OR_GREATER
         contextMenu.AddMenuItem("SelectMenuItem")
-            .SetCommand(_curveloop, SelectCurve)
+            .SetCommand(_curveLoop, SelectCurve)
             .SetShortcut(Key.F6);
 
         contextMenu.AddMenuItem("ShowMenuItem")
-            .SetCommand(_curveloop, ShowCurve)
+            .SetCommand(_curveLoop, ShowCurve)
             .SetShortcut(Key.F7);
 #endif
         contextMenu.AddMenuItem("VisualizeMenuItem")
-            .SetAvailability(true && _curveLoop.GetExactLength() > 1e-6)
+            .SetAvailability(_curveLoop.GetExactLength() > 1e-6)
             .SetCommand(_curveLoop, VisualizeCurve)
             .SetShortcut(Key.F8);
 
