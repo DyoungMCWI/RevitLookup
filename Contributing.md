@@ -54,16 +54,11 @@
 
 ### Prerequisites
 
-- Windows 10 April 2018 Update (version 1803) or newer.
-- One of the following IDEs:
-    - JetBrains Rider 2023.3 or newer.
-    - Visual Studio 2022 (any edition) with following workloads:
-        - .NET desktop development.
-        - .NET Core cross-platform development.
-- Required .NET SDKs:
-    - [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48)
-    - [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet)
-- Git for version control.
+- Windows 10 or newer.
+- [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48).
+- [.NET 9](https://dotnet.microsoft.com/en-us/download/dotnet).
+- [JetBrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio](https://visualstudio.microsoft.com/).
+- [Git](https://git-scm.com/downloads).
 
 ### Initialize and update submodules
 
@@ -124,10 +119,10 @@ To execute your NUKE build locally, you can follow these steps:
 
    This command will execute the NUKE build defined in your project.
 
-## Publish a new Release
+## Publishing Releases
 
-Releases are managed by creating new Git tags.
-Tags act as unique identifiers for specific versions, with the ability to roll back to earlier versions.
+Releases are managed by creating new [Git tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
+A tag in Git used to capture a snapshot of the project at a particular point in time, with the ability to roll back to a previous version.
 
 Tags must follow the format `version` or `version-stage.n.date` for pre-releases, where:
 
@@ -153,7 +148,20 @@ For example:
 | Beta    | 1.0.0-beta.2.20250101  |
 | Release | 1.0.0                  |
 
-### Creating a new release from the IDE
+### Updating the Changelog
+
+For releases, changelog for the release version is required.
+
+To update the changelog:
+
+1. Navigate to the solution root.
+2. Open the file **Changelog.md**.
+3. Add a section for your version. The version separator is the `#` symbol.
+4. Specify the release number e.g. `# 1.0.0` or `# 25.01.01 v1.0.0`, the format does not matter, the main thing is that it contains the version.
+5. In the lines below, write a changelog for your version, style to your taste. For example, you will find changelog for version 1.0.0, do the same.
+6. Make a commit.
+
+### Creating a new Release from the JetBrains Rider
 
 Publishing a release begins with the creation of a new tag:
 
@@ -169,9 +177,9 @@ Publishing a release begins with the creation of a new tag:
 
    ![image](https://github.com/user-attachments/assets/b2349264-dd76-4c21-b596-93110f1f16cb)
 
-   This process will trigger the Release workflow and create a new release on GitHub.
+   This process will trigger the Release workflow and create a new Release on GitHub.
 
-### Creating a new release from the Terminal
+### Creating a new Release from the Terminal
 
 Alternatively, you can create and push tags using the terminal:
 
@@ -186,7 +194,11 @@ Alternatively, you can create and push tags using the terminal:
    ```shell
    git push origin 'version'
    ```
-### Creating a new release on GitHub
+
+> [!NOTE]  
+> The tag will reference your current commit, so verify you're on the correct branch and have fetched latest changes from remote first.
+
+### Creating a new Release on GitHub
 
 To create releases directly on GitHub:
 
@@ -197,19 +209,10 @@ To create releases directly on GitHub:
 
    ![image](https://github.com/user-attachments/assets/088388c1-6055-4d21-8d22-70f047d8f104)
 
-> To create a release, changelog for the release version is required.
-
-To update the changelog:
-
-1. Navigate to the solution root.
-2. Open the file **Changelog.md**.
-3. Add a section for your version. The version separator is the `#` symbol.
-4. Specify the release number e.g. `# 1.0.0` or `# Release v1.0.0`, the format does not matter, the main thing is that it contains the version.
-5. In the lines below, write a changelog for your version, style to your taste. For example, you will find changelog for version 1.0.0, do the same.
-
 ## Architecture
 
-RevitLookup is built on the LookupEngine framework, which provides system for analyzing object structures at runtime. This section explains how you can extend and modify core components of the project.
+RevitLookup is built on the [LookupEngine](https://github.com/LookupEngine/LookupEngine) framework, which provides a system for analyzing object structures at runtime. 
+This section explains how you can extend and modify core components of the project.
 
 ### Descriptors
 
@@ -222,7 +225,8 @@ To add a descriptor for a new class:
 
 ### IDescriptorResolver
 
-This interface allows descriptors to control how methods and properties with parameters are evaluated. In RevitLookup, `Document` serves as the context for resolution.
+This interface allows descriptors to control how methods and properties with parameters are evaluated. 
+In RevitLookup, `Document` serves as the context for resolution.
 
 #### Single Value Resolution
 
@@ -313,7 +317,8 @@ public sealed class EntityDescriptor(Entity entity) : Descriptor, IDescriptorRes
 
 ### IDescriptorExtension
 
-This interface allows adding custom methods and properties to objects that don't exist in the original type. In RevitLookup, this can use the `Document` context to provide additional functionality.
+This interface allows adding custom methods and properties to objects that don't exist in the original type. 
+In RevitLookup, extensions can use the `Document` as a context during registration for document-dependent elements.
 
 ```csharp
 // RevitLookup\Core\Decomposition\Descriptors\ColorDescriptor.cs
@@ -361,7 +366,7 @@ public sealed class ElementIdDescriptor(ElementId elementId) : Descriptor, IDesc
         }
 
         result = elementId.ToElement(context);
-        return result != null;
+        return result is not null;
     }
 }
 ```
@@ -410,7 +415,7 @@ The application UI is data-template based, with templates customizable for diffe
 
 To customize the display of a specific type:
 
-1. Create a DataTemplate in a XAML file within the Controls directory
+1. Create a DataTemplate in a XAML file within the ComponentStyles directory:
 
 ```xml
 // RevitLookup\Styles\ComponentStyles\ObjectsTree\TreeGroupTemplates.xaml

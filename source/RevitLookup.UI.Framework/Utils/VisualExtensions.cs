@@ -9,7 +9,7 @@ public static class VisualExtensions
     public static T? FindVisualParent<T>(this DependencyObject element) where T : FrameworkElement
     {
         var parentElement = (FrameworkElement?) VisualTreeHelper.GetParent(element);
-        while (parentElement != null)
+        while (parentElement is not null)
         {
             if (parentElement is T parent)
                 return parent;
@@ -23,7 +23,7 @@ public static class VisualExtensions
     public static T? FindVisualParent<T>(this DependencyObject element, string name) where T : FrameworkElement
     {
         var parentElement = (FrameworkElement?) VisualTreeHelper.GetParent(element);
-        while (parentElement != null)
+        while (parentElement is not null)
         {
             if (parentElement is T parent)
                 if (parentElement.Name == name)
@@ -46,7 +46,7 @@ public static class VisualExtensions
                 return child;
 
             var descendent = FindVisualChild<T>(childElement);
-            if (descendent != null) return descendent;
+            if (descendent is not null) return descendent;
         }
 
         return null;
@@ -64,7 +64,7 @@ public static class VisualExtensions
                     return child;
 
             var descendent = FindVisualChild<T>(childElement, name);
-            if (descendent != null) return descendent;
+            if (descendent is not null) return descendent;
         }
 
         return null;
@@ -77,7 +77,7 @@ public static class VisualExtensions
             if (child is T correctlyTyped) return correctlyTyped;
 
             var descendent = FindLogicalChild<T>(child);
-            if (descendent != null) return descendent;
+            if (descendent is not null) return descendent;
         }
 
         return null;
@@ -86,7 +86,7 @@ public static class VisualExtensions
     public static T? FindLogicalParent<T>(this DependencyObject dependencyObject) where T : DependencyObject
     {
         var parentObject = LogicalTreeHelper.GetParent(dependencyObject);
-        while (parentObject != null)
+        while (parentObject is not null)
         {
             if (parentObject is T parent) return parent;
             parentObject = LogicalTreeHelper.GetParent(parentObject);
@@ -104,7 +104,7 @@ public static class VisualExtensions
 
         container.ApplyTemplate();
         var itemsPresenter = (ItemsPresenter) container.Template.FindName("ItemsHost", container);
-        if (itemsPresenter != null)
+        if (itemsPresenter is not null)
         {
             itemsPresenter.ApplyTemplate();
         }

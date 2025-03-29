@@ -177,7 +177,7 @@ public sealed class RevitConfigurator
         foreach (var userEntry in userEntries)
         {
             var existingEntry = journalEntries.FirstOrDefault(entry => entry.Category == userEntry.Category && entry.Property == userEntry.Property);
-            if (existingEntry != null)
+            if (existingEntry is not null)
             {
                 existingEntry.Value = userEntry.Value;
                 existingEntry.IsActive = userEntry.IsActive;
@@ -192,7 +192,7 @@ public sealed class RevitConfigurator
         foreach (var defaultEntry in defaultEntries)
         {
             var existingEntry = journalEntries.FirstOrDefault(e => e.Category == defaultEntry.Category && e.Property == defaultEntry.Property);
-            if (existingEntry != null)
+            if (existingEntry is not null)
             {
                 existingEntry.DefaultValue = defaultEntry.DefaultValue;
             }

@@ -4,7 +4,7 @@
 
 A new major RevitLookup update with official Revit 2026 support and a lot of enhancements 🎉
 
-This release focuses on performance, a renewed UI, expanded functionality, redesigned application architecture, and clearer separation of core components and user flow
+This release focuses on performance, a renewed UI, expanded functionality, redesigned application architecture, clearer separation of core components and user flow
 improvements. Let's move to the details.
 
 ## General
@@ -15,6 +15,8 @@ improvements. Let's move to the details.
 - **Improved context actions**. Now `Delete` command shows the number of deleted Elements from the document.
 - **Improved exception handling**. Now shows more informational messages, added more supported error types. Fixed some application crashes.
 - **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues.
+- **Added AppBundle**, that can be installed with all available versions in the release.
+- **Added digital signature**. Thanks [Kinship](https://kinship.io/) for providing cloud services!
 
 ## User Interface
 
@@ -70,7 +72,9 @@ Updated and improved Summary page components.
 
 ## LookupEngine
 
-RevitLookup now runs on its own engine. The engine can run outside Revit, and can be reused across the entire Autodesk family of applications. This is a pledge for the future for
+RevitLookup now runs on its own engine.
+The engine can run outside Revit, and can be reused across the entire family of Autodesk products.
+This is a pledge for the future for
 products like AutocadLookup, InventorLookup and others. Isolating the engine also brings many new improvements:
 
 - **The engine is much faster** than the integrated version, it allocates less memory, and supports more features.
@@ -117,7 +121,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `IsStructuralDeck`
     - `ParticipatesInWrapping`
 
-## Development notes:
+## Development:
 
 - **Redesigned project structure**:
     - Standalone [LookupEngine](https://github.com/LookupEngine/LookupEngine.UI). The LookupEngine is now a separate project, independent of RevitLookup.
@@ -131,7 +135,6 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 - **Changed API for ContextMenu**. Now it provides dependecies and execution context.
 - **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
 - **Updated** [Contribution](https://github.com/jeremytammik/RevitLookup/blob/dev/Contributing.md) guide.
-- **Added digital signature**. Thanks [Kinship](https://kinship.io/) for providing cloud services!
 
 Made with love by @Nice3point 🕊️
 
