@@ -315,6 +315,7 @@ public class ElementDescriptor : Descriptor, IDescriptorResolver, IDescriptorExt
 
         contextMenu.AddMenuItem("DeleteMenuItem")
             .SetCommand(_element, DeleteElement)
+            .SetAvailability(DocumentValidation.CanDeleteElement(_element.Document, _element.Id))
             .SetShortcut(Key.Delete);
 
         void SelectFace(Element element)

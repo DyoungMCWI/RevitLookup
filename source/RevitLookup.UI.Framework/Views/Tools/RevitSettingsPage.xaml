@@ -254,7 +254,7 @@
                                 Path="ViewModel.Entries.Count" />
                             <Binding
                                 Path="ViewModel.InitializationTask.IsCompleted"
-                                FallbackValue="False" />
+                                FallbackValue="Hidden" />
                         </MultiBinding>
                     </contentPlaceholder:ContentPlaceholder.Visibility>
                 </contentPlaceholder:ContentPlaceholder>
