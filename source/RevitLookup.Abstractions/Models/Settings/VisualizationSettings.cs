@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.Models.Settings;
@@ -13,6 +13,7 @@ public sealed class VisualizationSettings
     [JsonPropertyName("FaceSettings")] public required FaceVisualizationSettings FaceSettings { get; set; }
     [JsonPropertyName("MeshSettings")] public required MeshVisualizationSettings MeshSettings { get; set; }
     [JsonPropertyName("PolylineSettings")] public required PolylineVisualizationSettings PolylineSettings { get; set; }
+    [JsonPropertyName("CurveLoopSettings")] public required CurveLoopVisualizationSettings CurveLoopSettings { get; set; }
     [JsonPropertyName("SolidSettings")] public required SolidVisualizationSettings SolidSettings { get; set; }
     [JsonPropertyName("XyzSettings")] public required XyzVisualizationSettings XyzSettings { get; set; }
 }
@@ -77,6 +78,25 @@ public class MeshVisualizationSettings
 /// </summary>
 [Serializable]
 public class PolylineVisualizationSettings
+{
+    [JsonPropertyName("Transparency")] public double Transparency { get; set; }
+    [JsonPropertyName("Diameter")] public double Diameter { get; set; }
+    [JsonPropertyName("MinThickness")] public double MinThickness { get; set; }
+
+    [JsonPropertyName("SurfaceColor")] public Color SurfaceColor { get; set; }
+    [JsonPropertyName("CurveColor")] public Color CurveColor { get; set; }
+    [JsonPropertyName("DirectionColor")] public Color DirectionColor { get; set; }
+
+    [JsonPropertyName("ShowSurface")] public bool ShowSurface { get; set; }
+    [JsonPropertyName("ShowCurve")] public bool ShowCurve { get; set; }
+    [JsonPropertyName("ShowDirection")] public bool ShowDirection { get; set; }
+}
+
+/// <summary>
+///     Schema for CurveLoop visualization settings.
+/// </summary>
+[Serializable]
+public class CurveLoopVisualizationSettings
 {
     [JsonPropertyName("Transparency")] public double Transparency { get; set; }
     [JsonPropertyName("Diameter")] public double Diameter { get; set; }

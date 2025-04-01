@@ -1,18 +1,18 @@
 ﻿// Copyright 2003-2024 by Autodesk, Inc.
-// 
+//
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
 // provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
 // restricted rights notice below appear in all supporting
 // documentation.
-// 
+//
 // AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
 // MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
-// 
+//
 // Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
@@ -58,7 +58,7 @@ public static class DescriptorsMap
             //System
             string value when type is null || type == typeof(string) => new StringDescriptor(value),
             bool value when type is null || type == typeof(bool) => new BooleanDescriptor(value),
-            IEnumerable value => new EnumerableDescriptor(value),
+            IEnumerable value and not CurveLoop => new EnumerableDescriptor(value),
             Exception value when type is null || type == typeof(Exception) => new ExceptionDescriptor(value),
 
             //Root
@@ -83,6 +83,7 @@ public static class DescriptorsMap
             Solid value when type is null || type == typeof(Solid) => new SolidDescriptor(value),
             Mesh value when type is null || type == typeof(Mesh) => new MeshDescriptor(value),
             CylindricalFace value when type is null || type == typeof(CylindricalFace) => new CylindricalFaceDescriptor(value),
+            CurveLoop value when type is null || type == typeof(CurveLoop) => new CurveLoopDescriptor(value),
             Face value when type is null || type == typeof(Face) => new FaceDescriptor(value),
             City value when type is null || type == typeof(City) => new CityDescriptor(value),
             PaperSize value when type is null || type == typeof(PaperSize) => new PaperSizeDescriptor(value),

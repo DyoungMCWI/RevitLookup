@@ -22,9 +22,9 @@ public sealed class MockSettingsService(
     private DecompositionSettings? _decompositionSettings;
     private VisualizationSettings? _visualizationSettings;
 
-    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Application settings is not loaded.");
+    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Decomposition settings is not loaded.");
+    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Visualization settings is not loaded.");
 
     public void SaveSettings()
     {
@@ -67,7 +67,7 @@ public sealed class MockSettingsService(
         File.WriteAllText(path, json);
     }
 
-    private void LoadApplicationSettings()
+ private void LoadApplicationSettings()
     {
         var path = foldersOptions.Value.ApplicationSettingsPath;
         if (!File.Exists(path))
@@ -84,6 +84,11 @@ public sealed class MockSettingsService(
         catch (Exception exception)
         {
             logger.LogError(exception, "Application settings loading error");
+        }
+        
+        if (_applicationSettings is null)
+        {
+            ResetApplicationSettings();
         }
     }
 
@@ -105,6 +110,11 @@ public sealed class MockSettingsService(
         {
             logger.LogError(exception, "Decomposition settings loading error");
         }
+
+        if (_decompositionSettings is null)
+        {
+            ResetDecompositionSettings();
+        }
     }
 
     private void LoadVisualizationSettings()
@@ -124,6 +134,11 @@ public sealed class MockSettingsService(
         catch (Exception exception)
         {
             logger.LogError(exception, "Application settings loading error");
+        }
+
+        if (_visualizationSettings is null)
+        {
+            ResetVisualizationSettings();
         }
     }
 
@@ -187,6 +202,18 @@ public sealed class MockSettingsService(
                 ShowNormalVector = true
             },
             PolylineSettings = new PolylineVisualizationSettings
+            {
+                Transparency = 20,
+                Diameter = 2,
+                MinThickness = 0.1,
+                SurfaceColor = Colors.DodgerBlue,
+                CurveColor = Color.FromArgb(255, 30, 81, 255),
+                DirectionColor = Color.FromArgb(255, 255, 89, 30),
+                ShowSurface = true,
+                ShowCurve = true,
+                ShowDirection = true
+            },
+            CurveLoopSettings = new CurveLoopVisualizationSettings
             {
                 Transparency = 20,
                 Diameter = 2,

@@ -1,4 +1,4 @@
-﻿using Bogus;
+using Bogus;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JetBrains.Annotations;
@@ -109,6 +109,13 @@ public sealed partial class DialogsViewModel(IServiceProvider serviceProvider) :
     {
         var dialog = serviceProvider.GetRequiredService<PolylineVisualizationDialog>();
         await dialog.ShowDialogAsync("polyline");
+    }
+
+    [RelayCommand]
+    private async Task ShowCurveLoopVisualizationDialogAsync()
+    {
+        var dialog = serviceProvider.GetRequiredService<CurveLoopVisualizationDialog>();
+        await dialog.ShowDialogAsync("curveLoop");
     }
 
     [RelayCommand]
