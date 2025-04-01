@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using RevitLookup.Abstractions.ObservableModels.Decomposition;
-using Color = System.Windows.Media.Color;
 
 namespace RevitLookup.Styles.ComponentStyles.ObjectsTree;
 
@@ -18,7 +17,8 @@ public sealed class TreeViewItemTemplateSelector : DataTemplateSelector
         var decomposedObject = (ObservableDecomposedObject) item;
         var templateName = decomposedObject.RawValue switch
         {
-            Color => "SummaryMediaColorItemTemplate",
+            Color {IsValid: true} => "SummaryMediaColorItemTemplate",
+            System.Windows.Media.Color => "SummaryMediaColorItemTemplate",
             _ => "DefaultSummaryTreeItemTemplate"
         };
 

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using RevitLookup.Abstractions.ObservableModels.Decomposition;
-using Color = System.Windows.Media.Color;
 
 namespace RevitLookup.Styles.ComponentStyles.MembersGrid;
 
@@ -18,7 +17,8 @@ public sealed class DataGridCellTemplateSelector : DataTemplateSelector
         var presenter = (FrameworkElement) container;
         var templateName = member.Value.RawValue switch
         {
-            Color => "SummaryMediaColorCellTemplate",
+            Color {IsValid: true} => "SummaryMediaColorCellTemplate",
+            System.Windows.Media.Color => "SummaryMediaColorCellTemplate",
             _ => "DefaultSummaryCellTemplate"
         };
 
