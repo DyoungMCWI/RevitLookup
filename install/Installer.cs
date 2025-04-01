@@ -42,7 +42,7 @@ var project = new Project
     ControlPanelInfo =
     {
         Manufacturer = "Autodesk",
-        HelpLink = "https://github.com/LookupEngine/RevitLookup/issues",
+        HelpLink = "https://github.com/lookup-foundation/RevitLookup/issues",
         ProductIcon = @"install\Resources\Icons\ShellIcon.ico"
     }
 };

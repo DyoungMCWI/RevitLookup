@@ -70,7 +70,7 @@
                 <controls:HeaderTile
                     Title="RevitLookup GitHub"
                     Description="Project source repository page"
-                    Link="https://github.com/LookupEngine/RevitLookup"
+                    Link="https://github.com/lookup-foundation/RevitLookup"
                     Margin="12 0 0 0">
                     <controls:HeaderTile.Source>
                         <Viewbox

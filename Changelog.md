@@ -16,7 +16,7 @@ improvements. Let's move to the details.
 - **Improved exception handling**. Now shows more informational messages, added more supported error types. Fixed some application crashes.
 - **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues.
 - **Added AppBundle**, that can be installed with all available versions in the release.
-- **Added user manuals**, visit the [Wiki](https://github.com/LookupEngine/RevitLookup/wiki) for RevitLookup features.
+- **Added user manuals**, visit the [Wiki](https://github.com/lookup-foundation/RevitLookup/wiki) for RevitLookup features.
 - **Added digital signature**. Thanks [Kinship](https://kinship.io/) for providing cloud services!
 
 ## User Interface
@@ -129,8 +129,8 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 ## Development:
 
 - **Redesigned project structure**:
-    - Standalone [LookupEngine](https://github.com/LookupEngine/LookupEngine.UI). The LookupEngine is now a separate project, independent of RevitLookup.
-    - Standalone [LookupEngine.UI](https://github.com/LookupEngine/LookupEngine.UI). The LookupEngine UI is now a separate project, independent of RevitLookup.
+    - Standalone [LookupEngine](https://github.com/lookup-foundation/LookupEngine.UI). The LookupEngine is now a separate project, independent of RevitLookup.
+    - Standalone [LookupEngine.UI](https://github.com/lookup-foundation/LookupEngine.UI). The LookupEngine UI is now a separate project, independent of RevitLookup.
     - UI Playground for development and testing the UI outside the Revit, independently.
 - **Moving to Central Package Management**, all dependencies are now managed in a single file.
 - **Moving to Central Build Management**, common build configurations are now managed in a single file.
@@ -139,7 +139,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 - **Migrated to SLNX solution format**, to avoid Git merge conflicts.
 - **Changed API for ContextMenu**. Now it provides dependecies and execution context.
 - **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
-- **Updated** [Contribution](https://github.com/LookupEngine/RevitLookup/blob/dev/Contributing.md) guide.
+- **Updated** [Contribution](https://github.com/lookup-foundation/RevitLookup/blob/dev/Contributing.md) guide.
 
 Made with love by @Nice3point 🕊️
 

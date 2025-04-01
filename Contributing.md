@@ -211,7 +211,7 @@ To create releases directly on GitHub:
 
 ## Architecture
 
-RevitLookup is built on the [LookupEngine](https://github.com/LookupEngine/LookupEngine) framework, which provides a system for analyzing object structures at runtime. 
+RevitLookup is built on the [LookupEngine](https://github.com/lookup-foundation/LookupEngine) framework, which provides a system for analyzing object structures at runtime. 
 This section explains how you can extend and modify core components of the project.
 
 ### Descriptors
