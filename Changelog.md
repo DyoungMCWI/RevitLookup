@@ -134,7 +134,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
 - **Migrated to SLNX solution format**, to avoid Git merge conflicts.
 - **Changed API for ContextMenu**. Now it provides dependecies and execution context.
 - **Disabled PresentationFramework traces** for the entire domain to address UI performance issues and freezing under an attached debugger, leaving only Critical events enabled.
-- **Updated** [Contribution](https://github.com/jeremytammik/RevitLookup/blob/dev/Contributing.md) guide.
+- **Updated** [Contribution](https://github.com/LookupEngine/RevitLookup/blob/dev/Contributing.md) guide.
 
 Made with love by @Nice3point 🕊️
 

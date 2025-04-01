@@ -36,7 +36,7 @@ sealed partial class Build
         if (IsPrerelease) return;
 
         changelogBuilder.AppendLine();
-        changelogBuilder.Append("RevitLookup versioning: https://github.com/jeremytammik/RevitLookup/wiki/Versions");
+        changelogBuilder.Append("RevitLookup versioning: https://github.com/LookupEngine/RevitLookup/wiki/Versions");
     }
 
     /// <summary>
