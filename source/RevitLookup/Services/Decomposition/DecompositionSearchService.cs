@@ -90,7 +90,7 @@ public sealed class DecompositionSearchService : IDecompositionSearchService
         var filteredObjects = new List<ObservableDecomposedObject>();
         foreach (var item in objects)
         {
-            if (item.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+            if (item.Name.Contains(query, StringComparison.OrdinalIgnoreCase) || item.TypeName.Contains(query, StringComparison.OrdinalIgnoreCase))
             {
                 filteredObjects.Add(item);
             }
