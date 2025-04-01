@@ -16,6 +16,7 @@ improvements. Let's move to the details.
 - **Improved exception handling**. Now shows more informational messages, added more supported error types. Fixed some application crashes.
 - **Fixed dependency conflicts** for .NET Framework versions of RevitLookup, according to tests, you should no longer encounter startup issues.
 - **Added AppBundle**, that can be installed with all available versions in the release.
+- **Added user manuals**, visit the [Wiki](https://github.com/LookupEngine/RevitLookup/wiki) for RevitLookup features.
 - **Added digital signature**. Thanks [Kinship](https://kinship.io/) for providing cloud services!
 
 ## User Interface
@@ -92,9 +93,9 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `IndependentTag.TagText`
 - Added new **View** extensions:
     - `GetAllPlacedInstances`
-- Added new **Wall** method overloads:
+- Added new **Wall** method overloads by @SergeyNefyodov:
     - `IsWallCrossSectionValid`
-- Added new **CompoundStructure** method overloads:
+- Added new **CompoundStructure** method overloads by @SergeyNefyodov:
     - `CanLayerBeStructuralMaterial`
     - `CanLayerBeVariable`
     - `CanLayerWidthBeNonZero`
@@ -120,6 +121,10 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `IsSimpleRegion`
     - `IsStructuralDeck`
     - `ParticipatesInWrapping`
+
+- Visualisation now supports the new [CurveLoop](https://github.com/jeremytammik/RevitLookup/wiki/Visualization#curveloop-visualization) type, thanks @JieGou for the implementation!
+
+    ![image](https://github.com/user-attachments/assets/f4d935f5-2cfd-44d2-b1c7-d5fdc07e95a1)
 
 ## Development:
 
