@@ -4,8 +4,7 @@
 
 A new major RevitLookup update with official Revit 2026 support and a lot of enhancements 🎉
 
-This release focuses on performance, a renewed UI, expanded functionality, redesigned application architecture, clearer separation of core components and user flow
-improvements. Let's move to the details.
+This release focuses on performance, a renewed UI, expanded functionality, redesigned application architecture, clearer separation of core components and user flow improvements. Let's move to the details.
 
 ## General
 
@@ -39,8 +38,7 @@ Updated and improved Summary page components.
 - **Improved shortcuts**, now the **F5** key works in all cases, previously it was required to focus on an element.
 - **Improved filter menu**. Now applying **Show/hide** filters does not close the menu.
 - **Improved tooltips**. Tooltips now display more useful information, number of elements contained in the type, full type name.
-- **Improved search**. It is now more intuitive and faster. Priority is given to the members table, the table is filtered first, then if nothing is found, the list of items is
-  filtered. When searching the table of members, the elements with the same type will be filtered as well.
+- **Improved search**. It is now more intuitive and faster. Priority is given to the members table, the table is filtered first, then if nothing is found, the list of items is filtered. When searching the table of members, the elements with the same type will be filtered as well.
 - **Show Extension** filter is now enabled by default.
 - **Patched WPF** issues causing non-obvious member's table behavior.
 
@@ -73,10 +71,11 @@ Updated and improved Summary page components.
 
 ## LookupEngine
 
-RevitLookup now runs on its own engine.
+RevitLookup now runs on its own [engine](https://github.com/lookup-foundation/LookupEngine).
 The engine can run outside Revit, and can be reused across the entire family of Autodesk products.
-This is a pledge for the future for
-products like AutocadLookup, InventorLookup and others. Isolating the engine also brings many new improvements:
+This is a pledge for the future for products like **AutocadLookup**, **InventorLookup** and others. 
+
+Isolating the engine also brings many new improvements:
 
 - **The engine is much faster** than the integrated version, it allocates less memory, and supports more features.
 - **Added context support**, now allows additional metadata to be used to resolve members.
@@ -122,7 +121,7 @@ products like AutocadLookup, InventorLookup and others. Isolating the engine als
     - `IsStructuralDeck`
     - `ParticipatesInWrapping`
 
-- Visualisation now supports the new [CurveLoop](https://github.com/jeremytammik/RevitLookup/wiki/Visualization#curveloop-visualization) type, thanks @JieGou for the implementation!
+- Visualisation now supports the new [CurveLoop](https://github.com/lookup-foundation/RevitLookup/wiki/Visualization#curveloop-visualization) type, thanks @JieGou for the implementation!
 
     ![image](https://github.com/user-attachments/assets/f4d935f5-2cfd-44d2-b1c7-d5fdc07e95a1)
 
