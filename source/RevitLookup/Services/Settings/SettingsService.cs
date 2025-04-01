@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Text.Json;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
@@ -23,9 +23,9 @@ public sealed class SettingsService(
     private DecompositionSettings? _decompositionSettings;
     private VisualizationSettings? _visualizationSettings;
 
-    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Application settings is not loaded.");
+    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Decomposition settings is not loaded.");
+    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Visualization settings is not loaded.");
 
     public void SaveSettings()
     {
@@ -86,6 +86,11 @@ public sealed class SettingsService(
         {
             logger.LogError(exception, "Application settings loading error");
         }
+        
+        if (_applicationSettings is null)
+        {
+            ResetApplicationSettings();
+        }
     }
 
     private void LoadDecompositionSettings()
@@ -106,6 +111,11 @@ public sealed class SettingsService(
         {
             logger.LogError(exception, "Decomposition settings loading error");
         }
+
+        if (_decompositionSettings is null)
+        {
+            ResetDecompositionSettings();
+        }
     }
 
     private void LoadVisualizationSettings()
@@ -125,6 +135,11 @@ public sealed class SettingsService(
         catch (Exception exception)
         {
             logger.LogError(exception, "Application settings loading error");
+        }
+
+        if (_visualizationSettings is null)
+        {
+            ResetVisualizationSettings();
         }
     }
 

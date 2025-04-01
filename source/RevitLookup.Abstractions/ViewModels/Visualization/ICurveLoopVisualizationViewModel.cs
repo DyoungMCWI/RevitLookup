@@ -1,4 +1,3 @@
-// RevitLookup.Abstractions/ViewModels/Visualization/ICurveLoopVisualizationViewModel.cs
 using System.Windows.Media;
 
 namespace RevitLookup.Abstractions.ViewModels.Visualization

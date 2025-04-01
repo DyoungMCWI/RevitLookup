@@ -1,4 +1,4 @@
-// Copyright 2003-2024 by Autodesk, Inc.
+﻿// Copyright 2003-2024 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
 // object code form for any purpose and without fee is hereby granted,
@@ -58,8 +58,7 @@ public static class DescriptorsMap
             //System
             string value when type is null || type == typeof(string) => new StringDescriptor(value),
             bool value when type is null || type == typeof(bool) => new BooleanDescriptor(value),
-            CurveLoop value when type is null || type == typeof(CurveLoop) => new CurveLoopDescriptor(value),//before regular IEnumerable
-            IEnumerable value => new EnumerableDescriptor(value),
+            IEnumerable value and not CurveLoop => new EnumerableDescriptor(value),
             Exception value when type is null || type == typeof(Exception) => new ExceptionDescriptor(value),
 
             //Root
@@ -84,6 +83,7 @@ public static class DescriptorsMap
             Solid value when type is null || type == typeof(Solid) => new SolidDescriptor(value),
             Mesh value when type is null || type == typeof(Mesh) => new MeshDescriptor(value),
             CylindricalFace value when type is null || type == typeof(CylindricalFace) => new CylindricalFaceDescriptor(value),
+            CurveLoop value when type is null || type == typeof(CurveLoop) => new CurveLoopDescriptor(value),
             Face value when type is null || type == typeof(Face) => new FaceDescriptor(value),
             City value when type is null || type == typeof(City) => new CityDescriptor(value),
             PaperSize value when type is null || type == typeof(PaperSize) => new PaperSizeDescriptor(value),

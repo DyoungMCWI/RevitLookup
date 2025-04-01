@@ -1,16 +1,29 @@
-// RevitLookup.ViewModels/Visualization/CurveLoopVisualizationViewModel.cs
-using System.Collections.Generic;
-using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
-using JetBrains.Annotations;
+// Copyright 2003-2024 by Autodesk, Inc.
+// 
+// Permission to use, copy, modify, and distribute this software in
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
+// that both that copyright notice and the limited warranty and
+// restricted rights notice below appear in all supporting
+// documentation.
+// 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
+// AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
+// DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
+// UNINTERRUPTED OR ERROR FREE.
+// 
+// Use, duplication, or disclosure by the U.S. Government is subject to
+// restrictions set forth in FAR 52.227-19 (Commercial Computer
+// Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
+// (Rights in Technical Data and Computer Software), as applicable.
+
 using RevitLookup.Abstractions.Services.Presentation;
 using RevitLookup.Abstractions.Services.Settings;
 using RevitLookup.Abstractions.ViewModels.Visualization;
 using RevitLookup.Core.Visualization;
 using RevitLookup.Core.Visualization.Events;
-using Autodesk.Revit.DB;
 using Microsoft.Extensions.Logging;
-using System.Windows;
 using Color = System.Windows.Media.Color;
 
 namespace RevitLookup.ViewModels.Visualization
@@ -39,34 +52,31 @@ namespace RevitLookup.ViewModels.Visualization
 
         public void RegisterServer(object curveLoop)
         {
-            if (curveLoop is CurveLoop loop)
-            {
-                Initialize();
-                _server.RenderFailed += HandleRenderFailure;
-                var allVertices = CollectVertices(loop);
-
-                _server.Register(allVertices);
-                return;
-            }
-            throw new ArgumentException("Unexpected CurveLoop type", nameof(curveLoop));
+            if (curveLoop is not CurveLoop loop) throw new ArgumentException("Unexpected CurveLoop type", nameof(curveLoop));
+            
+            Initialize();
+            _server.RenderFailed += HandleRenderFailure;
+            
+            var vertices = CollectVertices(loop);
+            _server.Register(vertices);
         }
 
         private static List<XYZ> CollectVertices(CurveLoop loop)
         {
-            var allVertices = new List<XYZ>();
+            var vertices = new List<XYZ>();
             foreach (var curve in loop)
             {
-                var collectionPts = curve.Tessellate().ToList();
-                foreach (var vertex in collectionPts)
+                var curveVertices = curve.Tessellate().ToList();
+                foreach (var vertex in curveVertices)
                 {
-                    if (allVertices.Any(pt => pt.IsAlmostEqualTo(vertex))) continue;
+                    if (vertices.Any(point => point.IsAlmostEqualTo(vertex))) continue;
 
-                    allVertices.Add(vertex);
+                    vertices.Add(vertex);
                 }
             }
 
-            if (!loop.IsOpen()) allVertices.Add(allVertices[0]);
-            return allVertices;
+            if (!loop.IsOpen()) vertices.Add(vertices[0]);
+            return vertices;
         }
 
         private void Initialize()

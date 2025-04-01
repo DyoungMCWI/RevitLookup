@@ -1,28 +1,7 @@
-// Copyright 2003-2024 by Autodesk, Inc.
-//
-// Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted,
-// provided that the above copyright notice appears in all copies and
-// that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting
-// documentation.
-//
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
-// AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
-// DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
-// UNINTERRUPTED OR ERROR FREE.
-//
-// Use, duplication, or disclosure by the U.S. Government is subject to
-// restrictions set forth in FAR 52.227-19 (Commercial Computer
-// Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
-// (Rights in Technical Data and Computer Software), as applicable.
-
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Autodesk.Revit.DB;
 using LookupEngine.Abstractions.Configuration;
 using LookupEngine.Abstractions.Decomposition;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,10 +17,10 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
 {
     private readonly CurveLoop _curveLoop;
 
-    public CurveLoopDescriptor(CurveLoop curveloop)
+    public CurveLoopDescriptor(CurveLoop curveLoop)
     {
-        _curveLoop = curveloop;
-        Name = $"{curveloop.GetExactLength().ToString(CultureInfo.InvariantCulture)} ft";
+        _curveLoop = curveLoop;
+        Name = $"{curveLoop.GetExactLength().ToString(CultureInfo.InvariantCulture)} ft";
     }
 
     public Func<IVariant>? Resolve(string target, ParameterInfo[] parameters)
@@ -94,48 +73,48 @@ public sealed class CurveLoopDescriptor : Descriptor, IDescriptorResolver, ICont
             .SetCommand(_curveLoop, VisualizeCurve)
             .SetShortcut(Key.F8);
 
-        async Task VisualizeCurve(CurveLoop curveloop)
+        async Task VisualizeCurve(CurveLoop curveLoop)
         {
             if (Context.ActiveUiDocument is null) return;
 
             try
             {
                 var dialog = serviceProvider.GetRequiredService<CurveLoopVisualizationDialog>();
-                await dialog.ShowDialogAsync(curveloop);
+                await dialog.ShowDialogAsync(curveLoop);
             }
             catch (Exception exception)
             {
                 var logger = serviceProvider.GetRequiredService<ILogger<CurveLoopDescriptor>>();
                 var notificationService = serviceProvider.GetRequiredService<INotificationService>();
 
-                logger.LogError(exception, "Visualize curveloop error");
+                logger.LogError(exception, "Visualize curve loop error");
                 notificationService.ShowError("Visualization error", exception);
             }
         }
 
 #if REVIT2023_OR_GREATER
-        void SelectCurve(CurveLoop curveloop)
+        void SelectCurve(CurveLoop curveLoop)
         {
             if (Context.ActiveUiDocument is null) return;
-            if (curveloop.Any(curve => curve.Reference is null)) return;
+            if (curveLoop.Any(curve => curve.Reference is null)) return;
 
-            foreach (var curve in curveloop)
+            foreach (var curve in curveLoop)
             {
                 RevitShell.ActionEventHandler.Raise(_ => Context.ActiveUiDocument.Selection.SetReferences([curve.Reference]));
             }
         }
 
-        void ShowCurve(CurveLoop curveloop)
+        void ShowCurve(CurveLoop curveLoop)
         {
             if (Context.ActiveUiDocument is null) return;
-            if (curveloop.Any(curve => curve.Reference is null)) return;
+            if (curveLoop.Any(curve => curve.Reference is null)) return;
 
             RevitShell.ActionEventHandler.Raise(application =>
             {
                 var uiDocument = application.ActiveUIDocument;
                 if (uiDocument is null) return;
 
-                foreach (var curve in curveloop)
+                foreach (var curve in curveLoop)
                 {
                     var element = curve.Reference.ElementId.ToElement(uiDocument.Document);
                     if (element is not null) uiDocument.ShowElements(element);

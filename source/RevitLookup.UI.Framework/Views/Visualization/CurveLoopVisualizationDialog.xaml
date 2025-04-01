@@ -8,7 +8,7 @@
     xmlns:colorPicker="clr-namespace:RevitLookup.UI.Framework.Controls.ColorPicker"
     xmlns:local="clr-namespace:RevitLookup.UI.Framework.Views.Visualization"
     xmlns:visualization="clr-namespace:RevitLookup.Abstractions.ViewModels.Visualization;assembly=RevitLookup.Abstractions"
-    Title="Curve Loop Visualization settings"
+    Title="CurveLoop Visualization settings"
     DialogMaxWidth="470"
     VerticalContentAlignment="Center"
     mc:Ignorable="d"
@@ -21,6 +21,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
+            <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
             <Style
                 BasedOn="{StaticResource DefaultContentDialogStyle}"
                 TargetType="{x:Type local:CurveLoopVisualizationDialog}" />

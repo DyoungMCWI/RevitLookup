@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Text.Json;
 using System.Windows.Media;
 using Microsoft.Extensions.Logging;
@@ -22,9 +22,9 @@ public sealed class MockSettingsService(
     private DecompositionSettings? _decompositionSettings;
     private VisualizationSettings? _visualizationSettings;
 
-    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Settings is not loaded.");
-    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Settings is not loaded.");
+    public ApplicationSettings ApplicationSettings => _applicationSettings ?? throw new InvalidOperationException("Application settings is not loaded.");
+    public DecompositionSettings DecompositionSettings => _decompositionSettings ?? throw new InvalidOperationException("Decomposition settings is not loaded.");
+    public VisualizationSettings VisualizationSettings => _visualizationSettings ?? throw new InvalidOperationException("Visualization settings is not loaded.");
 
     public void SaveSettings()
     {
@@ -67,7 +67,7 @@ public sealed class MockSettingsService(
         File.WriteAllText(path, json);
     }
 
-    private void LoadApplicationSettings()
+ private void LoadApplicationSettings()
     {
         var path = foldersOptions.Value.ApplicationSettingsPath;
         if (!File.Exists(path))
@@ -84,6 +84,11 @@ public sealed class MockSettingsService(
         catch (Exception exception)
         {
             logger.LogError(exception, "Application settings loading error");
+        }
+        
+        if (_applicationSettings is null)
+        {
+            ResetApplicationSettings();
         }
     }
 
@@ -105,6 +110,11 @@ public sealed class MockSettingsService(
         {
             logger.LogError(exception, "Decomposition settings loading error");
         }
+
+        if (_decompositionSettings is null)
+        {
+            ResetDecompositionSettings();
+        }
     }
 
     private void LoadVisualizationSettings()
@@ -124,6 +134,11 @@ public sealed class MockSettingsService(
         catch (Exception exception)
         {
             logger.LogError(exception, "Application settings loading error");
+        }
+
+        if (_visualizationSettings is null)
+        {
+            ResetVisualizationSettings();
         }
     }
 
