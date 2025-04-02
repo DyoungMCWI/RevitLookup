@@ -55,7 +55,6 @@
 
         <!-- Build -->
         <PackageReference Include="ILRepack" ExcludeAssets="Runtime"/>
-        <PackageReference Include="System.Diagnostics.DiagnosticSource" ExcludeAssets="Runtime"/>
     </ItemGroup>
 
     <ItemGroup>

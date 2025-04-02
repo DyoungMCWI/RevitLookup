@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Http;
 
 namespace RevitLookup.Config.Http;
 
@@ -12,5 +14,7 @@ public static class HttpClientConfiguration
         {
             builder.RemoveAllLoggers();
         });
+        
+        services.RemoveAll<IHttpMessageHandlerBuilderFilter>();
     }
 }
