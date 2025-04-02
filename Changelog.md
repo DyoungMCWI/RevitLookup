@@ -1,6 +1,6 @@
 # Changelog
 
-# Next **2026.0.0**
+# 2025-04-02 **2026.0.0**
 
 A new major RevitLookup update with official Revit 2026 support and a lot of enhancements 🎉
 
@@ -141,24 +141,6 @@ Isolating the engine also brings many new improvements:
 - **Updated** [Contribution](https://github.com/lookup-foundation/RevitLookup/blob/dev/Contributing.md) guide.
 
 Made with love by @Nice3point 🕊️
-
-# 2025-02-22 **2026.0.0-preview.2.250222**
-
-A new preview version of RevitLookup is available for public testing 🎉
-
-In this release, a resolved conflict issue with third-party plugins is available for testing.
-If you have a lot of plugins installed and are having trouble running RevitLookup, join the beta test.
-
-Feedback: https://github.com/jeremytammik/RevitLookup/issues/269
-
-# 2025-01-29 **2026.0.0-preview.1.250129**
-
-A preview version of RevitLookup is available for public testing 🎉
-
-More than 50k changes, redesigned application architecture, component portability, accelerated application responsiveness.
-No more details, we'll come back at the release.
-
-Feedback: https://github.com/jeremytammik/RevitLookup/pull/296
 
 # 2025-09-29 **2025.0.10**
 
