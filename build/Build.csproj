@@ -16,6 +16,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageDownload Include="AzureSignTool" Version="[6.0.1]"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <Using Include="Nuke.Common"/>
         <Using Include="Nuke.Common.IO"/>
         <Using Include="Serilog"/>
