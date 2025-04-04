@@ -34,11 +34,11 @@ To ensure a proper code review, all code contributions must go through a pull re
 
 We truly love pull requests! If you wish to help, you can learn more about how to contribute to this project in the [contribution guide](Contributing.md).
 
-|    Date     | Maintainer                                                                                                                                                                                                    |
-|:-----------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Since 2022  | [Nice3point](https://github.com/Nice3point), with invaluable [contributions](https://github.com/lookup-foundation/RevitLookup/graphs/contributors) from the entire Revit add-in developer community                |
-| 2008 - 2022 | Jeremy Tammik, [The Building Coder](http://thebuildingcoder.typepad.com), [Autodesk Platform Services](https://aps.autodesk.com/), [ADN](http://www.autodesk.com/adn) [Open](http://www.autodesk.com/adnopen) |
-| 11 May 2005 | Originally implemented by [Jim Awe](https://www.linkedin.com/in/james-awe-4630a94/) of [Autodesk Inc.](https://www.autodesk.com) as [RvtMgdDbg](https://thebuildingcoder.typepad.com/blog/2009/02/rvtmgddbg.html)  |
+|    Date     | Maintainer                                                                                                                                                                                                                                       |
+|:-----------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Since 2022  | [Nice3point](https://github.com/Nice3point), with invaluable [contributions](https://github.com/lookup-foundation/RevitLookup/graphs/contributors) from the entire Revit add-in developer community                                              |
+| 2008 - 2022 | [Jeremy Tammik](https://github.com/jeremytammik), [The Building Coder](http://thebuildingcoder.typepad.com), [Autodesk Platform Services](https://aps.autodesk.com/), [ADN](http://www.autodesk.com/adn) [Open](http://www.autodesk.com/adnopen) |
+| 11 May 2005 | Originally implemented by [Jim Awe](https://www.linkedin.com/in/james-awe-4630a94/) of [Autodesk Inc.](https://www.autodesk.com) as [RvtMgdDbg](https://thebuildingcoder.typepad.com/blog/2009/02/rvtmgddbg.html)                                |
 
 ## License
 
@@ -48,7 +48,7 @@ The source code is published under [MIT License](http://opensource.org/licenses/
 
 Thanks to [Kinship](https://kinship.io/) for providing cloud services and digital technologies that improve user experience and development quality!
 
-[<img src="https://github.com/user-attachments/assets/b0d772fd-db50-4dd3-81ae-3c19df69dbb5" width="450" />](https://jetbrains.com/)
+[<img src="https://github.com/user-attachments/assets/b0d772fd-db50-4dd3-81ae-3c19df69dbb5" width="450" />](https://kinship.io/)
 
 Thanks to [JetBrains](https://jetbrains.com) for providing licenses for [Rider](https://jetbrains.com/rider), [dotUltimate](https://www.jetbrains.com/dotnet/) and [Qodana Ultimate Plus](https://www.jetbrains.com/qodana/), which both
 make open-source development a real pleasure!
