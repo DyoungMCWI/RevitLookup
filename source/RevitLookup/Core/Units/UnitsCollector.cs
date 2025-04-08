@@ -8,46 +8,70 @@ public static class UnitsCollector
 {
     public static List<UnitInfo> GetBuiltinParametersInfo()
     {
-        var parameters = Enum.GetValues(typeof(BuiltInParameter));
+#if NETCOREAPP
+        var parameters = Enum.GetValues<BuiltInParameter>();
+        var parameterNames = Enum.GetNames<BuiltInParameter>();
+#else
+        var parameters = Enum.GetValues(typeof(BuiltInParameter)).Cast<BuiltInParameter>().ToArray();
+        var parameterNames = Enum.GetNames(typeof(BuiltInParameter));
+#endif
         var result = new List<UnitInfo>(parameters.Length);
-        foreach (BuiltInParameter parameter in parameters)
+        for (var i = 0; i < parameters.Length; i++)
+        {
+            var parameter = parameters[i];
+            string label;
             try
             {
-                result.Add(new UnitInfo
-                {
-                    Unit = parameter.ToString(),
-                    Label = parameter.ToLabel(),
-                    Value = parameter
-                });
+                label = parameter.ToLabel();
             }
             catch
             {
-                // ignored
                 // Some parameters don't have a label
+                label = string.Empty;
             }
+
+            result.Add(new UnitInfo
+            {
+                Unit = parameterNames[i],
+                Label = label,
+                Value = parameter
+            });
+        }
 
         return result;
     }
 
     public static List<UnitInfo> GetBuiltinCategoriesInfo()
     {
-        var categories = Enum.GetValues(typeof(BuiltInCategory));
+#if NETCOREAPP
+        var categories = Enum.GetValues<BuiltInCategory>();
+        var categoryNames = Enum.GetNames<BuiltInCategory>();
+#else
+        var categories = Enum.GetValues(typeof(BuiltInCategory)).Cast<BuiltInCategory>().ToArray();
+        var categoryNames = Enum.GetNames(typeof(BuiltInCategory));
+#endif
         var result = new List<UnitInfo>(categories.Length);
-        foreach (BuiltInCategory category in categories)
+        for (var i = 0; i < categories.Length; i++)
+        {
+            var category = categories[i];
+            string label;
             try
             {
-                result.Add(new UnitInfo
-                {
-                    Unit = category.ToString(),
-                    Label = category.ToLabel(),
-                    Value = category
-                });
+                label = category.ToLabel();
             }
             catch
             {
-                // ignored
                 // Some categories don't have a label
+                label = string.Empty;
             }
+
+            result.Add(new UnitInfo
+            {
+                Unit = categoryNames[i],
+                Label = label,
+                Value = category
+            });
+        }
 
         return result;
     }

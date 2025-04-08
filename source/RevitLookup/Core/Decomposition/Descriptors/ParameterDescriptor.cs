@@ -43,8 +43,22 @@ public sealed class ParameterDescriptor : Descriptor, IDescriptorResolver, IDesc
         return target switch
         {
             nameof(Parameter.ClearValue) => Variants.Disabled,
+            nameof(Parameter.HasValue) => ResolveHasValue,
+            nameof(Parameter.AsString) => ResolveAsString,
             _ => null
         };
+
+        IVariant ResolveHasValue()
+        {
+            // Memory corrupted if the Element is null
+            return _parameter.Element is null ? Variants.Disabled() : Variants.Value(_parameter.HasValue);
+        }
+
+        IVariant ResolveAsString()
+        {
+            // Memory corrupted if the Element is null
+            return _parameter.Element is null ? Variants.Disabled() : Variants.Value(_parameter.AsString());
+        }
     }
 
     public void RegisterExtensions(IExtensionManager manager)
@@ -55,7 +69,7 @@ public sealed class ParameterDescriptor : Descriptor, IDescriptorResolver, IDesc
             manager.Register(nameof(ParameterExtensions.AsColor), () => Variants.Value(_parameter.AsColor()));
         }
 
-        if (_parameter.Element.Document.IsFamilyDocument)
+        if (_parameter.Element is not null && _parameter.Element.Document.IsFamilyDocument)
         {
             manager.Register(nameof(FamilyManager.GetAssociatedFamilyParameter), RegisterGetAssociatedFamilyParameter);
         }
