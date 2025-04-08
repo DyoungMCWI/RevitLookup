@@ -9,7 +9,7 @@
         <VendorEmail></VendorEmail>
     </AddIn>
     <ManifestSettings>
-        <UseRevitContext>False</UseRevitContext>
+        <UseRevitContext>True</UseRevitContext>
         <ContextName>RevitLookup</ContextName>
     </ManifestSettings>
 </RevitAddIns>

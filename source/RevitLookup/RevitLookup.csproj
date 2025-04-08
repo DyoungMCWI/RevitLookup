@@ -18,7 +18,9 @@
     <!-- https://github.com/Nice3point/Revit.Build.Tasks -->
     <PropertyGroup>
         <DeployRevitAddin>true</DeployRevitAddin>
-        <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable>
+        <IsRepackable>true</IsRepackable>
+        <!-- Isolation is broken at the Revit level now -->
+        <!-- <IsRepackable Condition="'$(RevitVersion)' &lt; '2026'">true</IsRepackable> -->
         <RepackBinariesExcludes>LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
 
@@ -58,7 +60,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\LookupEngine\source\LookupEngine\LookupEngine.csproj" />
+        <ProjectReference Include="..\LookupEngine\source\LookupEngine\LookupEngine.csproj"/>
         <ProjectReference Include="..\RevitLookup.Abstractions\RevitLookup.Abstractions.csproj"/>
         <ProjectReference Include="..\RevitLookup.Common\RevitLookup.Common.csproj"/>
         <ProjectReference Include="..\RevitLookup.UI.Framework\RevitLookup.UI.Framework.csproj"/>
