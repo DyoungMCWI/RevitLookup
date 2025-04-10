@@ -9,7 +9,7 @@
         <VendorDescription>Lookup Foundation, https://github.com/lookup-foundation</VendorDescription>
     </AddIn>
     <ManifestSettings>
-        <UseRevitContext>True</UseRevitContext>
+        <UseRevitContext>False</UseRevitContext>
         <ContextName>RevitLookup</ContextName>
     </ManifestSettings>
 </RevitAddIns>
