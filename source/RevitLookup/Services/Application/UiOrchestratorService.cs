@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,13 +22,26 @@ public sealed class UiOrchestratorService : IUiOrchestratorService, IHistoryOrch
     private static readonly Dispatcher Dispatcher;
     private UiServiceImpl _uiService = null!; //Late init in the constructor
 
+    [SuppressMessage("ReSharper", "AccessToDisposedClosure")]
     static UiOrchestratorService()
     {
-        var uiThread = new Thread(Dispatcher.Run);
+        using var dispatcherReadyEvent = new ManualResetEventSlim(false);
+        var uiThread = new Thread(() =>
+        {
+            //Create a new Dispatcher
+            _ = Dispatcher.CurrentDispatcher;
+            dispatcherReadyEvent.Set();
+
+            //Borrow a thread
+            Dispatcher.Run();
+        });
+
         uiThread.SetApartmentState(ApartmentState.STA);
+        uiThread.IsBackground = true;
         uiThread.Start();
 
-        Dispatcher = EnsureDispatcherStart(uiThread);
+        dispatcherReadyEvent.Wait();
+        Dispatcher = Dispatcher.FromThread(uiThread)!;
     }
 
     public UiOrchestratorService(IServiceScopeFactory scopeFactory)
@@ -164,23 +178,6 @@ public sealed class UiOrchestratorService : IUiOrchestratorService, IHistoryOrch
         {
             Dispatcher.Invoke(() => _uiService.RunService(handler));
         }
-    }
-
-    private static Dispatcher EnsureDispatcherStart(Thread thread)
-    {
-        Dispatcher? dispatcher = null;
-        SpinWait spinWait = new();
-        while (dispatcher is null)
-        {
-            spinWait.SpinOnce();
-            dispatcher = Dispatcher.FromThread(thread);
-        }
-
-        // We must yield
-        // Sometimes the Dispatcher is unavailable for current thread
-        Thread.Sleep(1);
-
-        return dispatcher;
     }
 
     private sealed class UiServiceImpl
