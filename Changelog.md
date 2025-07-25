@@ -1,5 +1,17 @@
 # Changelog
 
+# 2025-07-26 **2026.0.1**
+
+A new minor release with a few bug fixes and improvements.
+
+- Added description support for searching items.
+- Added new Revit API unit tests.
+- Changed the addin vendor. It is now `Lookup Foundation`.
+- Disabled addin isolation for Revit 2026. Requires fixes from Autodesk.
+- Disabled `DefaultHttpClientFactory` logs.
+- Improved thread runner orchestrator.
+- Fixed display names of built-in parameters and categories https://github.com/lookup-foundation/RevitLookup/discussions/183
+
 # 2025-04-02 **2026.0.0**
 
 A new major RevitLookup update with official Revit 2026 support and a lot of enhancements 🎉

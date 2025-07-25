@@ -18,12 +18,12 @@ sealed partial class Build
     Dictionary<string, string> AssemblyVersionsMap = new()
     {
         { "Release Engine", "1.0.0" },
-        { "Release R21", "2021.4.0" },
-        { "Release R22", "2022.4.0" },
-        { "Release R23", "2023.4.0" },
-        { "Release R24", "2024.2.0" },
-        { "Release R25", "2025.1.0" },
-        { "Release R26", "2026.0.0" }
+        { "Release R21", "2021.4.1" },
+        { "Release R22", "2022.4.1" },
+        { "Release R23", "2023.4.1" },
+        { "Release R24", "2024.2.1" },
+        { "Release R25", "2025.1.1" },
+        { "Release R26", "2026.0.1" }
     };
     
     /// <summary>
