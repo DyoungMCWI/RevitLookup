@@ -40,6 +40,7 @@ public static class LoggerConfiguration
             .WriteTo.Debug(LogEventLevel.Debug, LogTemplate)
             .WriteTo.RevitJournal(Context.UiApplication, restrictedToMinimumLevel: LogEventLevel.Error, outputTemplate: LogTemplate)
             .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft.Extensions.Http.DefaultHttpClientFactory", LogEventLevel.Warning)
             .CreateLogger();
     }
 
