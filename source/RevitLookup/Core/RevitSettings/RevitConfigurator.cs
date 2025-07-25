@@ -43,7 +43,7 @@ public sealed class RevitConfigurator
 
     public RevitConfigurator()
     {
-#if NETCOREAPP
+#if NET
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #endif
         _encoding = Encoding.GetEncoding(1251);
@@ -240,7 +240,7 @@ public sealed class RevitConfigurator
                 _backupDone = true;
             }
 
-#if NETCOREAPP
+#if NET
             await using var stream = new FileStream(_userIniPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read, DefaultBufferSize, FileOptions.Asynchronous);
             await using var writer = new StreamWriter(stream, Encoding.Unicode);
 #else

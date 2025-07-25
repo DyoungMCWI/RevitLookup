@@ -8,7 +8,7 @@ public static class UnitsCollector
 {
     public static List<UnitInfo> GetBuiltinParametersInfo()
     {
-#if NETCOREAPP
+#if NET
         var parameters = Enum.GetValues<BuiltInParameter>();
         var parameterNames = Enum.GetNames<BuiltInParameter>();
 #else
@@ -43,7 +43,7 @@ public static class UnitsCollector
 
     public static List<UnitInfo> GetBuiltinCategoriesInfo()
     {
-#if NETCOREAPP
+#if NET
         var categories = Enum.GetValues<BuiltInCategory>();
         var categoryNames = Enum.GetNames<BuiltInCategory>();
 #else

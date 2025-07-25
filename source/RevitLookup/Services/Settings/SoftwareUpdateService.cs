@@ -37,7 +37,7 @@ public sealed class SoftwareUpdateService(
         var latestRelease = releases
             .Where(response => !response.Draft)
             .Where(response => !response.PreRelease)
-#if NETCOREAPP
+#if NET
             .MaxBy(release => release.PublishedDate);
 #else
             .OrderByDescending(release => release.PublishedDate)
@@ -71,7 +71,7 @@ public sealed class SoftwareUpdateService(
         var httpClient = httpFactory.CreateClient();
         var response = await httpClient.GetStreamAsync(_downloadUrl);
 
-#if NETCOREAPP
+#if NET
         await using var fileStream = new FileStream(fileName, FileMode.Create);
 #else
         using var fileStream = new FileStream(fileName, FileMode.Create);

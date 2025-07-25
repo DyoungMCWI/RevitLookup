@@ -24,7 +24,7 @@
         <RepackBinariesExcludes>LookupEngine*.dll</RepackBinariesExcludes>
     </PropertyGroup>
 
-    <ItemGroup Condition="!$(DefineConstants.Contains('NETCOREAPP'))">
+    <ItemGroup Condition="!$(DefineConstants.Contains('NET'))">
         <Reference Include="System.Net.Http"/>
     </ItemGroup>
 

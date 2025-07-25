@@ -16,7 +16,7 @@
 using System.Diagnostics.CodeAnalysis;
 using RevitLookup.Abstractions.Models.Tools;
 using RevitLookup.Abstractions.ViewModels.Tools;
-#if NETCOREAPP
+#if NET
 using System.Runtime.Loader;
 #endif
 
@@ -44,7 +44,7 @@ public sealed partial class ModulesViewModel : ObservableObject, IModulesViewMod
                 Path = assembly.IsDynamic ? string.Empty : assembly.Location,
                 Order = i + 1,
                 Version = assemblyName.Version is null ? string.Empty : assemblyName.Version.ToString(),
-#if NETCOREAPP
+#if NET
                 Container = AssemblyLoadContext.GetLoadContext(assembly)?.Name ?? string.Empty
 #else
                 Container = AppDomain.CurrentDomain.FriendlyName
