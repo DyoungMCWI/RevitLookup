@@ -34,17 +34,17 @@ public sealed partial class UnitsViewModel(
 
     public void InitializeParameters()
     {
-        Units = UnitsCollector.GetBuiltinParametersInfo();
+        Units = UnitsCollector.GetBuiltinParametersInfo().OrderBy(info => info.Unit).ToList();
     }
 
     public void InitializeCategories()
     {
-        Units = UnitsCollector.GetBuiltinCategoriesInfo();
+        Units = UnitsCollector.GetBuiltinCategoriesInfo().OrderBy(info => info.Unit).ToList();
     }
 
     public void InitializeForgeSchema()
     {
-        Units = UnitsCollector.GetForgeInfo();
+        Units = UnitsCollector.GetForgeInfo().OrderBy(info => info.Unit).ToList();
     }
 
     public async Task DecomposeAsync(UnitInfo unitInfo)
