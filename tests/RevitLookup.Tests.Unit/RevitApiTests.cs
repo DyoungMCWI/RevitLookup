@@ -1,7 +1,4 @@
-using Nice3point.TUnit.Revit;
-using Nice3point.TUnit.Revit.Executors;
 using RevitLookup.Core;
-using TUnit.Core.Executors;
 
 namespace RevitLookup.Tests.Unit;
 
@@ -32,7 +29,7 @@ public sealed class RevitApiTests : RevitApiTest
 #if NET
         var builtInCategories = Enum.GetValues<BuiltInCategory>();
 #else
-        var BuiltInCategory = Enum.GetValues(typeof(BuiltInCategory)).Cast<BuiltInCategory>().ToArray();
+        var builtInCategories = Enum.GetValues(typeof(BuiltInCategory)).Cast<BuiltInCategory>().ToArray();
 #endif
 
         foreach (var builtInCategory in builtInCategories)
