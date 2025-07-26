@@ -5,6 +5,7 @@
 A new minor release with a few bug fixes and improvements.
 
 - Added description support for searching items.
+- Added units sorting by built-in name.
 - Added new Revit API unit tests.
 - Changed the addin vendor. It is now `Lookup Foundation`.
 - Disabled addin isolation for Revit 2026. Requires fixes from Autodesk.
